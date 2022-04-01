@@ -1,0 +1,1011 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+
+
+/* 공통 */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: 'Noto Sans KR', sans-serif;
+   background-color: #DCD8D5;
+}
+
+.space {
+    clear: both;
+}
+
+.inner {
+    width: 1280px;
+    margin: 0 auto;
+}
+
+
+
+/* Header */
+/* 위쪽 상단 */
+#header {
+	background-color: #C8D5F3;
+    color: #393939;
+}
+
+.top_header {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #EBEBEB;
+    font-size: 13px;
+    text-align: center;
+}
+
+.site {
+    width: 274px;
+    float: left;
+    color: #6e6e6e;
+    font-weight: bold;
+}
+
+.site > li {
+    width: 32.9%;
+    float: left;
+    background-color: #393939;
+    font-weight: normal;
+    color: #fff;
+}
+
+.site li:nth-child(1) {
+    background-color: #fdfdfd;
+    color: #000;
+}
+
+.util {
+    float: right;
+}
+
+.util > li {
+    float: left;
+    text-align: center;
+}
+
+.util > li:before {
+    display: inline-block;
+    content: "";
+    width: 1px;
+    height: 10px;
+    background-color: #e1e1e1;
+    margin: 0 12px;
+}
+
+.util > li:nth-child(1):before {
+    display: none;
+}
+
+
+
+/* 아래쪽 상단 */
+.bottom_header {
+    width: 100%;
+    height: 92px;
+    line-height: 92px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.bottom_header .inner {
+    width: 1280px;
+    height: 92px;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    width: 212px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+
+.logo img {
+    vertical-align: middle;
+}
+
+.menu {
+    width: 372px;
+    float: left;
+}
+
+.menu li {
+    width: 22%;
+    float: left;
+    padding: 0 2%;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.menu li:nth-child(1) {
+    padding: 0;
+}
+
+.menu li:nth-child(4) {
+    padding: 0;
+}
+
+.side {
+    width: 321px;
+    float: left;
+}
+
+.side li {
+    float: left;
+    padding-right: 30px;
+}
+
+.side > li > img {
+    padding-right: 10px;
+    vertical-align: middle;
+}
+
+.search {
+    float: left;
+    padding-right: 30px;
+}
+
+.search img {
+    vertical-align: middle;
+}
+
+.m_menu img {
+    vertical-align: middle;
+}
+
+
+
+/* mainimg */
+#mainimg {
+    width: 100%;
+    height: 640px;
+    background-image: url(../img/mainimg.png);
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+/* contents */
+/* 플레이리스트 */
+.playlist_set {
+    margin: 0 auto;
+    padding-top: 90px;
+    background-image: url(../img/bg_playlist.png);
+}
+
+.playlist_set .playlist_title {
+    width: 100%;
+    height: 80px;
+    text-align: center;
+    position: relative`;
+}
+
+.playlist_set > .inner > .playlist_title > h2 {
+    font-size: 38px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    letter-spacing: -1px;
+}
+
+.playlist_set > .inner > .playlist_title > h2:before {
+    content: "";
+    display: inline-block;
+    background-image: url(../img/img_sound.png);
+    background-repeat: no-repeat;
+    width: 80px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.playlist_set > .inner > .playlist_title > h2:after {
+    content: "";
+    display: inline-block;
+    background-image: url(../img/img_sound.png);
+    background-repeat: no-repeat;
+    width: 80px;
+    height: 30px;
+    margin-left: 20px;
+}
+
+.playlist_title > p {
+    padding-top: 7px;
+    color: white;
+    font-size: 18px;
+}
+
+.playlist_slider {
+    width: 1280px;
+    height: 570px;
+    position: relative;
+    padding-top: 15px;
+}
+
+.btn_prev {
+    position: absolute;
+    left: 0;
+    top: 45%;
+}
+
+.btn_next {
+    position: absolute;
+    right: 0;
+    top: 45%;
+}
+
+.playlist_list {
+    position: absolute;
+    width: 1050px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    padding: 46px 5% 0 5%;
+}
+
+.slide {
+    width: 33.3%;
+    float: left;
+}
+
+.playlist_list .slide img {
+    padding: 0 7%;
+}
+
+.playlist_picker {
+    width: 100%;
+    height: 130px;
+    margin-top: 80px;
+    text-align: center;
+    padding-bottom: 130px;
+}
+
+.playlist_box {
+    width: 89%;
+    height: 130px;
+    float: left;
+    background-color: #212121;
+    border-radius: 8px 0 0 8px;
+    position: relative;
+}
+
+.playlist_btn {
+    height: 50px;
+    float: left;
+    position: relative;
+}
+
+.playlist_btn img {
+    position: absolute;
+    top: -30px;
+    left: -40px;
+}
+
+.playlist_box > dl {
+    float: left;
+    width: 33%;
+    height: 105px;
+    padding-top: 25px;
+    border-right: 1px solid #474747;
+}
+
+.playlist_box > dl > div > dt {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f76ec0;
+}
+
+.playlist_box > dl > div > dd {
+    font-size: 11px;
+    padding-top: 7px;
+    color: #666666;
+}
+
+.playlist_box > .last {
+    border-right: none;
+}
+
+.btn_select {
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #fff;
+    margin: 0 auto;
+}
+
+
+
+/* 상단 미니배너 */
+.t_mini_banner {
+    width: 100%;
+    height: 263px;
+    background-color: #DCE5ED;
+    background-image: url(../img/mini_banner.png);
+    background-repeat: no-repeat;
+    background-position: 85%;
+}
+
+.t_mini_banner > .inner > h2 {
+    padding: 90px 0 5px 0;
+    font-size: 32px;
+    letter-spacing: -1px;
+    color: #2b2b2b;
+}
+
+.t_mini_banner > .inner > p {
+    font-size: 25px;
+    color: #2b2b2b;
+}
+
+
+
+/* 앨범 영역 */
+.album_set {
+    width: 100%;
+    height: 810px;
+    background-color: #1c1c1c;
+}
+
+.album_set > h2 {
+    font-size: 36px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    padding-top: 120px;
+    padding-bottom: 50px;
+    letter-spacing: -1px;
+}
+
+.album_slider {
+    width: 1280px;
+    height: 494px;
+    position: relative;
+    color: #fff;
+    margin: 0 auto;
+}
+
+.album_list {
+    width: 969px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+
+.album_lis .slide img {
+    width: 90%;
+}
+
+.album_list > .slide > img {
+    width: 80%;
+    margin: 0 10%;
+}
+
+.album_list > .slide > h4 {
+    font-size: 22px;
+    font-weight: bold;
+    padding: 20px 10% 5px 10%;
+}
+
+.album_list > .slide > h5 {
+    font-size: 15px;
+    font-weight: bold;
+    padding: 0 10%;
+    color: white;
+}
+
+.album_list > .slide > .title {
+    font-size: 15x;
+    font-weight: 500;
+    padding-bottom: 15px;
+    color: white;
+}
+
+.album_list > .slide > .title:before {
+    display: inline-block;
+    content: "title";
+    background-color: #9850c5;
+    width: 45px;
+    text-align: center;
+    border-radius: 11px;
+    margin-right: 6px;
+    margin-top: 20px;
+    height: 23px;
+}
+
+.album_list > .slide > p {
+    font-size: 15px;
+    color: #dcd8d5;
+    padding: 0 10%;
+    color: white;
+    color: #acacac;
+}
+
+
+
+/* 스테이션 */
+.station_set {
+    text-align: center;
+    padding-top: 110px;
+    padding-bottom: 120px;
+    background-color: #2c2c2c;
+}
+
+.station_set > h2 {
+    color: white;
+    font-size: 36px;
+    padding-bottom: 50px;
+}
+
+.station_set .title {
+    font-size: 22px;
+    color: white;
+    padding-top: 25px;
+}
+
+.station_set .contents {
+    font-size: 18px;
+    color: white;
+    padding-top: 5px;
+    font-weight: normal;
+}
+
+.station_set > ul {
+    width: 60%;
+    margin: 0 auto;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.station_set > ul > li {
+    width: 25%;
+    float: left;
+    color: white;
+}
+
+
+
+/* 하단 미니배너 */
+.f_mini_banner {
+    background-image: url(../img/f_mini_banner.png);
+    height: 279px;
+}
+
+
+
+/* 하단 공지사항 */
+.board_set {
+    height: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    font-size: 14px;
+    color: #000100;
+    background-color: white;
+}
+
+.board_set > .inner > h2 {
+    float: left;
+    width: 136px;
+    font-size: 16px;
+}
+
+.board_set > .inner > p {
+    float: left;
+}
+
+.board_set > .inner > ul {
+    float: right;
+}
+
+.board_set > .inner > ul > .date {
+    float: left;
+    color: #979996;
+}
+
+.board_set > .inner > ul > .more {
+    width: 110px;
+    float: left;
+    text-align: right;
+    text-decoration: underline;
+}
+
+
+
+/* footer */
+#footer {
+    width: 100%;
+    height: 260px;
+    background-color: #1e1f21;
+}
+
+.top_footer {
+    width: 100%;
+    height: 73px;
+    line-height: 73px;
+    border-bottom: 1px solid #303133;
+    font-size: 12px;
+    color: #5e605d;
+}
+
+.top_footer > .inner > ul > li {
+    float: left;
+    color: #5e605d;
+    padding-right: 32px;
+}
+
+.top_footer > .inner > ul > .bold {
+    color: #fff;
+}
+
+.bottom_footer {
+    padding-top: 42px;
+    font-size: 8px;
+    color: #999999;
+}
+
+.f_logo {
+    float: left;
+    padding-right: 54px;
+}
+
+.copyright {
+    float: left;
+}
+
+.copyright > p {
+    padding-top: 20px;
+}
+
+.copyright > ul > li {
+    height: 20px;
+}
+
+.copyright > ul > li > span {
+    width: 110px;
+    display: inline-block;
+}
+
+.info {
+    float: right;
+    font-size: 17px;
+    color: #ff7bbc;
+}
+
+.info > ul > li {
+    float: left;
+}
+
+.info > ul > li:nth-child(1) > span {
+    color: #5e605b;
+    font-size: 12px;
+    padding-right: 5px;
+}
+
+.info > ul > li:nth-child(2) > span {
+    font-size: 12px;
+    padding-left: 5px;
+}
+
+.info > ul > li:nth-child(2):before {
+    content: "";
+    display: inline-block;
+    background-color: #565955;
+    width: 1px;
+    height: 13px;
+    margin-left: 12px;
+    margin-right: 8px;
+}
+
+
+@media (max-width:1279px) {
+
+    #header {
+        width: 100%;
+        height: 132px;
+        position: relative;
+    }
+
+    .top_header {
+        display: none;
+    }
+
+    .bottom_header {
+        width: 100%;
+    }
+
+    .bottom_header > .inner {
+        width: 100%;
+    }
+
+    .menu {
+        float: none;
+        margin: 0 auto;
+        padding-top: 60px;
+    }
+
+    .logo {
+        top: 10px;
+    }
+
+    .side {
+        display: none;
+    }
+
+    .search {
+        display: none;
+    }
+
+    #mainimg {
+        height: 0;
+        padding-top: calc(1052/767*100%);
+        background-image: url(../img/mainimg_m.png);
+    }
+
+
+    .playlist_set > .inner {
+        width: 100%;
+    }
+
+    .playlist_set > .inner > .playlist_title > h2 {
+        font-size: 30px;
+    }
+
+    .playlist_set .playlist_title {
+        width: 98%;
+        margin: 0 auto;
+        height: auto;
+    }
+
+    .playlist_slider {
+        width: 80%;
+        margin: 0 auto;
+        height: auto;
+        padding-top: 30px;
+    }
+
+    /* 플레이리스트 */
+    .playlist_list {
+        width: 35%;
+        height: 0;
+        padding: calc(280/499*100%) 0 0 0;
+        position: relative;
+    }
+
+    .playlist_list > .slide {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        padding: 0;
+    }
+
+    .playlist_list > .slide > img {
+        width: 100%;
+        padding: 0;
+    }
+
+    .playlist_list > .slide:nth-child(2),
+    .playlist_list > .slide:nth-child(3) {
+        display: none;
+    }
+
+    .btn_select {
+        margin: 0 auto;
+        float: left;
+    }
+
+    /* 플레이 리스트 */
+    .playlist_picker {
+        height: 303px;
+        margin-top: 60px;
+        padding-bottom: 0;
+    }
+
+    .playlist_box {
+        width: 100%;
+        height: auto;
+        float: none;
+        border-radius: 0;
+    }
+
+    .playlist_box > dl {
+        width: 100%;
+        float: none;
+        height: 75px;
+        border-right: none;
+        border-bottom: 1px solid #474747;
+        padding-top: 25px;
+    }
+
+    .playlist_box > dl > div {
+        margin: 0 auto;
+    }
+
+    .playlist_box > dl > div > dt {
+        width: 49%;
+        float: left;
+        line-height: 41px;
+        margin: 0 auto;
+        text-align: right;
+        padding-right: 1%;
+    }
+
+    .playlist_box > dl > div > dd {
+        width: 49%;
+        float: left;
+        padding-left: 1%;
+    }
+
+    .playlist_btn {
+        display: none;
+    }
+
+    /* 미니배너 */
+    .t_mini_banner {
+        height: 0;
+        padding-top: calc(290/474 * 100%);
+        background-image: url(../img/mini_banner_m.png);
+        background-position: unset;
+        background-color: revert;
+        background-size: cover;
+        position: relative;
+    }
+
+    .t_mini_banner > .inner {
+        position: absolute;
+        width: 100%;
+        background: none;
+        top: 0;
+    }
+
+    .t_mini_banner > .inner > h2 {
+        font-size: 40px;
+        width: 60%;
+        padding: 10% 0 0 5%;
+        word-break: keep-all;
+    }
+
+    .t_mini_banner > .inner > p {
+        padding: 2% 0 0 5%;
+    }
+
+    /* 최신앨범 */
+    .album_set {
+        height: 0;
+        padding-top: calc(1500/1920*100%);
+        position: relative;
+    }
+
+    .album_set > h2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        padding-top: 50px;
+    }
+
+    .album_slider {
+        width: 100%;
+        position: absolute;
+        top: 25%;
+    }
+
+    .album_slider > .btn_prev {
+        display: none;
+    }
+
+    .album_slider > .btn_next {
+        display: none;
+    }
+
+    .album_list {
+        width: 70%;
+        height: 0;
+        padding-top: calc(1012/680*100%);
+        position: relative;
+    }
+
+    .album_list > .slide {
+        width: 50%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        float: none;
+    }
+
+    .album_list > .slide:nth-child(2),
+    .album_list > .slide:nth-child(3) {
+        display: none;
+    }
+
+    /* 스테이션 */
+    .station_set {
+        padding-bottom: 60px;
+        padding-top: 60px;
+    }
+
+    .station_set > ul {
+        width: 100%;
+    }
+
+    .station_set > ul > li {
+        width: 50%;
+        padding-bottom: 50px;
+    }
+
+
+    /* 하단배너 */
+    .f_mini_banner {
+        height: 0;
+        padding-top: calc(277/768 * 100%);
+        background-image: url(../img/f_mini_banner_m.png);
+        background-size: cover;
+    }
+
+
+    /* footer */
+    .board_set {
+        width: 1oo%;
+    }
+
+    .more {
+        display: none;
+    }
+
+    .top_footer {
+        border-bottom: none;
+        line-height: normal;
+    }
+
+    .inner {
+        width: 95%;
+    }
+
+    .top_footer > .inner > ul {
+        padding-top: 1%;
+    }
+
+    .top_footer > .inner > ul > li {
+        width: 25%;
+        text-align: center;
+        padding: 1% 0;
+    }
+
+    .bottom_footer {
+        padding-top: 0;
+        position: relative;
+        width: 100%;
+        height: 73px;
+    }
+
+    .f_logo {
+        display: none;
+    }
+
+    .info {
+        display: none;
+    }
+
+    .copyright {
+        float: none;
+        position: absolute;
+        top: 55%;
+        width: 80%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        text-align: center
+    }
+
+    .copyright > ul > li {
+        width: 33%;
+        float: left;
+        font-weight: bold;
+        color: #b8b8b8
+    }
+
+    .copyright > ul:after {
+        display: block;
+        content: "";
+        clear: both;
+    }
+
+    .copyright > ul > li > span {
+        width: auto;
+        padding-right: 5px;
+        font-weight: normal;
+        color: #868686;
+    }
+
+    #footer {
+        height: 195px;
+        padding-top: 2%;
+    }
+}
+
+/* 여기 해주기!!!!!! */
+@media (max-width:1024px) {
+}
+
+@media (max-width:768px) {
+
+    .menu {
+        display: none
+    }
+
+    #header {
+        height: 92px
+    }
+
+    .bottom_header {
+        height: 92px
+    }
+
+
+    .playlist_title > h2 {
+        width: 35%
+    }
+
+    .banner_set > .inner > ul {
+        width: 98%
+    }
+
+    .album_set {
+        padding-top: calc(3000/1920*100%)
+    }
+
+    .album_list > .slide > p {
+        display: none
+    }
+
+    .album_list > .slide {
+        width: 100%
+    }
+
+    .f_mini_banner {
+        height: 100px;
+        line-height: revert
+    }
+
+    .f_mini_banner > h2 {
+        float: none
+    }
+
+    .f_mini_banner > p {
+        float: none;
+        width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: 40px
+    }
+
+    .f_mini_banner > ul {
+        display: none
+    }
+
+    .top_footer {
+        display: none
+    }
+
+    .copyright > ul > li > span {
+        display: block;
+        height: 30px
+    }
+}
