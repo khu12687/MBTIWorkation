@@ -16,6 +16,7 @@ body {
     overflow-x: hidden;
     font-family: 'Noto Sans KR', sans-serif;
    background-color: #DCD8D5;
+   background-image: url("/resources/images/background.png");
 }
 
 .space {
@@ -32,7 +33,7 @@ body {
 /* Header */
 /* 위쪽 상단 */
 #header {
-	background-color: #C8D5F3;
+	background-image: url("/resources/images/background_spring.jpg");
     color: #393939;
 }
 
@@ -204,7 +205,7 @@ body {
 .playlist_set > .inner > .playlist_title > h2:before {
     content: "";
     display: inline-block;
-    background-image: url(../img/img_sound.png);
+    background-image: url(/resources/background.png);
     background-repeat: no-repeat;
     width: 80px;
     height: 30px;
@@ -214,7 +215,7 @@ body {
 .playlist_set > .inner > .playlist_title > h2:after {
     content: "";
     display: inline-block;
-    background-image: url(../img/img_sound.png);
+    background-image: url(/resources/background.png);
     background-repeat: no-repeat;
     width: 80px;
     height: 30px;
@@ -333,9 +334,8 @@ body {
 /* 상단 미니배너 */
 .t_mini_banner {
     width: 100%;
-    height: 263px;
-    background-color: #DCE5ED;
-    background-image: url(../img/mini_banner.png);
+    height: 1000px;
+    background-image: url(/resources/images/background.png);
     background-repeat: no-repeat;
     background-position: 85%;
 }
@@ -481,7 +481,7 @@ body {
 
 /* 하단 미니배너 */
 .f_mini_banner {
-    background-image: url(../img/f_mini_banner.png);
+    background-image: url(/images/background.png);
     height: 279px;
 }
 
@@ -649,11 +649,6 @@ body {
         display: none;
     }
 
-    #mainimg {
-        height: 0;
-        padding-top: calc(1052/767*100%);
-        background-image: url(../img/mainimg_m.png);
-    }
 
 
     .playlist_set > .inner {
@@ -757,7 +752,7 @@ body {
     .t_mini_banner {
         height: 0;
         padding-top: calc(290/474 * 100%);
-        background-image: url(../img/mini_banner_m.png);
+        background-image: url(/images/background.png);
         background-position: unset;
         background-color: revert;
         background-size: cover;
@@ -854,7 +849,7 @@ body {
     .f_mini_banner {
         height: 0;
         padding-top: calc(277/768 * 100%);
-        background-image: url(../img/f_mini_banner_m.png);
+        background-image: url(/images/background.png);
         background-size: cover;
     }
 
