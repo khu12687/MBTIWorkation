@@ -1,0 +1,32 @@
+@charset "EUC-KR";
+.infoWrap {
+	text-align: center;
+}
+
+.infoWrap div {
+	display: inline-block;
+	border: 1px solid #EBEBEB;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+table.tableInfo {
+	border-collapse: separate;
+	border-spacing: 1px;
+	text-align: left;
+	line-height: 1.5;
+	margin: 20px 10px;
+}
+
+table.tableInfo th {
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+}
+
+h2 {
+	margin: 5%;
+	border-bottom: 1px solid #CED4DA;
+}
