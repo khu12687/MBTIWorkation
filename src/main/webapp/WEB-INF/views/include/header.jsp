@@ -24,8 +24,8 @@
 				</ul>
 			</div>
 			<ul class="util">
-				<li>로그인</li>
-				<li>회원가입</li>
+				<li><a href="/member/login">로그인</a></li>
+				<li><a href="/member/regist">회원가입</a></li>
 				<li>회사소개</li>
 				<li>고객샌터</li>
 			</ul>
@@ -34,12 +34,12 @@
 	<div style="float: left; width: 100%;">
 		<div style="text-align: center;">
 			<a href="/"><img src="/resources/images/mainlogo.png"></a>
-		</div>
-		<div style="float: right; margin-right: 10%;">
-			<form>
-				<input type="text" id="mainInput" size="30"
-					placeholder="제주 워케이션 상품 최저가!" value="" name="keyword">
-			</form>
+			<div >
+				<form>
+					<input type="text" id="mainInput" size="30"
+						placeholder="제주 워케이션 상품 최저가!" value="" name="keyword">
+				</form>
+			</div>
 		</div>
 	</div>
 

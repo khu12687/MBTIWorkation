@@ -1,4 +1,4 @@
-package model;
+package kr.ac.kopo.model;
 
 public class Service_option {
 	private int service_option_id;

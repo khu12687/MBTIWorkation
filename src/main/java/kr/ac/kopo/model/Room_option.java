@@ -1,4 +1,4 @@
-package model;
+package kr.ac.kopo.model;
 
 public class Room_option {
 	private int room_option_id;

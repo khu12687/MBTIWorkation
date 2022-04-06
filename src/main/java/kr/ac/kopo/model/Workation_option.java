@@ -1,4 +1,4 @@
-package model;
+package kr.ac.kopo.model;
 
 public class Workation_option {
 	private int workation_option_id;

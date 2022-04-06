@@ -1,0 +1,33 @@
+@font-face {
+  src: url("../fonts/BMJUA_ttf.ttf");
+  font-family: "Jua";
+}
+body {
+  box-sizing: border-box;
+}
+.member-info {
+  padding: 35px;
+}
+.display-1 {
+  font-weight: 800;
+  font-family: 'JUA';
+  margin-top: 20px;
+  transition: 0.3s;
+}
+.display-1:hover {
+  transform: translateY(-10px);
+}
+
+.display-1>a {
+  text-decoration: none;
+  color: black;
+}
+
+.membership-form>h1 {
+  margin-top: 30px;
+}
+
+strong>a {
+  text-decoration: none;
+  color: gray;
+}

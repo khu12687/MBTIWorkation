@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import model.Reservation;
-import model.Room;
-import model.Room_option;
-import model.Service_option;
-import model.Subscr;
-import model.Workation_option;
+import kr.ac.kopo.model.Reservation;
+import kr.ac.kopo.model.Room;
+import kr.ac.kopo.model.Room_option;
+import kr.ac.kopo.model.Service_option;
+import kr.ac.kopo.model.Subscr;
+import kr.ac.kopo.model.Workation_option;
 @Controller
 public class WorkationController {
 	

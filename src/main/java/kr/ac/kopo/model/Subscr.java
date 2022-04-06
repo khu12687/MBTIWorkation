@@ -1,4 +1,4 @@
-package model;
+package kr.ac.kopo.model;
 
 public class Subscr {
 	private int subscrr_id;

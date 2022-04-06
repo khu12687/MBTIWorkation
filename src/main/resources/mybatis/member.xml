@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Member">
+	<sql id="search">
+		<where>
+			<if test="search == 1">
+				id=#{keyword}
+			</if>
+			
+			<if test="search == 2">
+				name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+						
+			<if test="search == 3">
+				phone LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+
+			<if test="search == 4">
+				email LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			
+			<if test="search == 5">
+				address LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+		</where>
+	</sql>
+	
+	<insert id="insert">					
+		INSERT INTO member(id,password,name,phone) VALUES (#{id}, #{password}, #{name}, #{phone})
+	</insert>
+	
+	<select id="loginCheck" parameterType="Member" resultType="Member">
+		select * from member 
+		where id=#{id} and password=#{password}
+	</select>
+	
+	<select id="check_id" resultType="Integer">
+		SELECT COUNT(id) FROM member
+		WHERE id=#{id}
+	</select>
+	
+	<select id="checkPhone" resultType="Member" >
+		SELECT * FROM MEMBER
+		WHERE id = #{id}
+	</select>
+	
+	<select id="checkPhonetoId" resultType="Member">
+		SELECT * FROM MEMBER
+		WHERE phone = #{phone}
+	</select>
+	
+	<update id="changePw">
+		update member set passwd = ${password}
+		where id = #{id}
+	</update>
+	
+	<select id="select" parameterType="String" resultType="Member">
+		select * from member
+		where id=#{id}
+	</select>
+	
+	<select id="selectAll" parameterType="String" resultType="Member">
+		select * from member
+		<include refid="search"></include> 
+		LIMIT #{offset}, #{perPage}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
