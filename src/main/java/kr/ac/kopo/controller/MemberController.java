@@ -62,7 +62,7 @@ public class MemberController {
 		
 		session.setAttribute("member", obj);
 		model.addAttribute("msg", obj.getName()+"님 안녕하세요");
-		model.addAttribute("url", "/buy/mChooseReceiver");
+		model.addAttribute("url", "/");
 		return "message";
 	}
 	

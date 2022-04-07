@@ -24,10 +24,14 @@
 				</ul>
 			</div>
 			<ul class="util">
-				<li><a href="/member/login">로그인</a></li>
+				<c:if test="${sessionScope.member == null}">
+				  <li><a href="/member/login">로그인</a></li>
+		 		 </c:if>
+		 		 <c:if test="${sessionScope.member != null}">
+		 		 	<li><a href="/member/mypage" style="margin-left: 1%;">mypage</a></li>
+				  	<li><a href="/member/logout" >로그아웃</a></li>
+				  </c:if>
 				<li><a href="/member/regist">회원가입</a></li>
-				<li>회사소개</li>
-				<li>고객샌터</li>
 			</ul>
 		</div>
 	</div>

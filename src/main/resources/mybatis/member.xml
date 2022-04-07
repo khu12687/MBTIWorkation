@@ -26,7 +26,7 @@
 	</sql>
 	
 	<insert id="insert">					
-		INSERT INTO member(id,password,name,phone) VALUES (#{id}, #{password}, #{name}, #{phone})
+		INSERT INTO member VALUES (#{id}, #{password}, #{name}, #{phone}, NOW())
 	</insert>
 	
 	<select id="loginCheck" parameterType="Member" resultType="Member">

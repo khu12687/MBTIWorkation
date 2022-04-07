@@ -1,10 +1,10 @@
 package kr.ac.kopo.model;
 
-public class Room_option {
+public class RoomOption {
 	private int roomOptionId;
 	private String roomType;
-	private String detail;
 	private int price;
+	private String detail;
 	public int getRoomOptionId() {
 		return roomOptionId;
 	}
@@ -17,19 +17,18 @@ public class Room_option {
 	public void setRoomType(String roomType) {
 		this.roomType = roomType;
 	}
-	public String getDetail() {
-		return detail;
-	}
-	public void setDetail(String detail) {
-		this.detail = detail;
-	}
 	public int getPrice() {
 		return price;
 	}
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	public String getDetail() {
+		return detail;
+	}
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
 
-	
 	
 }

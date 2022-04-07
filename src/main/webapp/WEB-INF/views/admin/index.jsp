@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<jsp:include page="../include/adminHeader.jsp"></jsp:include>
+<link rel="stylesheet" href="/resources/css/admin.css" type="text/css">
 </head>
 <body>
 hi
