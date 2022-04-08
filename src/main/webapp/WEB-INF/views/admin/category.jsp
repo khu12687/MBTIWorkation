@@ -13,122 +13,6 @@
 <!-- Bootstrap icon css-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
 <script>
-$(function(){
-	$($(".reg")).click(function(){
-		regist();
-	});
-	$($(".lis")).click(function(){
-		getList();
-	});
-	$($(".del")).click(function(){
-		del();
-	});
-	$(".edi").click(function(){
-		if($("select").val() ==0){
-			alert("ROOM_TYPE을 선택해주세요");
-		}
-		else{
-			$.ajax("roomOption/list",{
-				method: "GET",
-				
-				success: result => {
-					for(let i=0; i<result.length; i++){
-						const obj = result[i];
-						if($("select").val() == obj.roomOptionId){
-							$(".roomType").val(obj.roomType);
-							$(".price").val(obj.price);
-							$(".detail").val(obj.detail);
-						}
-					}
-				},
-				error: (xhr, result) => console.log(123)
-			});
-		}
-	});
-	$("#addModal .edit").click(function() {
-	    const item = {
-	    		roomType: $(`#addModal .roomType`).val(),
-	    		price: $(`#addModal .price`).val(),
-	    		detail: $(`#addModal .detail`).val()
-	    };
-	    
-		$("#addModal input").val("");
-
-	    $.ajax("roomOption/edit/"+$("select").val(), {
-	        method: "POST",
-	        contentType: "application/json",
-	        dataType: "json",
-	        data: JSON.stringify(item),
-	        success: result => {
-				if(result==1){
-					alert("수정되었습니다");
-					getList();
-				}else{
-					alert("수정에 실패하였습니다.\n 관리자에 문의하세요")
-				}
-			}, 
-	        error: xhr => alert(`오류 발생: ${xhr.statusText}`)
-	    })
-
-	    $("#addModal").modal("hide");
-	})
-});
-function regist(){
-	if($("input[name='room_type']").val()!="" && $("input[name='price']").val()!="" && $("input[name='detail']").val() != ""){
-		var item ={
-			roomType :$("input[name='room_type']").val(),
-			price :$("input[name='price']").val(),
-			detail :$("input[name='detail']").val()
-		}
-		$.ajax("roomOption/regist",{
-			method: "POST",
-			contentType: "application/json",
-			dataType: "json",
-			data: JSON.stringify(item),
-			success: result => {
-				alert("등록성공!");
-				getList();
-			},
-			error: (xhr, result) => console.log(123)
-		});
-	}else{
-		alert("ROOM옵션 설정을 정확히 입력해 주세요");
-	}
-}
-//비동기로 데이터 가져오기!
-function getList(){
-	$.ajax("roomOption/list",{
-		method: "GET",
-		
-		success: result => {
-			$("#roomOption").empty(); //비우기!
-			
-			for(let i=0; i<result.length; i++){
-				const obj = result[i];
-				$("#roomOption").append("<option value='"+ obj.roomOptionId+"'>"+ obj.roomType +"("+obj.price+")"+"</option>");
-			}
-		},
-		error: (xhr, result) => console.log(123)
-	});
-}
-//비동기로 삭제하기!!
-function del(){
-	
-	if(confirm("삭제하실래요?")){
-		$.ajax("roomOption/del/"+$("select").val(),{
-			method: "GET",
-			success: result => {
-				if(result==1){
-					alert("삭제되었습니다");
-					getList();
-				}else{
-					alert("삭제에 실패하였습니다.\n 관리자에 문의하세요")
-				}
-			},
-			error: (xhr, result) => alert("삭제에 실패하였습니다. 삭제할 ROOM_TYPE을 선택해주세요")
-		});
-	}
-}
 
 </script>
 <style>
@@ -162,11 +46,11 @@ select{
 		<div>
 			<div class="mb-3">
 				<label class="form-label"><h2>ROOM_TYPE 옵션</h2></label>
-				<input type ="text" name="room_type" placeholder="디럭스" class="form-control"/>
+				<input type ="text" name="room_type" placeholder="ex) 디럭스" class="form-control"/>
 		 	</div>
 		 	<div class="mb-3">
 				<label class="form-label"><h2>PRICE</h2></label>
-				<input type ="number" name="price" placeholder="10000" class="form-control"/>
+				<input type ="number" name="price" placeholder="ex) 10000" class="form-control"/>
 		 	</div>
 		 	<div class="mb-3">
 				<label class="form-label"><h2>상세정보</h2></label>
@@ -215,11 +99,11 @@ select{
 		<div>
 		 	<div class="mb-3">
 				<label class="form-label"><h2>SERVICE 이름</h2></label>
-				<input type ="text" name="serviceName" placeholder="조식포함" class="form-control"/>
+				<input type ="text" name="serviceName" placeholder="ex) 조식포함" class="form-control"/>
 		 	</div>
 		 	<div class="mb-3">
 				<label class="form-label"><h2>PRICE</h2></label>
-				<input type ="number" name="priceService" placeholder="20000" class="form-control"/>
+				<input type ="number" name="priceService" placeholder="ex) 20000" class="form-control"/>
 		 	</div>
 			<div class="mb-3">
 				<label class="form-label"><h2>상세정보</h2></label>
@@ -270,27 +154,31 @@ select{
 	<div class="mai">
 		<div>
 			<div class="mb-3">
-				<label class="form-label"><h2>ROOM_TYPE 옵션</h2></label>
-				<input type ="text" name="room_type" placeholder="room_type입력" class="form-control"/>
+				<label class="form-label"><h2>(방관리)지역</h2></label>
+				<input type ="text" name="loc" placeholder="ex)제주도 돌하르방" class="form-control"/>
 		 	</div>
 		 	<div class="mb-3">
-				<label class="form-label"><h2>PRICE</h2></label>
-				<input type ="number" name="price" placeholder="price 입력" class="form-control"/>
+				<label class="form-label"><h2>최대인원수</h2></label>
+				<input type ="text" name="maxNumber" placeholder="3~4인용" class="form-control"/>
 		 	</div>
 		 	<div class="mb-3">
-				<label class="form-label"><h2>상세정보</h2></label>
-				<input type ="text" name="detail" placeholder="설명 입력" class="form-control"/>
+				<label class="form-label"><h2>총개수</h2></label>
+				<input type ="text" name="num" placeholder="10" class="form-control"/>
 		 	</div>
-			<button class="reg" style="width: 100%;">등록</button>
+		 	<div class="mb-3">
+				<label class="form-label"><h2>가격</h2></label>
+				<input type ="text" name="priceRoom" placeholder="30000" class="form-control"/>
+		 	</div>
+			<button class="regRoom" style="width: 100%;">등록</button>
 		</div>
 		<p>
-			<select multiple="multiple"></select>
+			<select class="room" multiple="multiple"></select>
 		</p>
-		<button class="lis">목록</button>
-		<button class="del">삭제</button>
-		<button class="edi" data-bs-toggle="modal" data-bs-target="#addModal">수정</button>
+		<button class="lisRoom">목록</button>
+		<button class="delRoom">삭제</button>
+		<button class="ediRoom" data-bs-toggle="modal" data-bs-target="#addRoomModal">수정</button>
 	 	<!-- [시작] 등록 Modal -->
-		<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+		<div class="modal fade" id="addRoomModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -299,21 +187,25 @@ select{
 					</div>
 					<div class="modal-body">
 						<div class="mb-3">
-							<label class="form-label">ROOM_TYPE</label>
-					 		<input type="text" class="roomType form-control">
+							<label class="form-label">지역</label>
+					 		<input type="text" class="loc form-control">
+					 	</div>
+					 	<div class="mb-3">
+							<label class="form-label">최대 인원수</label>
+							<input type="text" class="maxNumber form-control">
+					 	</div>
+					 	<div class="mb-3">
+							<label class="form-label">총 개수</label>
+							<input type="text" class="num form-control">
 					 	</div>
 					 	<div class="mb-3">
 							<label class="form-label">가격</label>
-							<input type="number" class="price form-control">
-					 	</div>
-					 	<div class="mb-3">
-							<label class="form-label">설명</label>
-							<input type="text" class="detail form-control">
+							<input type="number" class="priceRoom form-control">
 					 	</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"	data-bs-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary edit">수정</button>
+						<button type="button" class="btn btn-primary editRoom">수정</button>
 					</div>
 				</div>
 			</div>
@@ -323,7 +215,7 @@ select{
 	<div class="mai">
 		<div>
 			<div class="mb-3">
-				<label class="form-label"><h2>ROOM_TYPE 옵션</h2></label>
+				<label class="form-label"><h2>워케이션장비 옵션</h2></label>
 				<input type ="text" name="room_type" placeholder="room_type입력" class="form-control"/>
 		 	</div>
 		 	<div class="mb-3">
@@ -374,6 +266,8 @@ select{
 		<!-- [끝] 등록 Modal -->
 	</div>
 </div>
+<script src="/resources/js/room.js"></script>
+<script src="/resources/js/roomType.js"></script>
 <script src="/resources/js/service.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>

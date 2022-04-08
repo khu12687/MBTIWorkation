@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import kr.ac.kopo.exception.DMLException;
 import kr.ac.kopo.model.Admin;
 import kr.ac.kopo.model.CategoryOption;
+import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
 import kr.ac.kopo.service.AdminService;
@@ -125,6 +126,41 @@ public class AdminController {
 	public String serviceOptionEdit(@PathVariable int serviceOptionId, @RequestBody ServiceOption serviceOption) {
 		serviceOption.setServiceOptionId(serviceOptionId);
 		service.editService(serviceOption);
+		
+		return "1";
+	}
+	
+	
+	@PostMapping("/room/regist")
+	@ResponseBody
+	public Room roomOption(@RequestBody Room room) {
+		service.roomRegist(room);
+		
+		return room;
+	}
+	
+	@GetMapping("/room/list")
+	@ResponseBody
+	public List<Room> roomList(){
+		
+		List<Room> list = service.roomList();
+		
+		return list;
+	}
+	
+	@GetMapping("/room/del/{roomId}")
+	@ResponseBody
+	public String roomDel(@PathVariable int roomId) {
+		service.deleteRoom(roomId);
+		
+		return "1";
+	}
+	
+	@PostMapping("/room/edit/{roomId}")
+	@ResponseBody
+	public String roomEdit(@PathVariable int roomId, @RequestBody Room room) {
+		room.setRoomId(roomId);
+		service.roomEdit(room);
 		
 		return "1";
 	}

@@ -50,6 +50,25 @@
 		WHERE service_option_id =#{serviceOptionId}
 	</update>
 	
+	<insert id="roomRegist">					
+		INSERT INTO room
+		VALUES (NULL, #{loc}, #{maxNumber}, #{num}, #{price})
+	</insert>
+	
+	<select id="roomList" resultType="Room">
+		SELECT * FROM room
+	</select>
+	
+	<delete id="deleteRoom">
+		DELETE FROM room WHERE room_id= #{roomId}
+	</delete>
+	
+	<update id="roomEdit">
+		UPDATE room
+		SET loc = #{loc}, max_number = #{maxNumber}, num = #{num}, price = #{price}
+		WHERE room_id =#{roomId}
+	</update>
+	
 </mapper>
 
 

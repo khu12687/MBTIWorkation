@@ -1,33 +1,40 @@
 package kr.ac.kopo.model;
 
 public class Room {
-	private int room_id;
-	private String max_number;
-	private String room_size;
-	private String filename;
-	public int getRoom_id() {
-		return room_id;
+	private int roomId;
+	private String loc;
+	private String maxNumber;
+	private int num;
+	private int price;
+	public int getRoomId() {
+		return roomId;
 	}
-	public void setRoom_id(int room_id) {
-		this.room_id = room_id;
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
 	}
-	public String getMax_number() {
-		return max_number;
+	public String getLoc() {
+		return loc;
 	}
-	public void setMax_number(String max_number) {
-		this.max_number = max_number;
+	public void setLoc(String loc) {
+		this.loc = loc;
 	}
-	public String getRoom_size() {
-		return room_size;
+	public String getMaxNumber() {
+		return maxNumber;
 	}
-	public void setRoom_size(String room_size) {
-		this.room_size = room_size;
+	public void setMaxNumber(String maxNumber) {
+		this.maxNumber = maxNumber;
 	}
-	public String getFilename() {
-		return filename;
+	public int getNum() {
+		return num;
 	}
-	public void setFilename(String filename) {
-		this.filename = filename;
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	
 	

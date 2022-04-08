@@ -3,6 +3,7 @@ package kr.ac.kopo.Dao;
 import java.util.List;
 
 import kr.ac.kopo.model.Admin;
+import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
 
@@ -25,5 +26,13 @@ public interface AdminDao {
 	void editService(ServiceOption serviceOption);
 
 	List<ServiceOption> serviceOptionList();
+
+	void roomRegist(Room room);
+
+	List<Room> roomList();
+
+	void deleteRoom(int roomId);
+
+	void roomEdit(Room room);
 
 }

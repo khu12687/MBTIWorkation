@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.exception.DataNotFoundException;
 import kr.ac.kopo.model.Admin;
+import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
 
@@ -69,6 +70,27 @@ public class AdminDaoImpl implements AdminDao{
 	public List<ServiceOption> serviceOptionList() {
 	
 		return sql.selectList("Admin.serviceOptionList");
+	}
+
+	@Override
+	public void roomRegist(Room room) {
+		sql.insert("Admin.roomRegist",room);
+	}
+
+	@Override
+	public List<Room> roomList() {
+
+		return sql.selectList("Admin.roomList");
+	}
+
+	@Override
+	public void deleteRoom(int roomId) {
+		sql.selectOne("Admin.deleteRoom",roomId);
+	}
+
+	@Override
+	public void roomEdit(Room room) {
+		sql.selectOne("Admin.roomEdit", room);
 	}
 
 }

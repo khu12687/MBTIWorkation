@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.Dao.AdminDao;
 import kr.ac.kopo.model.Admin;
+import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
 
@@ -64,6 +65,27 @@ public class AdminServiceImpl implements AdminService{
 	public List<ServiceOption> serviceOptionList() {
 
 		return dao.serviceOptionList();
+	}
+
+	@Override
+	public void roomRegist(Room room) {
+		dao.roomRegist(room);
+	}
+
+	@Override
+	public List<Room> roomList() {
+
+		return dao.roomList();
+	}
+
+	@Override
+	public void deleteRoom(int roomId) {
+		dao.deleteRoom(roomId);
+	}
+
+	@Override
+	public void roomEdit(Room room) {
+		dao.roomEdit(room);
 	}
 
 }
