@@ -74,21 +74,26 @@ $(function(){
 	})
 });
 function regist(){
-	var item ={
-		roomType :$("input[name='room_type']").val(),
-		price :$("input[name='price']").val(),
-		detail :$("input[name='detail']").val()
+	if($("input[name='room_type']").val()!="" && $("input[name='price']").val()!="" && $("input[name='detail']").val() != ""){
+		var item ={
+			roomType :$("input[name='room_type']").val(),
+			price :$("input[name='price']").val(),
+			detail :$("input[name='detail']").val()
+		}
+		$.ajax("roomOption/regist",{
+			method: "POST",
+			contentType: "application/json",
+			dataType: "json",
+			data: JSON.stringify(item),
+			success: result => {
+				alert("등록성공!");
+				getList();
+			},
+			error: (xhr, result) => console.log(123)
+		});
+	}else{
+		alert("ROOM옵션 설정을 정확히 입력해 주세요");
 	}
-	$.ajax("roomOption/regist",{
-		method: "POST",
-		contentType: "application/json",
-		dataType: "json",
-		data: JSON.stringify(item),
-		success: result => {
-			alert("등록성공!");
-		},
-		error: (xhr, result) => console.log(123)
-	});
 }
 //비동기로 데이터 가져오기!
 function getList(){
@@ -96,11 +101,11 @@ function getList(){
 		method: "GET",
 		
 		success: result => {
-			$("select").empty(); //비우기!
+			$("#roomOption").empty(); //비우기!
 			
 			for(let i=0; i<result.length; i++){
 				const obj = result[i];
-				$("select").append("<option value='"+ obj.roomOptionId+"'>"+ obj.roomType +"("+obj.price+")"+"</option>");
+				$("#roomOption").append("<option value='"+ obj.roomOptionId+"'>"+ obj.roomType +"("+obj.price+")"+"</option>");
 			}
 		},
 		error: (xhr, result) => console.log(123)
@@ -109,7 +114,7 @@ function getList(){
 //비동기로 삭제하기!!
 function del(){
 	
-	if(confirm($("select").val()+"를 삭제하실래요?")){
+	if(confirm("삭제하실래요?")){
 		$.ajax("roomOption/del/"+$("select").val(),{
 			method: "GET",
 			success: result => {
@@ -132,9 +137,8 @@ button {
 	 border: 1px solid #efefef; 
 }
 .mai{
-	width: 300px;
-	margin-top: 7%;
-	margin-left: 9.5%;
+	width: 400px;
+	margin: 5%;
 	border : 1px solid #EBEBEB;
 	border-radius: 8px;
 	overflow: hidden;
@@ -153,63 +157,224 @@ select{
 </style>
 </head>
 <body>
-<div class="mai">
-	<div>
-		<h2>ROOM_TYPE 옵션</h2>
-		<div class="mb-3">
-			<label class="form-label">room_type</label>
-			<input type ="text" name="room_type" placeholder="room_type입력" class="form-control"/>
-	 	</div>
-	 	<div class="mb-3">
-			<label class="form-label">price</label>
-			<input type ="number" name="price" placeholder="price 입력" class="form-control"/>
-	 	</div>
-	 	<div class="mb-3">
-			<label class="form-label">detail</label>
-			<input type ="text" name="detail" placeholder="설명 입력" class="form-control"/>
-	 	</div>
-		
-		
-		<button class="reg">등록</button>
-	</div>
-	<p>
-		<select multiple="multiple"></select>
-	</p>
-	<button class="lis">목록</button>
-	<button class="del">삭제</button>
-	<button class="edi" data-bs-toggle="modal" data-bs-target="#addModal">수정</button>
- 	<!-- [시작] 등록 Modal -->
-	<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="addModalLabel">수정</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"	aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<div class="mb-3">
-						<label class="form-label">ROOM_TYPE</label>
-				 		<input type="text" class="roomType form-control">
-				 	</div>
-				 	<div class="mb-3">
-						<label class="form-label">가격</label>
-						<input type="number" class="price form-control">
-				 	</div>
-				 	<div class="mb-3">
-						<label class="form-label">설명</label>
-						<input type="text" class="detail form-control">
-				 	</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"	data-bs-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-primary edit">수정</button>
+<div style="float: left; display: flex; width: 100%;">
+	<div class="mai">
+		<div>
+			<div class="mb-3">
+				<label class="form-label"><h2>ROOM_TYPE 옵션</h2></label>
+				<input type ="text" name="room_type" placeholder="디럭스" class="form-control"/>
+		 	</div>
+		 	<div class="mb-3">
+				<label class="form-label"><h2>PRICE</h2></label>
+				<input type ="number" name="price" placeholder="10000" class="form-control"/>
+		 	</div>
+		 	<div class="mb-3">
+				<label class="form-label"><h2>상세정보</h2></label>
+				<input type ="text" name="detail" placeholder="설명 입력" class="form-control"/>
+		 	</div>
+			<button class="reg" style="width: 100%;">등록</button>
+		</div>
+		<p>
+			<select id="roomOption" multiple="multiple"></select>
+		</p>
+		<button class="lis">목록</button>
+		<button class="del">삭제</button>
+		<button class="edi" data-bs-toggle="modal" data-bs-target="#addModal">수정</button>
+	 	<!-- [시작] 등록 Modal -->
+		<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="addModalLabel">수정</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"	aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="mb-3">
+							<label class="form-label">ROOM_TYPE</label>
+					 		<input type="text" class="roomType form-control">
+					 	</div>
+					 	<div class="mb-3">
+							<label class="form-label">가격</label>
+							<input type="number" class="price form-control">
+					 	</div>
+					 	<div class="mb-3">
+							<label class="form-label">설명</label>
+							<input type="text" class="detail form-control">
+					 	</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"	data-bs-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-primary edit">수정</button>
+					</div>
 				</div>
 			</div>
 		</div>
+		<!-- [끝] 등록 Modal -->
 	</div>
-	<!-- [끝] 등록 Modal -->
+	<div class="mai">
+		<div>
+		 	<div class="mb-3">
+				<label class="form-label"><h2>SERVICE 이름</h2></label>
+				<input type ="text" name="serviceName" placeholder="조식포함" class="form-control"/>
+		 	</div>
+		 	<div class="mb-3">
+				<label class="form-label"><h2>PRICE</h2></label>
+				<input type ="number" name="priceService" placeholder="20000" class="form-control"/>
+		 	</div>
+			<div class="mb-3">
+				<label class="form-label"><h2>상세정보</h2></label>
+				<input type ="text" name="detailService" placeholder="설명 입력" class="form-control"/>
+		 	</div>
+			<button class="reg1" style="width: 100%;">등록</button>
+		</div>
+		<p>
+			<select class="service" multiple="multiple"></select>
+		</p>
+		<button class="lis1">목록</button>
+		<button class="del1">삭제</button>
+		<button class="edi1" data-bs-toggle="modal" data-bs-target="#addSerModal">수정</button>
+	 	<!-- [시작] 등록 Modal -->
+		<div class="modal fade" id="addSerModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="addModalLabel">수정</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"	aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="mb-3">
+							<label class="form-label">SERVICE 이름</label>
+					 		<input type="text" class="serviceName form-control" >
+					 	</div>
+					 	<div class="mb-3">
+							<label class="form-label">가격</label>
+							<input type="number" class="priceService form-control" >
+					 	</div>
+					 	<div class="mb-3">
+							<label class="form-label">설명</label>
+							<input type="text" class="detailService form-control" >
+					 	</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"	data-bs-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-primary edit1">수정</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- [끝] 등록 Modal -->
+	</div>
 </div>
 
+<div style="float: left; display: flex; width: 100%;">
+	<div class="mai">
+		<div>
+			<div class="mb-3">
+				<label class="form-label"><h2>ROOM_TYPE 옵션</h2></label>
+				<input type ="text" name="room_type" placeholder="room_type입력" class="form-control"/>
+		 	</div>
+		 	<div class="mb-3">
+				<label class="form-label"><h2>PRICE</h2></label>
+				<input type ="number" name="price" placeholder="price 입력" class="form-control"/>
+		 	</div>
+		 	<div class="mb-3">
+				<label class="form-label"><h2>상세정보</h2></label>
+				<input type ="text" name="detail" placeholder="설명 입력" class="form-control"/>
+		 	</div>
+			<button class="reg" style="width: 100%;">등록</button>
+		</div>
+		<p>
+			<select multiple="multiple"></select>
+		</p>
+		<button class="lis">목록</button>
+		<button class="del">삭제</button>
+		<button class="edi" data-bs-toggle="modal" data-bs-target="#addModal">수정</button>
+	 	<!-- [시작] 등록 Modal -->
+		<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="addModalLabel">수정</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"	aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="mb-3">
+							<label class="form-label">ROOM_TYPE</label>
+					 		<input type="text" class="roomType form-control">
+					 	</div>
+					 	<div class="mb-3">
+							<label class="form-label">가격</label>
+							<input type="number" class="price form-control">
+					 	</div>
+					 	<div class="mb-3">
+							<label class="form-label">설명</label>
+							<input type="text" class="detail form-control">
+					 	</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"	data-bs-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-primary edit">수정</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- [끝] 등록 Modal -->
+	</div>
+	<div class="mai">
+		<div>
+			<div class="mb-3">
+				<label class="form-label"><h2>ROOM_TYPE 옵션</h2></label>
+				<input type ="text" name="room_type" placeholder="room_type입력" class="form-control"/>
+		 	</div>
+		 	<div class="mb-3">
+				<label class="form-label"><h2>PRICE</h2></label>
+				<input type ="number" name="price" placeholder="price 입력" class="form-control"/>
+		 	</div>
+		 	<div class="mb-3">
+				<label class="form-label"><h2>상세정보</h2></label>
+				<input type ="text" name="detail" placeholder="설명 입력" class="form-control"/>
+		 	</div>
+			<button class="reg" style="width: 100%;">등록</button>
+		</div>
+		<p>
+			<select multiple="multiple"></select>
+		</p>
+		<button class="lis">목록</button>
+		<button class="del">삭제</button>
+		<button class="edi" data-bs-toggle="modal" data-bs-target="#addModal">수정</button>
+	 	<!-- [시작] 등록 Modal -->
+		<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="addModalLabel">수정</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"	aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="mb-3">
+							<label class="form-label">ROOM_TYPE</label>
+					 		<input type="text" class="roomType form-control">
+					 	</div>
+					 	<div class="mb-3">
+							<label class="form-label">가격</label>
+							<input type="number" class="price form-control">
+					 	</div>
+					 	<div class="mb-3">
+							<label class="form-label">설명</label>
+							<input type="text" class="detail form-control">
+					 	</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"	data-bs-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-primary edit">수정</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- [끝] 등록 Modal -->
+	</div>
+</div>
+<script src="/resources/js/service.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 </body>

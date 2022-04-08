@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import kr.ac.kopo.model.Reservation;
 import kr.ac.kopo.model.Room;
-import kr.ac.kopo.model.Room_option;
-import kr.ac.kopo.model.Service_option;
+import kr.ac.kopo.model.RoomOption;
+import kr.ac.kopo.model.ServiceOption;
 import kr.ac.kopo.model.Subscr;
 import kr.ac.kopo.model.Workation_option;
 @Controller
@@ -24,7 +24,7 @@ public class WorkationController {
 	}
 	
 	@PostMapping("/reserv/{workation_id}")
-	public String reserv(@PathVariable int workation_id, Reservation reservation, Room_option room_option ,Room room, Service_option service_option, Workation_option workation_option, Model model) {
+	public String reserv(@PathVariable int workation_id, Reservation reservation, RoomOption room_option ,Room room, ServiceOption service_option, Workation_option workation_option, Model model) {
 		
 		model.addAttribute("reservation",reservation);
 		System.out.println(reservation.getCheck_in());
@@ -32,7 +32,7 @@ public class WorkationController {
 	}
 	
 	@PostMapping("/reserv/{workation_id}/step2")
-	public String step2(@PathVariable int workation_id, Reservation reservation, Room_option room_option ,Room room, Service_option service_option, Workation_option workation_option, Subscr subscr) {
+	public String step2(@PathVariable int workation_id, Reservation reservation, RoomOption room_option ,Room room, ServiceOption service_option, Workation_option workation_option, Subscr subscr) {
 		System.out.println(workation_id);
 		System.out.println(reservation.getCheck_in());
 		

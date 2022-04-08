@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import kr.ac.kopo.exception.DataNotFoundException;
 import kr.ac.kopo.model.Admin;
 import kr.ac.kopo.model.RoomOption;
+import kr.ac.kopo.model.ServiceOption;
 
 @Repository
 public class AdminDaoImpl implements AdminDao{
@@ -47,6 +48,27 @@ public class AdminDaoImpl implements AdminDao{
 	@Override
 	public void edit(RoomOption roomOption) {
 		sql.selectOne("Admin.edit", roomOption);
+	}
+
+	@Override
+	public void serviceOptionRegist(ServiceOption serviceOption) {
+		sql.insert("Admin.serviceOptionRegist",serviceOption);
+	}
+
+	@Override
+	public void deleteServiceOption(int serviceOptionId) {
+		sql.selectOne("Admin.deleteServiceOption",serviceOptionId);
+	}
+
+	@Override
+	public void editService(ServiceOption serviceOption) {
+		sql.selectOne("Admin.editService", serviceOption);
+	}
+
+	@Override
+	public List<ServiceOption> serviceOptionList() {
+	
+		return sql.selectList("Admin.serviceOptionList");
 	}
 
 }

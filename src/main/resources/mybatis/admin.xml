@@ -17,7 +17,7 @@
 		VALUES (NULL, #{roomType}, #{price}, #{detail})
 	</insert>
 	
-	<select id="roomOptionList" resultType="Room_option">
+	<select id="roomOptionList" resultType="RoomOption">
 		SELECT * FROM room_option
 	</select>
 	
@@ -29,6 +29,25 @@
 		UPDATE room_option
 		SET room_type = #{roomType}, price = #{price}, detail = #{detail}
 		WHERE room_option_id =#{roomOptionId}
+	</update>
+	
+	<insert id="serviceOptionRegist">					
+		INSERT INTO service_option
+		VALUES (NULL, #{serviceName}, #{price}, #{detail})
+	</insert>
+	
+	<select id="serviceOptionList" resultType="serviceOption">
+		SELECT * FROM service_option
+	</select>
+	
+	<delete id="deleteServiceOption">
+		DELETE FROM service_option WHERE service_option_id= #{serviceOptionId}
+	</delete>
+	
+	<update id="editService">
+		UPDATE service_option
+		SET service_name = #{serviceName}, price = #{price}, detail = #{detail}
+		WHERE service_option_id =#{serviceOptionId}
 	</update>
 	
 </mapper>

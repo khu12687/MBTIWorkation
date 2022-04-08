@@ -21,6 +21,7 @@ import kr.ac.kopo.exception.DMLException;
 import kr.ac.kopo.model.Admin;
 import kr.ac.kopo.model.CategoryOption;
 import kr.ac.kopo.model.RoomOption;
+import kr.ac.kopo.model.ServiceOption;
 import kr.ac.kopo.service.AdminService;
 
 @Controller
@@ -90,6 +91,40 @@ public class AdminController {
 	public String roomOptionEdit(@PathVariable int roomOptionId, @RequestBody RoomOption roomOption) {
 		roomOption.setRoomOptionId(roomOptionId);
 		service.edit(roomOption);
+		
+		return "1";
+	}
+
+	@PostMapping("/serviceOption/regist")
+	@ResponseBody
+	public ServiceOption serviceOptionRegist(@RequestBody ServiceOption serviceOption) {
+		service.serviceOptionRegist(serviceOption);
+		
+		return serviceOption;
+	}
+	
+	@GetMapping("/serviceOption/list")
+	@ResponseBody
+	public List<ServiceOption> serviceOptionList(){
+		
+		List<ServiceOption> list = service.serviceOptionList();
+		
+		return list;
+	}
+	
+	@GetMapping("/serviceOption/del/{serviceOptionId}")
+	@ResponseBody
+	public String serviceOptionDel(@PathVariable int serviceOptionId) {
+		service.deleteServiceOption(serviceOptionId);
+		
+		return "1";
+	}
+	
+	@PostMapping("/serviceOption/edit/{serviceOptionId}")
+	@ResponseBody
+	public String serviceOptionEdit(@PathVariable int serviceOptionId, @RequestBody ServiceOption serviceOption) {
+		serviceOption.setServiceOptionId(serviceOptionId);
+		service.editService(serviceOption);
 		
 		return "1";
 	}

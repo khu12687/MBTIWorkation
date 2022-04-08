@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.ac.kopo.model.Admin;
 import kr.ac.kopo.model.RoomOption;
+import kr.ac.kopo.model.ServiceOption;
 
 public interface AdminService {
 
@@ -16,5 +17,13 @@ public interface AdminService {
 	void delete(int roomOptionId);
 
 	void edit(RoomOption roomOption);
+
+	void serviceOptionRegist(ServiceOption serviceOption);
+
+	void deleteServiceOption(int serviceOptionId);
+
+	void editService(ServiceOption serviceOption);
+
+	List<ServiceOption> serviceOptionList();
 
 }

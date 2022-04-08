@@ -16,6 +16,7 @@
   <a href="/admin/cs/index">고객센터</a>
   <a>${sessionScope.admin.name}님 로그인 중</a>
   <a href="/admin/logout">로그아웃</a>
+  
 </div>
 </body>
 </html>
