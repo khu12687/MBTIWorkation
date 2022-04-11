@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,13 @@
 <jsp:include page="../include/mainHeader.jsp"></jsp:include>
 <jsp:include page="../include/header.jsp"></jsp:include>
 <link rel="stylesheet" href="/resources/css/reserv.css" type="text/css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(function() {
+	var roomTypePrice = $("#roomType").options[$("#roomType").selectedIndex].value;
+	$("#totalPay").text = "3123";
+})
+</script>
 </head>
 <body>
 	<div class="infoWrap">
@@ -63,10 +71,10 @@
 						<th>룸 옵션</th>
 						<td>
 							<div class="mt-2">
-								<select name="room_type" class="form-select">
-									<option value="디럭스">디럭스</option>
-									<option value="프리미어">프리미어</option>
-									<option value="스위트">스위트</option>
+								<select name="roomType" class="form-select" id="roomType">
+									<c:forEach items="${roomOptionList }" var="item">
+										<option value="${item.roomType}">${item.roomType} (${item.price}원)</option>
+									</c:forEach>
 								</select>
 							</div>
 						</td>
@@ -75,10 +83,10 @@
 						<th>침대 옵션</th>
 						<td>
 							<div class="mt-2">
-								<select name="max_number" class="form-select">
-									<option value="3">3인용</option>
-									<option value="4">4인용</option>
-									<option value="2">트윈</option>
+								<select name="maxNumber" class="form-select" id="maxNumber">
+									<c:forEach items="${roomList }" var="item">
+										<option value="${item.maxNumber}">${item.maxNumber} (${item.price}원)</option>
+									</c:forEach>
 								</select>
 							</div>
 						</td>
@@ -87,9 +95,10 @@
 						<th>프로모션</th>
 						<td>
 							<div class="mt-2">
-								<select name="service_name" class="form-select">
-									<option value="">조식 미포함</option>
-									<option value="조식포함">조식포함</option>
+								<select name="serviceName" class="form-select" id="serviceName">
+									<c:forEach items="${serviceOptionList }" var="item">
+										<option value="${item.serviceName}">${item.serviceName} (${item.price}원)</option>
+									</c:forEach>
 								</select>
 							</div>
 						</td>
@@ -97,13 +106,15 @@
 					<tr>
 						<th>워케이션 옵션</th>
 						<td>
-							<div class="mt-2">
-								<label>3D프린터</label><input type="checkbox" name="workation_name" value="3D프린터">
-								<label>개발용 pc</label><input type="checkbox" name="workation_name" value="개발용 pc">
+							<div class="mt-2" id="workationName">
+								<c:forEach items="${workationOptionList }" var="item">
+									<label>${item.workationName} (${item.price}원)</label><input type="checkbox" name="workationName" value="${item.workationName}">
+								</c:forEach>
 							</div>
 						</td>
 					</tr>
 				</table>
+				<h3>총 결제금액 <b style="color: red;" id="totalPay">123,456,789원</b></h3>
 				<button>예약</button>
 			</form>
 		</div>

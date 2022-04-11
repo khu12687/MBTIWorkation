@@ -216,26 +216,26 @@ select{
 		<div>
 			<div class="mb-3">
 				<label class="form-label"><h2>워케이션장비 옵션</h2></label>
-				<input type ="text" name="room_type" placeholder="room_type입력" class="form-control"/>
+				<input type ="text" name="workationName" placeholder="ex) 3D 프린터" class="form-control"/>
 		 	</div>
 		 	<div class="mb-3">
 				<label class="form-label"><h2>PRICE</h2></label>
-				<input type ="number" name="price" placeholder="price 입력" class="form-control"/>
+				<input type ="number" name="priceWork" placeholder="ex) 30000" class="form-control"/>
 		 	</div>
 		 	<div class="mb-3">
 				<label class="form-label"><h2>상세정보</h2></label>
-				<input type ="text" name="detail" placeholder="설명 입력" class="form-control"/>
+				<input type ="text" name="detailWork" placeholder="설명 입력" class="form-control"/>
 		 	</div>
-			<button class="reg" style="width: 100%;">등록</button>
+			<button class="regWork" style="width: 100%;">등록</button>
 		</div>
 		<p>
-			<select multiple="multiple"></select>
+			<select multiple="multiple" id="workationOption"></select>
 		</p>
-		<button class="lis">목록</button>
-		<button class="del">삭제</button>
-		<button class="edi" data-bs-toggle="modal" data-bs-target="#addModal">수정</button>
+		<button class="lisWork">목록</button>
+		<button class="delWork">삭제</button>
+		<button class="ediWork" data-bs-toggle="modal" data-bs-target="#addWorkModal">수정</button>
 	 	<!-- [시작] 등록 Modal -->
-		<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+		<div class="modal fade" id="addWorkModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -244,21 +244,21 @@ select{
 					</div>
 					<div class="modal-body">
 						<div class="mb-3">
-							<label class="form-label">ROOM_TYPE</label>
-					 		<input type="text" class="roomType form-control">
+							<label class="form-label">워케이션장비 옵션</label>
+					 		<input type="text" class="workationName form-control">
 					 	</div>
 					 	<div class="mb-3">
 							<label class="form-label">가격</label>
-							<input type="number" class="price form-control">
+							<input type="number" class="priceWork form-control">
 					 	</div>
 					 	<div class="mb-3">
 							<label class="form-label">설명</label>
-							<input type="text" class="detail form-control">
+							<input type="text" class="detailWork form-control">
 					 	</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"	data-bs-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary edit">수정</button>
+						<button type="button" class="btn btn-primary editWork">수정</button>
 					</div>
 				</div>
 			</div>
@@ -266,6 +266,7 @@ select{
 		<!-- [끝] 등록 Modal -->
 	</div>
 </div>
+<script src="/resources/js/workation.js"></script>
 <script src="/resources/js/room.js"></script>
 <script src="/resources/js/roomType.js"></script>
 <script src="/resources/js/service.js"></script>

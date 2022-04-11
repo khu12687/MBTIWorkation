@@ -11,6 +11,7 @@ import kr.ac.kopo.model.Admin;
 import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
+import kr.ac.kopo.model.WorkationOption;
 
 @Repository
 public class AdminDaoImpl implements AdminDao{
@@ -91,6 +92,27 @@ public class AdminDaoImpl implements AdminDao{
 	@Override
 	public void roomEdit(Room room) {
 		sql.selectOne("Admin.roomEdit", room);
+	}
+
+	@Override
+	public void workationOptionRegist(WorkationOption workationOption) {
+		sql.insert("Admin.workationOptionRegist",workationOption);
+	}
+
+	@Override
+	public List<WorkationOption> workationOptionList() {
+		
+		return sql.selectList("Admin.workationOptionList");
+	}
+
+	@Override
+	public void deleteworkationOption(int workationOptionId) {
+		sql.selectOne("Admin.deleteWorkationOption",workationOptionId);
+	}
+
+	@Override
+	public void workationOptionEdit(WorkationOption workationOption) {
+		sql.selectOne("Admin.workationOptionEdit", workationOption);
 	}
 
 }

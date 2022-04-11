@@ -23,6 +23,7 @@ import kr.ac.kopo.model.CategoryOption;
 import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
+import kr.ac.kopo.model.WorkationOption;
 import kr.ac.kopo.service.AdminService;
 
 @Controller
@@ -130,7 +131,6 @@ public class AdminController {
 		return "1";
 	}
 	
-	
 	@PostMapping("/room/regist")
 	@ResponseBody
 	public Room roomOption(@RequestBody Room room) {
@@ -161,6 +161,40 @@ public class AdminController {
 	public String roomEdit(@PathVariable int roomId, @RequestBody Room room) {
 		room.setRoomId(roomId);
 		service.roomEdit(room);
+		
+		return "1";
+	}
+	
+	@PostMapping("/workationOption/regist")
+	@ResponseBody
+	public WorkationOption workationOption(@RequestBody WorkationOption workationOption) {
+		service.workationOptionRegist(workationOption);
+		
+		return workationOption;
+	}
+	
+	@GetMapping("/workationOption/list")
+	@ResponseBody
+	public List<WorkationOption> workationOptionList(){
+		
+		List<WorkationOption> list = service.workationOptionList();
+		
+		return list;
+	}
+	
+	@GetMapping("/workationOption/del/{workationOptionId}")
+	@ResponseBody
+	public String workationOptionDel(@PathVariable int workationOptionId) {
+		service.deleteworkationOption(workationOptionId);
+		
+		return "1";
+	}
+	
+	@PostMapping("/workationOption/edit/{workationOptionId}")
+	@ResponseBody
+	public String workationOptionEdit(@PathVariable int workationOptionId, @RequestBody WorkationOption workationOption) {
+		workationOption.setWorkationOptionId(workationOptionId);
+		service.workationOptionEdit(workationOption);
 		
 		return "1";
 	}

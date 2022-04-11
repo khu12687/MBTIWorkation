@@ -6,18 +6,11 @@ import kr.ac.kopo.model.Admin;
 import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
+import kr.ac.kopo.model.WorkationOption;
 
 public interface AdminDao {
 
 	Admin loginCheck(Admin admin);
-
-	void roomOptionRegist(RoomOption roomOption);
-
-	List<RoomOption> roomOptionList();
-
-	void delete(int roomOptionId);
-
-	void edit(RoomOption roomOption);
 
 	void serviceOptionRegist(ServiceOption serviceOption);
 
@@ -34,5 +27,21 @@ public interface AdminDao {
 	void deleteRoom(int roomId);
 
 	void roomEdit(Room room);
+
+	void workationOptionRegist(WorkationOption workationOption);
+
+	List<WorkationOption> workationOptionList();
+
+	void deleteworkationOption(int workationOptionId);
+
+	void workationOptionEdit(WorkationOption workationOption);
+
+	void roomOptionRegist(RoomOption roomOption);
+
+	List<RoomOption> roomOptionList();
+
+	void delete(int roomOptionId);
+
+	void edit(RoomOption roomOption);
 
 }

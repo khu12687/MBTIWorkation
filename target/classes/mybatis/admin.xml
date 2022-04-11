@@ -69,6 +69,24 @@
 		WHERE room_id =#{roomId}
 	</update>
 	
+	<insert id="workationOptionRegist">					
+		INSERT INTO workation_option
+		VALUES (NULL, #{workationName}, #{price}, #{detail})
+	</insert>
+	
+	<select id="workationOptionList" resultType="WorkationOption">
+		SELECT * FROM workation_option
+	</select>
+	
+	<delete id="deleteWorkationOption">
+		DELETE FROM workation_option WHERE workation_option_id= #{workationOptionId}
+	</delete>
+	
+	<update id="workationOptionEdit">
+		UPDATE workation_option
+		SET workation_name = #{workationName}, price = #{price}, detail = #{detail}
+		WHERE workation_option_id =#{workationOptionId}
+	</update>
 </mapper>
 
 

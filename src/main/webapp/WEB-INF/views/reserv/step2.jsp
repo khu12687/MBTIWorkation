@@ -69,19 +69,19 @@
 						</tr>
 						<tr>
 							<th>객실타입</th>
-							<td><input type="text" value="${room_option.room_type}" name="room_type" readonly></td>
+							<td><input type="text" value="${roomOption.roomType}" name="room_type" readonly></td>
 						</tr>
 						<tr>
 							<th>침대 옵션</th>
-							<td><input type="text" value="${room.max_number}인용" name="max_number" readonly></td>
+							<td><input type="text" value="${room.maxNumber}" name="max_number" readonly></td>
 						</tr>
 						<tr>
 							<th>프로모션</th>
-							<td><input type="text" value="${service_option.service_name}" name="service_name" placeholder="미포함" readonly></td>
+							<td><input type="text" value="${serviceOption.serviceName}" name="service_name" placeholder="미포함" readonly></td>
 						</tr>
 						<tr>
 							<th>워케이션 옵셥</th>
-							<td><input type="text" value="${workation_option.workation_name}" name="workation_name" placeholder="미포함" readonly></td>
+							<td><input type="text" value="${workationOption.workationName}" name="workation_name" placeholder="미포함" readonly></td>
 						</tr>
 					</tbody>
 				</table>

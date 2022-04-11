@@ -10,6 +10,7 @@ import kr.ac.kopo.model.Admin;
 import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
+import kr.ac.kopo.model.WorkationOption;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -86,6 +87,28 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void roomEdit(Room room) {
 		dao.roomEdit(room);
+	}
+
+	@Override
+	public void workationOptionRegist(WorkationOption workationOption) {
+		dao.workationOptionRegist(workationOption);
+	}
+
+	@Override
+	public List<WorkationOption> workationOptionList() {
+		
+		return dao.workationOptionList();
+	}
+
+	@Override
+	public void deleteworkationOption(int workationOptionId) {
+		dao.deleteworkationOption(workationOptionId);
+		
+	}
+
+	@Override
+	public void workationOptionEdit(WorkationOption workationOption) {
+		dao.workationOptionEdit(workationOption);
 	}
 
 }
