@@ -1,41 +1,42 @@
 package kr.ac.kopo.model;
 
 public class Subscr {
-	private int subscrr_id;
-	private String subscr_name;
-	private String subscr_email;
-	private String subscr_phone;
-	private String subscr_subPhone;
-	public int getSubscrr_id() {
-		return subscrr_id;
+	private int subscrrId;
+	private String subscrName;
+	private String subscrEmail;
+	private String subscrPhone;
+	private String subscrSubPhone;
+	public int getSubscrrId() {
+		return subscrrId;
 	}
-	public void setSubscrr_id(int subscrr_id) {
-		this.subscrr_id = subscrr_id;
+	public void setSubscrrId(int subscrrId) {
+		this.subscrrId = subscrrId;
 	}
-	public String getSubscr_name() {
-		return subscr_name;
+	public String getSubscrName() {
+		return subscrName;
 	}
-	public void setSubscr_name(String subscr_name) {
-		this.subscr_name = subscr_name;
+	public void setSubscrName(String subscrName) {
+		this.subscrName = subscrName;
 	}
-	public String getSubscr_email() {
-		return subscr_email;
+	public String getSubscrEmail() {
+		return subscrEmail;
 	}
-	public void setSubscr_email(String subscr_email) {
-		this.subscr_email = subscr_email;
+	public void setSubscrEmail(String subscrEmail) {
+		this.subscrEmail = subscrEmail;
 	}
-	public String getSubscr_phone() {
-		return subscr_phone;
+	public String getSubscrPhone() {
+		return subscrPhone;
 	}
-	public void setSubscr_phone(String subscr_phone) {
-		this.subscr_phone = subscr_phone;
+	public void setSubscrPhone(String subscrPhone) {
+		this.subscrPhone = subscrPhone;
 	}
-	public String getSubscr_subPhone() {
-		return subscr_subPhone;
+	public String getSubscrSubPhone() {
+		return subscrSubPhone;
 	}
-	public void setSubscr_subPhone(String subscr_subPhone) {
-		this.subscr_subPhone = subscr_subPhone;
+	public void setSubscrSubPhone(String subscrSubPhone) {
+		this.subscrSubPhone = subscrSubPhone;
 	}
 
+	
 	
 }

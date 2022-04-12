@@ -53,11 +53,11 @@
 					<tbody>
 						<tr>
 							<th>check_in </th>
-							<td><input type="date" value="<fmt:formatDate value="${reservation.check_in}" pattern="yyyy-MM-dd"/>" name="check_in" readonly></td>
+							<td><input type="date" value="<fmt:formatDate value="${reservation.checkIn}" pattern="yyyy-MM-dd"/>" name="checkIn" readonly></td>
 						</tr>
 						<tr>
 							<th>check_out </th>
-							<td><input type="date" value="<fmt:formatDate value="${reservation.check_out}" pattern="yyyy-MM-dd"/>" name="check_out" readonly></td>
+							<td><input type="date" value="<fmt:formatDate value="${reservation.checkOut}" pattern="yyyy-MM-dd"/>" name="checkOut" readonly></td>
 						</tr>
 						<tr>
 							<th>예약구분</th>
@@ -69,19 +69,19 @@
 						</tr>
 						<tr>
 							<th>객실타입</th>
-							<td><input type="text" value="${roomOption.roomType}" name="room_type" readonly></td>
+							<td><input type="text" value="${roomOption.roomType}" name="roomType" readonly></td>
 						</tr>
 						<tr>
 							<th>침대 옵션</th>
-							<td><input type="text" value="${room.maxNumber}" name="max_number" readonly></td>
+							<td><input type="text" value="${room.maxNumber}" name="maxNumber" readonly></td>
 						</tr>
 						<tr>
 							<th>프로모션</th>
-							<td><input type="text" value="${serviceOption.serviceName}" name="service_name" placeholder="미포함" readonly></td>
+							<td><input type="text" value="${serviceOption.serviceName}" name="serviceName" placeholder="미포함" readonly></td>
 						</tr>
 						<tr>
 							<th>워케이션 옵셥</th>
-							<td><input type="text" value="${workationOption.workationName}" name="workation_name" placeholder="미포함" readonly></td>
+							<td><input type="text" value="${workationOption.workationName}" name="workationName" placeholder="미포함" readonly></td>
 						</tr>
 					</tbody>
 				</table>
@@ -89,31 +89,32 @@
 				<table class="tableInfo">
 					<tr>
 						<th>상품 금액 </th>
-						<td>431,200원</td>
+						<td>290000원</td>
 					</tr>
 					<tr>
 						<th>옵션 금액 </th>
-						<td>123,456원</td>
+						<td>${reservation.totalPay -290000}원</td>
 					</tr>
 				</table>
-				<div><h3>총 결제금액 <b style="color: red;">123,456,789원</b></h3></div>
+				<div><h3>총 결제금액 <b style="color: red;">${reservation.totalPay }원</b></h3></div>
+				<input type="hidden" value="${reservation.totalPay }" name="totalPay">
 				<h2>예약자 정보</h2>
 				<table class="tableInfo">
 					<tr>
 						<th>예약자명</th>
-						<td><input type="text" name="subscr_name"></td>
+						<td><input type="text" name="subscrName"></td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td><input type="text" name="subscr_email"></td>
+						<td><input type="text" name="subscrEmail"></td>
 					</tr>
 					<tr>
 						<th>휴대폰 번호 </th>
-						<td><input type="text" name="subscr_phone"></td>
+						<td><input type="text" name="subscrPhone"></td>
 					</tr>
 					<tr>
 						<th>전화번호(선택) </th>
-						<td><input type="text" name="subscr_subPhone"></td>
+						<td><input type="text" name="subscrSubPhone"></td>
 					</tr>
 				</table>
 				<h2>이용동의</h2>

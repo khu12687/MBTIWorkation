@@ -8,11 +8,99 @@
 <jsp:include page="../include/mainHeader.jsp"></jsp:include>
 <jsp:include page="../include/header.jsp"></jsp:include>
 <link rel="stylesheet" href="/resources/css/reserv.css" type="text/css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(function() {
-	var roomTypePrice = $("#roomType").options[$("#roomType").selectedIndex].value;
-	$("#totalPay").text = "3123";
+	var optionPay = Number($("#optionPay").val());
+	var totalHidden = Number($("#totalHidden").val());
+	var checkIn = "9999-12-31";
+	var checkOut = "9999-12-31";
+	var diifDate = "";
+	var dateDays = "";
+	var date = new Date();
+	var year = date.getFullYear();
+	var month = (1+date.getMonth());
+	month = month >= 10 ? month : '0' + month;
+	var day = date.getDate();
+	day = day >= 10 ? day : '0'+day;
+	var parseDate = year+'-'+month+'-'+day;
+	
+	$("#check_in").attr("min",parseDate);
+	$("#check_out").attr("min",parseDate);
+	
+	$("#check_in").change(function(){
+		checkIn = new Date ($(this).val());
+		$('#check_in').attr("readonly",true);
+	})	
+	
+	$("#check_out").change(function(){
+		checkOut = new Date ($(this).val());
+				
+		diifDate = checkOut.getTime() - checkIn.getTime();
+		
+		dateDays = (diifDate / (1000*3600*24));
+		if(dateDays <= 0){
+			alert("CHECKIN 날짜를 확인해 주세요.");
+			
+		}else if(dateDays>0 && dateDays<=10){
+			$("#checkPay").text(50000);
+			totalHidden += 50000;
+			$("#totalPay").text(totalHidden);
+			$('#check_out').attr("readonly",true);
+		}else if(dateDays>10 && dateDays<=20){
+			$("#checkPay").text(100000);
+			totalHidden += 100000;
+			$("#totalPay").text(totalHidden);
+			$('#check_out').attr("readonly",true);
+		}else{
+			$("#checkPay").text(150000);
+			totalHidden += 150000;
+			$("#totalPay").text(totalHidden);
+			$('#check_out').attr("readonly",true);
+		}
+		
+	})	
+	
+	$("#roomType").change(function() {
+		var roomTypePrice = $("#roomType option:checked").text();
+		var rTP = roomTypePrice.split('+');
+		var rTPF = rTP[1].split('원');
+		optionPay += Number(rTPF[0]);
+		totalHidden += Number(rTPF[0]);
+		$("#optionPay").text(optionPay);
+		$("#totalPay").text(totalHidden);
+	})
+	
+	$("#maxNumber").change(function() {
+		var maxNumberPrice = $("#maxNumber option:checked").text();
+		var rTP = maxNumberPrice.split('+');
+		var rTPF = rTP[1].split('원');
+		optionPay += Number(rTPF[0]);
+		totalHidden += Number(rTPF[0]);
+		$("#optionPay").text(optionPay);
+		$("#totalPay").text(totalHidden);
+	})
+	
+	$("#serviceName").change(function() {
+		var serviceName = $("#serviceName option:checked").text();
+		var rTP = serviceName.split('+');
+		var rTPF = rTP[1].split('원');
+		optionPay += Number(rTPF[0]);
+		totalHidden += Number(rTPF[0]);
+		$("#optionPay").text(optionPay);
+		$("#totalPay").text(totalHidden);
+	})
+	
+	$("#workationName").change(function() {
+		var workationName = $("#workationName option:checked").text();
+		var rTP = workationName.split('+');
+		var rTPF = rTP[1].split('원');
+		optionPay += Number(rTPF[0]);
+		totalHidden += Number(rTPF[0]);
+		$("#optionPay").text(optionPay);
+		$("#totalPay").text(totalHidden);
+		$("#totalHidden").val(totalHidden);
+	})
+	
 })
 </script>
 </head>
@@ -61,10 +149,11 @@ $(function() {
 			<h2>객실검색</h2>
 			<form method="post">
 				<div>
-					<label> CHECKIN<input type="date" name="check_in">
-					</label> <label> CHECKOUT<input type="date" name="check_out">
+					<label> CHECKIN<input type="date" name="checkIn" id="check_in">
+					</label> <label> CHECKOUT<input type="date" name="checkOut" id="check_out">
 					</label>
 				</div>
+				<h3>객실비용: <b id="checkPay">0</b></h3>
 				<h2>객실리스트</h2>
 				<table class="tableInfo">
 					<tr>
@@ -72,8 +161,9 @@ $(function() {
 						<td>
 							<div class="mt-2">
 								<select name="roomType" class="form-select" id="roomType">
+									<option value="기본">기본 +0원</option>
 									<c:forEach items="${roomOptionList }" var="item">
-										<option value="${item.roomType}">${item.roomType} (${item.price}원)</option>
+										<option value="${item.roomType}">${item.roomType} +${item.price}원</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -85,7 +175,7 @@ $(function() {
 							<div class="mt-2">
 								<select name="maxNumber" class="form-select" id="maxNumber">
 									<c:forEach items="${roomList }" var="item">
-										<option value="${item.maxNumber}">${item.maxNumber} (${item.price}원)</option>
+										<option value="${item.maxNumber}">${item.maxNumber} +${item.price}원</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -96,8 +186,9 @@ $(function() {
 						<td>
 							<div class="mt-2">
 								<select name="serviceName" class="form-select" id="serviceName">
+									<option value="미포함">미포함 +0원</option>
 									<c:forEach items="${serviceOptionList }" var="item">
-										<option value="${item.serviceName}">${item.serviceName} (${item.price}원)</option>
+										<option value="${item.serviceName}">${item.serviceName} +${item.price}원</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -106,15 +197,21 @@ $(function() {
 					<tr>
 						<th>워케이션 옵션</th>
 						<td>
-							<div class="mt-2" id="workationName">
-								<c:forEach items="${workationOptionList }" var="item">
-									<label>${item.workationName} (${item.price}원)</label><input type="checkbox" name="workationName" value="${item.workationName}">
-								</c:forEach>
+							<div class="mt-2">
+								<select name="workationName" class="form-select" id="workationName">
+									<option value="미포함">미포함 +0원</option>
+									<c:forEach items="${workationOptionList }" var="item">
+										<option value="${item.workationName}">${item.workationName} +${item.price}원</option>
+									</c:forEach>
+								</select>
 							</div>
 						</td>
 					</tr>
 				</table>
-				<h3>총 결제금액 <b style="color: red;" id="totalPay">123,456,789원</b></h3>
+				<input type="hidden" value="290000" id="totalHidden" name="totalPay">
+				<h3>총 옵션금액: <b id="optionPay">0</b></h3>
+				<h3>총 결제금액: <b style="color: red;" id="totalPay">290000</b></h3>
+				
 				<button>예약</button>
 			</form>
 		</div>

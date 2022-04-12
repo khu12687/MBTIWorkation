@@ -5,65 +5,80 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Reservation {
-	private int reservation_id;
-	private int member_id;
-	private int room_id;
-	private int category_option_id;
-	private int total_pay;
-	private Date reserve_date;
+	private int reservationId;
+	private int roomId;
+	private int roomOptionId;
+	private int serviceOptionId;
+	private int workationOptionId;
+	private int memberId;
+	private int totalPay;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date reserveDate;
 	 @DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date check_in;
+	private Date checkIn;
 	 @DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date check_out;
-	public int getReservation_id() {
-		return reservation_id;
+	private Date checkOut;
+	public int getReservationId() {
+		return reservationId;
 	}
-	public void setReservation_id(int reservation_id) {
-		this.reservation_id = reservation_id;
+	public void setReservationId(int reservationId) {
+		this.reservationId = reservationId;
 	}
-	public int getMember_id() {
-		return member_id;
+	public int getRoomId() {
+		return roomId;
 	}
-	public void setMember_id(int member_id) {
-		this.member_id = member_id;
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
 	}
-	public int getRoom_id() {
-		return room_id;
+	public int getRoomOptionId() {
+		return roomOptionId;
 	}
-	public void setRoom_id(int room_id) {
-		this.room_id = room_id;
+	public void setRoomOptionId(int roomOptionId) {
+		this.roomOptionId = roomOptionId;
 	}
-	public int getCategory_option_id() {
-		return category_option_id;
+	public int getServiceOptionId() {
+		return serviceOptionId;
 	}
-	public void setCategory_option_id(int category_option_id) {
-		this.category_option_id = category_option_id;
+	public void setServiceOptionId(int serviceOptionId) {
+		this.serviceOptionId = serviceOptionId;
 	}
-	public int getTotal_pay() {
-		return total_pay;
+	public int getWorkationOptionId() {
+		return workationOptionId;
 	}
-	public void setTotal_pay(int total_pay) {
-		this.total_pay = total_pay;
+	public void setWorkationOptionId(int workationOptionId) {
+		this.workationOptionId = workationOptionId;
 	}
-	public Date getReserve_date() {
-		return reserve_date;
+	public int getMemberId() {
+		return memberId;
 	}
-	public void setReserve_date(Date reserve_date) {
-		this.reserve_date = reserve_date;
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
 	}
-	public Date getCheck_in() {
-		return check_in;
+	public int getTotalPay() {
+		return totalPay;
 	}
-	public void setCheck_in(Date check_in) {
-		this.check_in = check_in;
+	public void setTotalPay(int totalPay) {
+		this.totalPay = totalPay;
 	}
-	public Date getCheck_out() {
-		return check_out;
+	public Date getReserveDate() {
+		return reserveDate;
 	}
-	public void setCheck_out(Date check_out) {
-		this.check_out = check_out;
+	public void setReserveDate(Date reserveDate) {
+		this.reserveDate = reserveDate;
 	}
-
-	
-	
+	public Date getCheckIn() {
+		return checkIn;
+	}
+	public void setCheckIn(Date checkIn) {
+		this.checkIn = checkIn;
+	}
+	public Date getCheckOut() {
+		return checkOut;
+	}
+	public void setCheckOut(Date checkOut) {
+		this.checkOut = checkOut;
+	}
+	 
+	 
+	 
 }

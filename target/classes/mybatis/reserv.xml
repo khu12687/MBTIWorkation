@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reserv">
+	<insert id="insert">
+		INSERT INTO reservation
+		VALUES(NULL, #{roomId}, #{roomOptionId}, #{serviceOptionId}, #{workationOptionId}, #{memberId}, #{totalPay},NOW(), #{checkIn}, #{checkOut})
+	</insert>
+	
+	<select id="getRoomId" resultType="Room">
+		SELECT * FROM room
+		WHERE max_number = #{maxNumber}
+	</select>
+	
+	<select id="getRoomOptionId" resultType="RoomOption">
+		SELECT * FROM room_option
+		WHERE room_type = #{roomType}
+	</select>
+	
+	<select id="getServiceOptionId" resultType="ServiceOption">
+		SELECT * FROM service_option
+		WHERE service_name = #{serviceName}
+	</select>
+	
+	<select id="getWorkationOptionId" resultType="WorkationOption">
+		SELECT * FROM workation_option
+		WHERE workation_name = #{workationName}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

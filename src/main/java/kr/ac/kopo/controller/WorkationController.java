@@ -16,11 +16,15 @@ import kr.ac.kopo.model.ServiceOption;
 import kr.ac.kopo.model.Subscr;
 import kr.ac.kopo.model.WorkationOption;
 import kr.ac.kopo.service.AdminService;
+import kr.ac.kopo.service.ReservService;
 @Controller
 public class WorkationController {
 	
 	@Autowired
 	AdminService adminService;
+	
+	@Autowired
+	ReservService reservService;
 	
 	final String path = "/reserv/";
 	
@@ -41,14 +45,28 @@ public class WorkationController {
 	
 	@PostMapping("/reserv/{workation_id}")
 	public String reserv(@PathVariable int workation_id, Reservation reservation, RoomOption roomOption ,Room room, ServiceOption serviceOption, WorkationOption workationOption, Model model) {
+		System.out.println(roomOption.getRoomType());
 		model.addAttribute("reservation",reservation);
 		return path + "step2";
 	}
 	
 	@PostMapping("/reserv/{workation_id}/step2")
-	public String step2(@PathVariable int workation_id, Reservation reservation, RoomOption roomOption ,Room room, ServiceOption serviceOption, WorkationOption workationOption, Subscr subscr) {
-		System.out.println(workation_id);
-		System.out.println(reservation.getCheck_in());
+	public String step2(@PathVariable int workation_id, Reservation reservation, RoomOption roomOption ,Room room, ServiceOption serviceOption, WorkationOption workationOption, Subscr subscr, Model model) {
+		Room objRoom = reservService.getRoomId(room);
+		reservation.setRoomId(objRoom.getRoomId());
+		
+		RoomOption objRoomOption = reservService.getRoomOptionId(roomOption);
+		reservation.setRoomOptionId(objRoomOption.getRoomOptionId());
+		
+		ServiceOption objServiceOption = reservService.getServiceOptionId(serviceOption);
+		reservation.setServiceOptionId(objServiceOption.getServiceOptionId());
+		
+		WorkationOption objWorkationOption = reservService.getWorkationOptionId(workationOption);
+		reservation.setWorkationOptionId(objWorkationOption.getWorkationOptionId());
+		
+		reservService.reserv(reservation);
+		model.addAttribute("reservation",reservation);
+		System.out.println(reservation.getTotalPay());
 		
 		return path + "step3";
 	}
