@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.exception.DataNotFoundException;
 import kr.ac.kopo.model.Admin;
+import kr.ac.kopo.model.Reservation;
 import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;

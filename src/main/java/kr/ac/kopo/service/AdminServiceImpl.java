@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.Dao.AdminDao;
 import kr.ac.kopo.model.Admin;
+import kr.ac.kopo.model.Reservation;
 import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
@@ -110,5 +111,7 @@ public class AdminServiceImpl implements AdminService{
 	public void workationOptionEdit(WorkationOption workationOption) {
 		dao.workationOptionEdit(workationOption);
 	}
+
+
 
 }

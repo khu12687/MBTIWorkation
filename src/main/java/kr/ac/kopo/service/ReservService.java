@@ -18,4 +18,8 @@ public interface ReservService {
 
 	WorkationOption getWorkationOptionId(WorkationOption workationOption);
 
+	int getReservationId(int phone);
+
+	Reservation getReservationInfo(int reservationId);
+
 }

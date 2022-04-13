@@ -26,6 +26,16 @@
 		WHERE workation_name = #{workationName}
 	</select>
 	
+	<select id="getReservationId" resultType="Reservation">
+		SELECT * FROM reservation
+		WHERE phone = #{phone}
+	</select>
+	
+	<select id="getReservationInfo" resultType="Reservation">
+		SELECT * FROM reservation
+		WHERE reservation_id = #{reservationId} 
+	</select>
+	
 </mapper>
 
 

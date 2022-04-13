@@ -52,6 +52,10 @@
 				<table class="tableInfo">
 					<tbody>
 						<tr>
+							<th>예약번호</th>
+							<td>${reservation.reservationId }</td>
+						</tr>
+						<tr>
 							<th>check_in </th>
 							<td><input type="date" value="<fmt:formatDate value="${reservation.checkIn}" pattern="yyyy-MM-dd"/>" name="checkId" readonly></td>
 						</tr>

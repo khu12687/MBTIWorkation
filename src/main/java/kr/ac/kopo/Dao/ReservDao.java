@@ -18,4 +18,8 @@ public interface ReservDao {
 
 	WorkationOption getWorkationOptionId(WorkationOption workationOption);
 
+	int getReservationId(int reservationId);
+
+	Reservation getReservationInfo(int reservationId);
+
 }

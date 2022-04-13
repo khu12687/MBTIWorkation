@@ -41,4 +41,16 @@ public class ReservDaoImpl implements ReservDao{
 		return sql.selectOne("reserv.getWorkationOptionId",workationOption);
 	}
 
+	@Override
+	public int getReservationId(int phone) {
+
+		return sql.selectOne("reserv.getReservationId", phone);
+	}
+
+	@Override
+	public Reservation getReservationInfo(int reservationId) {
+
+		return sql.selectOne("reserv.getReservationInfo", reservationId);
+	}
+
 }

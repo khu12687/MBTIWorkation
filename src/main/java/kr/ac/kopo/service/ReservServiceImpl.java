@@ -40,4 +40,16 @@ public class ReservServiceImpl implements ReservService{
 	public WorkationOption getWorkationOptionId(WorkationOption workationOption) {
 		return reservDao.getWorkationOptionId(workationOption);
 	}
+
+	@Override
+	public int getReservationId(int phone) {
+		
+		return reservDao.getReservationId(phone);
+	}
+
+	@Override
+	public Reservation getReservationInfo(int reservationId) {
+
+		return reservDao.getReservationInfo(reservationId);
+	}
 }

@@ -3,6 +3,7 @@ package kr.ac.kopo.service;
 import java.util.List;
 
 import kr.ac.kopo.model.Admin;
+import kr.ac.kopo.model.Reservation;
 import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;

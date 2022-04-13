@@ -35,16 +35,13 @@
 		</div>
 		<div class="album_set">
 			<h2>추천 여행지</h2>
-			<div>
 				<div class="album_slider">
-					<div style="text-align: center;">
-						<div id="map" style="width: 100%; height: 50vh;"></div>
-
+					<div style="display: flex;">
+						<div><img src="resources/images/workation1.png"></div>
+						<div id="map" style="width: 70%; height: 60vh;"></div>
 					</div>
 				</div>
-			</div>
 		</div>
-	</div>
 	<div class="station_set" style="height: 700px;">
 		<h2>워케이션 상품</h2>
 		<ul class="workationUl">
