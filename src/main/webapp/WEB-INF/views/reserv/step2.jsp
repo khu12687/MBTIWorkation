@@ -134,7 +134,7 @@
 					- 취소수수료는 할인(쿠폰) 적용 전 객실 정상 판매금액을 
 					기준으로 책정됩니다.<br>
 				</p>
-				<button>결제</button>
+				<button class="btn btn-light">결제</button>
 			</form>
 		</div>
 	</div>

@@ -3,7 +3,7 @@
 <mapper namespace="reserv">
 	<insert id="insert">
 		INSERT INTO reservation
-		VALUES(NULL, #{roomId}, #{roomOptionId}, #{serviceOptionId}, #{workationOptionId}, #{memberId}, #{totalPay},NOW(), #{checkIn}, #{checkOut})
+		VALUES(NULL, #{roomId}, #{memberId}, #{roomOptionId}, #{serviceOptionId}, #{workationOptionId},  #{totalPay},NOW(), #{checkIn}, #{checkOut})
 	</insert>
 	
 	<select id="getRoomId" resultType="Room">

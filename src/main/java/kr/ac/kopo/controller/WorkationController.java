@@ -1,5 +1,6 @@
 package kr.ac.kopo.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.kopo.model.Reservation;
 import kr.ac.kopo.model.Room;
@@ -63,11 +66,26 @@ public class WorkationController {
 		
 		WorkationOption objWorkationOption = reservService.getWorkationOptionId(workationOption);
 		reservation.setWorkationOptionId(objWorkationOption.getWorkationOptionId());
-		
+		System.out.println(reservation.getMemberId());
 		reservService.reserv(reservation);
 		model.addAttribute("reservation",reservation);
 		System.out.println(reservation.getTotalPay());
 		
 		return path + "step3";
+	}
+	
+	@GetMapping("/reserv/check")
+	public String check() {
+		
+		return path + "check";
+	}
+	
+	@PostMapping("/reserv/check")
+	@ResponseBody
+	public Reservation check(@RequestBody Reservation reservation) {
+		Reservation objReser = reservService.getReservationInfo(reservation.getReservationId());
+		System.out.println(objReser.getCheckIn());
+		
+		return objReser;
 	}
 }

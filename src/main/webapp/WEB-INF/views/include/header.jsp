@@ -32,6 +32,7 @@
 				  	<li><a href="/member/logout" >로그아웃</a></li>
 				  </c:if>
 				<li><a href="/member/regist">회원가입</a></li>
+				<li><a href="/reserv/check">예약확인</a></li>
 			</ul>
 		</div>
 	</div>

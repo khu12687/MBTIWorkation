@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Reservation {
 	private int reservationId;
 	private int roomId;
@@ -15,8 +17,10 @@ public class Reservation {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date reserveDate;
 	 @DateTimeFormat(pattern = "yyyy-MM-dd")
+	 @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	private Date checkIn;
 	 @DateTimeFormat(pattern = "yyyy-MM-dd")
+	 @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	private Date checkOut;
 	public int getReservationId() {
 		return reservationId;
