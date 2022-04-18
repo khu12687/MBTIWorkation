@@ -35,11 +35,25 @@
 		</div>
 		<div class="album_set">
 			<h2>추천 여행지</h2>
-				<div class="album_slider">
-					<div style="display: flex;">
-						<div><img src="resources/images/workation1.png"></div>
-						<div id="map" style="width: 70%; height: 60vh;"></div>
+				<div class="album_slider" style="display: flex;">
+				<div id="map" style="width: 70%; height: 60vh; margin-right: 2%;"></div>
+				<div style="display: flex; flex-direction: column; margin: 1%;">
+					<div><img src="resources/images/workation1.png"></div>
+					<div>
+						<ul>
+							<li>
+								<div style="width: 570px; height: 170px; background: white; color: black;">
+									<img src="resources/images/background_spring.jpg" width="250px;" height="150px;">
+									<div style="display: inline-block;">
+										<div>제주도</div>
+										<div>멋져요</div>
+										<div style="float: right;">120000</div>
+									</div>
+								</div>
+							</li>
+						</ul>
 					</div>
+				</div>
 				</div>
 		</div>
 	<div class="station_set" style="height: 700px;">
