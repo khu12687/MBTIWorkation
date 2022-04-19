@@ -7,38 +7,11 @@
 <title></title>
 <jsp:include page="../include/adminHeader.jsp"></jsp:include>
 <link rel="stylesheet" href="/resources/css/admin.css" type="text/css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Bootstrap css-->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- Bootstrap icon css-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
+
 <script>
 
 </script>
-<style>
-button {
-	background-color: #F7F9FA;
-	 border: 1px solid #efefef; 
-}
-.mai{
-	width: 400px;
-	margin: 5%;
-	border : 1px solid #EBEBEB;
-	border-radius: 8px;
-	overflow: hidden;
-	color: black;
-	font-weight: bolder;
-	
-}
-lable{
-	font-size: 16px;
-	
-}
-select{
-	width: 100%;
-}
 
-</style>
 </head>
 <body>
 <div style="float: left; display: flex; width: 100%;">
@@ -270,7 +243,5 @@ select{
 <script src="/resources/js/room.js"></script>
 <script src="/resources/js/roomType.js"></script>
 <script src="/resources/js/service.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

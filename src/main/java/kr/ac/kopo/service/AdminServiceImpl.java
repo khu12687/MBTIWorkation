@@ -4,20 +4,27 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.ac.kopo.Dao.AdminDao;
+import kr.ac.kopo.Dao.ProductImageDao;
 import kr.ac.kopo.model.Admin;
+import kr.ac.kopo.model.ProductImage;
 import kr.ac.kopo.model.Reservation;
 import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
 import kr.ac.kopo.model.WorkationOption;
+import kr.ac.kopo.util.Pager;
 
 @Service
 public class AdminServiceImpl implements AdminService{
 
 	@Autowired
 	AdminDao dao;
+	
+	@Autowired
+	ProductImageDao productImageDao;
 	
 	@Override
 	public Admin loginCheck(Admin admin) {
@@ -110,6 +117,14 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void workationOptionEdit(WorkationOption workationOption) {
 		dao.workationOptionEdit(workationOption);
+	}
+
+	@Override
+	public List<Room> roomList(Pager pager) {
+		int total = dao.total(pager);
+		
+		pager.setTotal(total);
+		return dao.roomList(pager);
 	}
 
 

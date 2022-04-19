@@ -206,6 +206,13 @@ public class AdminController {
 		return "redirect:../";
 	}
 	
+	@GetMapping("/imgManage")
+	public String imgManage() {
+		
+		
+		return path + "imgManage";
+	}
+	
 	@ExceptionHandler(DMLException.class)
 	@ResponseBody
 	public String handle(DMLException e) {

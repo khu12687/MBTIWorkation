@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,14 +9,26 @@
 <meta charset="UTF-8">
 <title>MBTIW</title>
 <script>
-	function backgClick() {
-		alert("ha");
+function movePage(page) {
+    
+    $.ajax("", {
+        method: "GET",
+        contentType: "application/json", //서버에 보낼 데이터의 형태 지정
+        dataType: "json",
+        data: {
+        	
+        },
+        success: result => {
+            const {list, pager} = result; //disconstructuring: 서버에서 보낸 hashmap컬렉션의 list, pager key를 result 배열에 저장 
+            
+            $("#search .perPage").val(pager.perPage); //pager 객체의 perPage 값 수정을 통해 기본 출력 개수 설정 가능
 
-	}
-	function goTest(event) {
-		alert("gg");
-		event.stopPropagation();
-	}
+            state.total = pager.total;
+            $("#total").text(state.total);
+        },
+        error: xhr => alert(`오류 발생: ${xhr.statusText}`)
+    })
+}
 </script>
 </head>
 <body>
@@ -36,21 +49,22 @@
 		<div class="album_set">
 			<h2>추천 여행지</h2>
 				<div class="album_slider" style="display: flex;">
-				<div id="map" style="width: 70%; height: 60vh; margin-right: 2%;"></div>
+				<div id="map" style="width: 70%; height: 80vh; margin-right: 2%;"></div>
 				<div style="display: flex; flex-direction: column; margin: 1%;">
-					<div><img src="resources/images/workation1.png"></div>
 					<div>
 						<ul>
-							<li>
-								<div style="width: 570px; height: 170px; background: white; color: black;">
-									<img src="resources/images/background_spring.jpg" width="250px;" height="150px;">
-									<div style="display: inline-block;">
-										<div>제주도</div>
-										<div>멋져요</div>
-										<div style="float: right;">120000</div>
+							<c:forEach items="${roomList}" var="item">
+								<li>
+									<div style="width: 570px; height: 170px; background: white; color: black;">
+										<img src="resources/images/background_spring.jpg" width="250px;" height="150px;">
+										<div style="display: inline-block;">
+											<div>${item.loc }</div>
+											<div>${item.maxNumber }</div>
+											<div>${item.price }</div>
+										</div>
 									</div>
-								</div>
-							</li>
+								</li>
+							</c:forEach>
 						</ul>
 					</div>
 				</div>

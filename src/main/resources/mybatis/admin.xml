@@ -2,6 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Admin">
 	
+	<sql id="search">
+		<where>
+			<if test="search == 1">
+				loc LIKE CONCAT('%',CONCAT(#{keyword}, '%'))
+			</if>
+			<if test="search == 2">
+				max_number LIKE CONCAT('%',CONCAT(#{keyword}, '%'))
+			</if>
+			<if test="search == 3">
+				price = #{keyword}
+			</if>
+		</where>
+	</sql>
+	
 	<insert id="insert">					
 		INSERT INTO admin
 		VALUES (#{id}, #{password}, #{name})
@@ -57,6 +71,20 @@
 	
 	<select id="roomList" resultType="Room">
 		SELECT * FROM room
+	</select>
+	
+		<select id="total" resultType="Integer">
+		SELECT COUNT(*)
+		FROM room
+		<include refid="search"></include>
+	</select>	
+	
+	<select id="roomListPager" resultType="Room">
+		SELECT *
+		FROM room
+		<include refid="search"></include>
+		
+		LIMIT #{offset}, #{perPage}
 	</select>
 	
 	<delete id="deleteRoom">

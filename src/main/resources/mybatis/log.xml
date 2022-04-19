@@ -5,7 +5,7 @@
 
 	<insert id="login">
 		INSERT INTO log_login
-		VALUES (#{member.id}, sysdate, #{result})
+		VALUES (NULL, #{member.id}, now(), #{result})
 	</insert>
 
 </mapper>

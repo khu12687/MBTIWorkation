@@ -1,5 +1,6 @@
 package kr.ac.kopo.Dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -30,6 +31,10 @@ public class MemberDaoImpl implements MemberDao{
 			throw new DataNotFoundException("로그인 정보가 올바르지 않습니다");
 			
 		}
+		HashMap<String, Object> map =  new HashMap<String, Object>();
+		map.put("member", member);
+		map.put("result", true);
+		sql.insert("log.login",map);
 		return obj;
 	}
 

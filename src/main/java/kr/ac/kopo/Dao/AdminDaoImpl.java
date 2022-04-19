@@ -13,6 +13,7 @@ import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
 import kr.ac.kopo.model.WorkationOption;
+import kr.ac.kopo.util.Pager;
 
 @Repository
 public class AdminDaoImpl implements AdminDao{
@@ -114,6 +115,18 @@ public class AdminDaoImpl implements AdminDao{
 	@Override
 	public void workationOptionEdit(WorkationOption workationOption) {
 		sql.selectOne("Admin.workationOptionEdit", workationOption);
+	}
+
+	@Override
+	public List<Room> roomList(Pager pager) {
+
+		return sql.selectList("Admin.roomListPager",pager);
+	}
+
+	@Override
+	public int total(Pager pager) {
+
+		return sql.selectOne("Admin.total",pager);
 	}
 
 }

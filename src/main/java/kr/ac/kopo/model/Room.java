@@ -1,11 +1,22 @@
 package kr.ac.kopo.model;
 
+import java.util.List;
+
+
 public class Room {
 	private int roomId;
 	private String loc;
 	private String maxNumber;
 	private int num;
 	private int price;
+	private List<ProductImage> images;
+	
+	public List<ProductImage> getImages() {
+		return images;
+	}
+	public void setImages(List<ProductImage> images) {
+		this.images = images;
+	}
 	public int getRoomId() {
 		return roomId;
 	}

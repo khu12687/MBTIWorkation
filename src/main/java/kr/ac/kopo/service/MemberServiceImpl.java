@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.Dao.MemberDao;
-import kr.ac.kopo.aspects.PointcutLogin;
 import kr.ac.kopo.model.Member;
 import kr.ac.kopo.util.Pager;
 
@@ -22,7 +21,6 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	@PointcutLogin
 	public Member loginCheck(Member member) {
 		
 		return memberDao.loginCheck(member);

@@ -8,6 +8,7 @@ import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
 import kr.ac.kopo.model.WorkationOption;
+import kr.ac.kopo.util.Pager;
 
 public interface AdminService {
 
@@ -44,5 +45,7 @@ public interface AdminService {
 	void delete(int roomOptionId);
 
 	void edit(RoomOption roomOption);
+
+	List<Room> roomList(Pager pager);
 
 }
