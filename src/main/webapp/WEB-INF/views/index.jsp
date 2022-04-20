@@ -8,40 +8,94 @@
 <jsp:include page="./include/header.jsp"></jsp:include>
 <meta charset="UTF-8">
 <title>MBTIW</title>
-<script>
-function movePage(page) {
-    
-    $.ajax("", {
-        method: "GET",
-        contentType: "application/json", //서버에 보낼 데이터의 형태 지정
-        dataType: "json",
-        data: {
-        	
-        },
-        success: result => {
-            const {list, pager} = result; //disconstructuring: 서버에서 보낸 hashmap컬렉션의 list, pager key를 result 배열에 저장 
-            
-            $("#search .perPage").val(pager.perPage); //pager 객체의 perPage 값 수정을 통해 기본 출력 개수 설정 가능
-
-            state.total = pager.total;
-            $("#total").text(state.total);
-        },
-        error: xhr => alert(`오류 발생: ${xhr.statusText}`)
-    })
+<style>
+#container{
+    width: 615px; /*이미지 공간 600 gap 공간 15 공간 총 415*/ 
+    height: 215px;
+    margin: auto;
+    position: relative; /*자식떄문에.. 명시*/
+    text-align: center;
 }
+</style>
+<script>
+var container;
+var box; 
+var a=0.1; 
+var targetX =0; 
+var targetY =0; 
+$(() =>{
+    container = document.getElementById("container");
+    createImg();
+    createRect(); 
+    setInterval("move()",25);
+    
+    $(".roomProduct").mouseover(function(e){
+    	//alert(this.dataset.order);
+    });
+    
+});
+var gap=5; 
+var count=0;
+function createImg(){
+    for(var a=0; a<2; a++){ 
+        for(var i=0; i<4; i++){
+            var img = document.createElement("img");
+            img.src="/resources/images/i"+(count)+".png"; 
+            img.style.cursor="pointer";
+            img.style.width=140+"px";
+            img.style.height=100+"px";
+            img.style.position="absolute";
+            img.style.left=i*(140+gap)+"px";
+            img.style.top=a*(100+gap)+"px";
+			img.dataset.column = count;
+            img.addEventListener("click",function(){
+                targetX=parseInt(this.style.left);
+                targetY=parseInt(this.style.top);
+                
+                $("#mbtiproduct").children().remove();
+                
+	        	 mbtiImg = $('<img>',{
+	        		 'src' : '/resources/images/mbti'+(this.dataset.column)+'.png'
+	        	 });
+        		 $("#mbtiproduct").append(mbtiImg);
+                
+            });
+            container.appendChild(img); //이미지를 컨테이너에 넣음 컨테이너 자식으로 img을 줌
+            count++;
+        }
+    }
+ }
+ //이미지를 따라다니는 사각형 생성!!
+ function createRect(){
+    box = document.createElement("div");
+    box.style.position ="absolute"; //이미지 위에 얹혀져야 하므로 중첩이 가능하게
+    box.style.left=0+"px";
+    box.style.top=0+"px";
+    box.style.width=140+"px";
+    box.style.height=90+"px";
+
+    box.style.background="blue";
+    box.style.opacity=0.6; 
+
+    container.appendChild(box);
+ }
+ function move(){   
+    box.style.left=parseFloat(box.style.left)+a*(targetX-parseFloat(box.style.left))+"px";
+    box.style.top=parseFloat(box.style.top)+a*(targetY-parseFloat(box.style.top))+"px";
+ }
 </script>
 </head>
 <body>
 		<div class="t_mini_banner">
 			<div>
-				<div style="float: left;">
+				<div>
+					<img src="/resources/images/mainVacation.png" width="500px;" height="500px;">
 					<h2>MBTI 유형별 여행</h2>
 					<div>
-						<img src="/resources/images/workationMain.png" width="300px;" height="300px;">
+						<div id="container"></div>
 					</div>
-					<h2>스트레스 진단</h2>
-					<div>
-						<img src="/resources/images/str.jpg" width="300px;" height="300px;">
+					<div id="mbtiproduct">
+						<img src="/resources/images/mbti0.png">
 					</div>
 				</div>
 			</div>
@@ -49,13 +103,12 @@ function movePage(page) {
 		<div class="album_set">
 			<h2>추천 여행지</h2>
 				<div class="album_slider" style="display: flex;">
-				<div id="map" style="width: 70%; height: 80vh; margin-right: 2%;"></div>
-				<div style="display: flex; flex-direction: column; margin: 1%;">
-					<div>
+				<div id="map" style="width: 70%; height: 70vh; margin-right: 2%;"></div>
+				<div>
 						<ul>
-							<c:forEach items="${roomList}" var="item">
+							<c:forEach items="${roomList}" var="item" varStatus="status">
 								<li>
-									<div style="width: 570px; height: 170px; background: white; color: black;">
+									<div class="roomProduct" style="width: 570px; height: 170px; background: white; color: black;" data-order="${status.index}">
 										<img src="resources/images/background_spring.jpg" width="250px;" height="150px;">
 										<div style="display: inline-block;">
 											<div>${item.loc }</div>
@@ -66,7 +119,6 @@ function movePage(page) {
 								</li>
 							</c:forEach>
 						</ul>
-					</div>
 				</div>
 				</div>
 		</div>
@@ -88,10 +140,9 @@ function movePage(page) {
 					듀얼모니터,pc(렌트)</p></li>
 		</ul>
 	</div>
-	<div class="f_mini_banner">
-		<h2>사전 인증 이벤트</h2>
-	</div>
 <jsp:include page="./include/footer.jsp"></jsp:include>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 	<script async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_8yKsXYYJXoyYWaOuCrkov92vKIv0afM&callback=initMap&region=kr"></script>
 	<script src="/resources/js/mapgo.js"></script>

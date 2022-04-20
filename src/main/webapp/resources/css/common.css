@@ -344,10 +344,14 @@ body {
 
 /* 상단 미니배너 */
 .t_mini_banner {
+	text-align: center;
     width: 100%;
-    height: 1000px;
-    background-repeat: no-repeat;
+    height: 1300px;
     background-position: 85%;
+}
+
+#mbtiproduct{
+	
 }
 
 .t_mini_banner > .inner > h2 {
@@ -487,54 +491,6 @@ body {
     float: left;
     color: white;
 }
-
-
-
-/* 하단 미니배너 */
-.f_mini_banner {
-    background-image: url(/images/background.png);
-    height: 279px;
-}
-
-
-
-/* 하단 공지사항 */
-.board_set {
-    height: 80px;
-    line-height: 80px;
-    margin: 0 auto;
-    font-size: 14px;
-    color: #000100;
-    background-color: white;
-}
-
-.board_set > .inner > h2 {
-    float: left;
-    width: 136px;
-    font-size: 16px;
-}
-
-.board_set > .inner > p {
-    float: left;
-}
-
-.board_set > .inner > ul {
-    float: right;
-}
-
-.board_set > .inner > ul > .date {
-    float: left;
-    color: #979996;
-}
-
-.board_set > .inner > ul > .more {
-    width: 110px;
-    float: left;
-    text-align: right;
-    text-decoration: underline;
-}
-
-
 
 /* footer */
 #footer {
@@ -843,7 +799,6 @@ body {
     /* 스테이션 */
     .station_set {
         padding-bottom: 60px;
-        padding-top: 60px;
     }
 
     .station_set > ul {
@@ -854,16 +809,6 @@ body {
         width: 50%;
         padding-bottom: 50px;
     }
-
-
-    /* 하단배너 */
-    .f_mini_banner {
-        height: 0;
-        padding-top: calc(277/768 * 100%);
-        background-image: url(/images/background.png);
-        background-size: cover;
-    }
-
 
     /* footer */
     .board_set {
@@ -945,7 +890,6 @@ body {
     }
 }
 
-/* 여기 해주기!!!!!! */
 @media (max-width:1024px) {
 }
 

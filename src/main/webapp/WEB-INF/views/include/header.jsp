@@ -39,12 +39,6 @@
 	<div style="float: left; width: 100%;">
 		<div style="text-align: center;">
 			<a href="/"><img src="/resources/images/mainlogo.png"></a>
-			<div >
-				<form>
-					<input type="text" id="mainInput" size="30"
-						placeholder="제주 워케이션 상품 최저가!" value="" name="keyword">
-				</form>
-			</div>
 		</div>
 	</div>
 

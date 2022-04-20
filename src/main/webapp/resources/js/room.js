@@ -24,6 +24,8 @@ $(function(){
 							$(".maxNumber").val(obj.maxNumber);
 							$(".num").val(obj.num);
 							$(".priceRoom").val(obj.price);
+							$(".latitude").val(obj.latitude);
+							$(".longitude").val(obj.longitude);
 						}
 					}
 				},
@@ -36,7 +38,9 @@ $(function(){
 	    		loc: $(`#addRoomModal .loc`).val(),
 	    		maxNumber: $(`#addRoomModal .maxNumber`).val(),
 	    		num: $(`#addRoomModal .num`).val(),
-	    		price: $(`#addRoomModal .priceRoom`).val()
+	    		price: $(`#addRoomModal .priceRoom`).val(),
+	    		latitude: $(`#addRoomModal .latitude`).val(),
+	    		longitude: $(`#addRoomModal .longitude`).val()
 	    };
 	    
 		$("#addRoomModal input").val("");
@@ -61,12 +65,15 @@ $(function(){
 	})
 });
 function registRoom(){
+	alert($("input[name='latitude']").val());
 	if($("input[name='loc']").val()!="" && $("input[name='maxNumber']").val()!="" && $("input[name='num']").val() != "" && $("input[name='priceRoom']").val() != ""){
 		  const item = {
 	    		loc: $("input[name='loc']").val(),
 	    		maxNumber: $("input[name='maxNumber']").val(),
 	    		num: $("input[name='num']").val(),
-	    		price: $("input[name='priceRoom']").val()
+	    		price: $("input[name='priceRoom']").val(),
+	    		latitude: $("input[name='latitude']").val(),
+	    		longitude: $("input[name='longitude']").val()
 	    };
 		$.ajax("room/regist",{
 			method: "POST",

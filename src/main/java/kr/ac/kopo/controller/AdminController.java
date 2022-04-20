@@ -134,6 +134,8 @@ public class AdminController {
 	@PostMapping("/room/regist")
 	@ResponseBody
 	public Room roomOption(@RequestBody Room room) {
+		System.out.println(room.getLatitude());
+		System.out.println(room.getLongitude());
 		service.roomRegist(room);
 		
 		return room;

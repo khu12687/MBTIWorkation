@@ -20,7 +20,7 @@ public class rootController {
 	AdminService service;
 	
 	@RequestMapping("/")
-	public String index(Room room, Model model, Pager pager) {
+	public String index(Room room, Model model) {
 		
 		List<Room> roomList =  service.roomList();
 		model.addAttribute("roomList",roomList);
