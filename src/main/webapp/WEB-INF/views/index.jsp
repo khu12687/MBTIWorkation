@@ -10,7 +10,7 @@
 <title>MBTIW</title>
 <style>
 #container{
-    width: 615px; /*이미지 공간 600 gap 공간 15 공간 총 415*/ 
+    width: 615px; 
     height: 215px;
     margin: auto;
     position: relative; /*자식떄문에.. 명시*/
@@ -30,7 +30,40 @@ $(() =>{
     setInterval("move()",25);
     
     $(".roomProduct").mouseover(function(e){
-    	//alert(this.dataset.order);
+    	var lati = parseFloat(this.dataset.latitude);
+    	var longi = parseFloat(this.dataset.longitude);
+    	var loc = this.dataset.loc;
+    	map = new google.maps.Map(document.getElementById('map'),{
+    		center: {lat: lati, lng: longi},
+    		zoom:13
+    	})
+    	const contentString =
+    	    '<div id="content">' +
+    	    '<img src="/resources/images/dokdo.png" width="500px;" height="450px;">'+
+    	    '<p>Attribution: Uluru, <a href="/reserv/1">' +
+    	    "제주도 호텔</a> " +
+    	    "(last visited June 22, 2009).</p>" +
+    	    "</div>";
+    	  
+   		const infowindow = new google.maps.InfoWindow({
+   			content: contentString,
+   		});
+
+    	const marker = new google.maps.Marker({
+    	    position: { lat: lati ,lng: longi },
+    	    map,
+    	    title:loc,
+    	    label: loc
+    	  });
+    	
+    	marker.addListener("click", () => {
+    	    infowindow.open({
+    	      anchor: marker,
+    	      map,
+    	      shouldFocus: false,
+    	    });
+    	  });
+    	
     });
     
 });
@@ -65,7 +98,6 @@ function createImg(){
         }
     }
  }
- //이미지를 따라다니는 사각형 생성!!
  function createRect(){
     box = document.createElement("div");
     box.style.position ="absolute"; //이미지 위에 얹혀져야 하므로 중첩이 가능하게
@@ -74,12 +106,12 @@ function createImg(){
     box.style.width=140+"px";
     box.style.height=90+"px";
 
-    box.style.background="blue";
+    box.style.background="white";
     box.style.opacity=0.6; 
 
     container.appendChild(box);
  }
- function move(){   
+ function move(){  
     box.style.left=parseFloat(box.style.left)+a*(targetX-parseFloat(box.style.left))+"px";
     box.style.top=parseFloat(box.style.top)+a*(targetY-parseFloat(box.style.top))+"px";
  }
@@ -108,7 +140,7 @@ function createImg(){
 						<ul>
 							<c:forEach items="${roomList}" var="item" varStatus="status">
 								<li>
-									<div class="roomProduct" style="width: 570px; height: 170px; background: white; color: black;" data-order="${status.index}">
+									<div class="roomProduct" style="width: 570px; height: 170px; background: white; color: black;" data-order="${status.index}" data-latitude="${item.latitude}" data-longitude="${item.longitude}" data-loc="${item.loc }">
 										<img src="resources/images/background_spring.jpg" width="250px;" height="150px;">
 										<div style="display: inline-block;">
 											<div>${item.loc }</div>
@@ -145,6 +177,6 @@ function createImg(){
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 	<script async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_8yKsXYYJXoyYWaOuCrkov92vKIv0afM&callback=initMap&region=kr"></script>
-	<script src="/resources/js/mapgo.js"></script>
+		<script src="/resources/js/mapgo.js"></script>
 </body>
 </html>
