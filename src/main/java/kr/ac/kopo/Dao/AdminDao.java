@@ -50,4 +50,6 @@ public interface AdminDao {
 
 	int total(Pager pager);
 
+	List<Room> roomListajax();
+
 }

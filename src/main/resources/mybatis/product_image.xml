@@ -3,7 +3,7 @@
 
 <mapper namespace="product_image">
 	<insert id="add">
-		INSERT INTO product_image
+		INSERT INTO product_img
 		VALUES (NULL, #{roomId}, #{filename}, #{uuid})
 	</insert>
 	

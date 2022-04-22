@@ -6,11 +6,18 @@ import java.util.List;
 public class Room {
 	private int roomId;
 	private String loc;
-	private String maxNumber;
 	private int num;
 	private int price;
 	private String latitude;
 	private String longitude;
+	private List<ProductImage> images;
+	
+	public List<ProductImage> getImages() {
+		return images;
+	}
+	public void setImages(List<ProductImage> images) {
+		this.images = images;
+	}
 	
 	public String getLatitude() {
 		return latitude;
@@ -24,14 +31,7 @@ public class Room {
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
-	private List<ProductImage> images;
-	
-	public List<ProductImage> getImages() {
-		return images;
-	}
-	public void setImages(List<ProductImage> images) {
-		this.images = images;
-	}
+
 	public int getRoomId() {
 		return roomId;
 	}
@@ -43,12 +43,6 @@ public class Room {
 	}
 	public void setLoc(String loc) {
 		this.loc = loc;
-	}
-	public String getMaxNumber() {
-		return maxNumber;
-	}
-	public void setMaxNumber(String maxNumber) {
-		this.maxNumber = maxNumber;
 	}
 	public int getNum() {
 		return num;

@@ -22,6 +22,7 @@ $(function(){
 						if($("select").val() == obj.roomOptionId){
 							$(".roomType").val(obj.roomType);
 							$(".price").val(obj.price);
+							$(".maxNumber").val(obj.maxNumber);
 							$(".detail").val(obj.detail);
 						}
 					}
@@ -34,7 +35,9 @@ $(function(){
 	    const item = {
 	    		roomType: $(`#addModal .roomType`).val(),
 	    		price: $(`#addModal .price`).val(),
+	    		maxNumber: $(`#addModal .maxNumber`).val(),
 	    		detail: $(`#addModal .detail`).val()
+	    		
 	    };
 	    
 		$("#addModal input").val("");
@@ -63,7 +66,9 @@ function regist(){
 		var item ={
 			roomType :$("input[name='room_type']").val(),
 			price :$("input[name='price']").val(),
+			maxNumber :$("input[name='maxNumber']").val(),
 			detail :$("input[name='detail']").val()
+			
 		}
 		$.ajax("roomOption/regist",{
 			method: "POST",

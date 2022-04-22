@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import kr.ac.kopo.Dao.AdminDao;
 import kr.ac.kopo.Dao.ProductImageDao;
@@ -127,6 +126,20 @@ public class AdminServiceImpl implements AdminService{
 		return dao.roomList(pager);
 	}
 
+	@Override
+	public void addImg(Room item) {
 
+		if(item.getImages() != null)
+			for(ProductImage image : item.getImages()) {
+				image.setRoomId(item.getRoomId());
+				System.out.println(image.getRoomId());
+				productImageDao.add(image);
+			}
+	}
 
+	@Override
+	public List<Room> roomListajax() {
+		
+		return dao.roomListajax();
+	}
 }

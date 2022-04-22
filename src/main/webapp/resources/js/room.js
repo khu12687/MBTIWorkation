@@ -1,4 +1,5 @@
 $(function(){
+	getRoomList();
 	$($(".regRoom")).click(function(){
 		registRoom();
 	});
@@ -10,7 +11,7 @@ $(function(){
 	});
 	$(".ediRoom").click(function(){
 		if($(".room").val() ==0){
-			alert("SERVICE이름을 선택해주세요");
+			alert("호텔을 선택해주세요");
 		}
 		else{
 			$.ajax("room/list",{
@@ -21,7 +22,6 @@ $(function(){
 						const obj = result[i];
 						if($(".room").val() == obj.roomId){
 							$(".loc").val(obj.loc);
-							$(".maxNumber").val(obj.maxNumber);
 							$(".num").val(obj.num);
 							$(".priceRoom").val(obj.price);
 							$(".latitude").val(obj.latitude);
@@ -33,10 +33,36 @@ $(function(){
 			});
 		}
 	});
+	
+	$(".addImg").click(function(){
+		if($(".room").val() ==0){
+			alert("호텔을 선택해주세요");
+		}
+		else{
+			const item = {
+	    		productImg: $(`#addRoomModal .loc`).val()
+	    	};
+			$.ajax("room/list",{
+				method: "GET",
+				
+				success: result => {
+					for(let i=0; i<result.length; i++){
+						const obj = result[i];
+						if($(".room").val() == obj.roomId){
+							$("input[name='roomId']").val(obj.roomId);
+							
+						}
+					}
+				},
+				error: (xhr, result) => console.log(123)
+			});
+		}
+	
+	});
+	
 	$("#addRoomModal .editRoom").click(function() {
 	    const item = {
 	    		loc: $(`#addRoomModal .loc`).val(),
-	    		maxNumber: $(`#addRoomModal .maxNumber`).val(),
 	    		num: $(`#addRoomModal .num`).val(),
 	    		price: $(`#addRoomModal .priceRoom`).val(),
 	    		latitude: $(`#addRoomModal .latitude`).val(),
@@ -66,10 +92,9 @@ $(function(){
 });
 function registRoom(){
 	alert($("input[name='latitude']").val());
-	if($("input[name='loc']").val()!="" && $("input[name='maxNumber']").val()!="" && $("input[name='num']").val() != "" && $("input[name='priceRoom']").val() != ""){
+	if($("input[name='loc']").val()!="" && $("input[name='num']").val() != "" && $("input[name='priceRoom']").val() != ""){
 		  const item = {
 	    		loc: $("input[name='loc']").val(),
-	    		maxNumber: $("input[name='maxNumber']").val(),
 	    		num: $("input[name='num']").val(),
 	    		price: $("input[name='priceRoom']").val(),
 	    		latitude: $("input[name='latitude']").val(),
@@ -101,7 +126,7 @@ function getRoomList(){
 			
 			for(let i=0; i<result.length; i++){
 				const obj = result[i];
-				$(".room").append("<option value='"+ obj.roomId+"'>"+ obj.loc +"("+obj.maxNumber+")"+"</option>");
+				$(".room").append("<option value='"+ obj.roomId+"'>"+ obj.loc +"("+obj.price+")"+"</option>");
 			}
 		},
 		error: (xhr, result) => console.log(123)

@@ -14,5 +14,6 @@
 		<mapper resource="mybatis/admin.xml" />
 		<mapper resource="mybatis/reserv.xml" />
 		<mapper resource="mybatis/log.xml" />
+		<mapper resource="mybatis/product_image.xml" />
 	</mappers>
 </configuration>

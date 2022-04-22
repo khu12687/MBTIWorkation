@@ -1,10 +1,20 @@
 package kr.ac.kopo.model;
 
+import java.util.List;
+
 public class RoomOption {
 	private int roomOptionId;
 	private String roomType;
 	private int price;
 	private String detail;
+	private String maxNumber;
+
+	public String getMaxNumber() {
+		return maxNumber;
+	}
+	public void setMaxNumber(String maxNumber) {
+		this.maxNumber = maxNumber;
+	}
 	public int getRoomOptionId() {
 		return roomOptionId;
 	}

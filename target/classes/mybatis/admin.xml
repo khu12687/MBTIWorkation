@@ -28,7 +28,7 @@
 	
 	<insert id="roomOptionRegist">					
 		INSERT INTO room_option
-		VALUES (NULL, #{roomType}, #{price}, #{detail})
+		VALUES (NULL, #{roomType}, #{price}, #{maxNumber}, #{detail})
 	</insert>
 	
 	<select id="roomOptionList" resultType="RoomOption">
@@ -41,7 +41,7 @@
 	
 	<update id="edit">
 		UPDATE room_option
-		SET room_type = #{roomType}, price = #{price}, detail = #{detail}
+		SET room_type = #{roomType}, price = #{price}, max_number = #{maxNumber}, detail = #{detail}
 		WHERE room_option_id =#{roomOptionId}
 	</update>
 	
@@ -66,12 +66,37 @@
 	
 	<insert id="roomRegist">					
 		INSERT INTO room
-		VALUES (NULL, #{loc}, #{maxNumber}, #{num}, #{price}, #{latitude}, #{longitude})
+		VALUES (NULL, #{loc}, #{num}, #{price}, #{latitude}, #{longitude})
 	</insert>
 	
-	<select id="roomList" resultType="Room">
-		SELECT * FROM room
+	<select id="roomList" resultMap="RoomMap">
+		SELECT room.*,
+			product_img.productImg_id productImgId,
+			product_img.room_id room_id,
+			product_img.filename filename,
+			product_img.uuid uuid
+		FROM room
+		JOIN product_img ON room.room_id = product_img.room_id
 	</select>
+	
+	<select id="roomListAjax" resultType="Room">
+		SELECT * from room
+	</select>
+	
+	<resultMap type="Room" id="RoomMap">
+		<id column="room_id" property="roomId" />
+		<result column="loc" property="loc"/>
+		<result column="num" property="num"/>
+		<result column="price" property="price"/>
+		<result column="latitude" property="latitude"/>
+		<result column="longitude" property="longitude"/>
+		
+		<collection property="images" column="room_id" ofType="ProductImage" javaType="ArrayList">
+			<id column="productImg_id" property="productImgId"/>
+			<result column="filename" property="filename"/>
+			<result column="uuid" property="uuid"/>
+		</collection>	
+	</resultMap>
 	
 		<select id="total" resultType="Integer">
 		SELECT COUNT(*)

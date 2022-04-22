@@ -72,8 +72,8 @@
 							<td><input type="text" value="${roomOption.roomType}" name="roomType" readonly></td>
 						</tr>
 						<tr>
-							<th>침대 옵션</th>
-							<td><input type="text" value="${room.maxNumber}" name="maxNumber" readonly></td>
+							<th>인원수</th>
+							<td><input type="text" value="${roomOption.maxNumber}" name="roomType" readonly></td>
 						</tr>
 						<tr>
 							<th>프로모션</th>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,16 +34,17 @@ $(() =>{
     	var lati = parseFloat(this.dataset.latitude);
     	var longi = parseFloat(this.dataset.longitude);
     	var loc = this.dataset.loc;
+    	var filename = this.dataset.filename;
     	map = new google.maps.Map(document.getElementById('map'),{
     		center: {lat: lati, lng: longi},
     		zoom:13
     	})
     	const contentString =
     	    '<div id="content">' +
-    	    '<img src="/resources/images/dokdo.png" width="500px;" height="450px;">'+
-    	    '<p>Attribution: Uluru, <a href="/reserv/1">' +
-    	    "제주도 호텔</a> " +
-    	    "(last visited June 22, 2009).</p>" +
+    	    '<img src="/resources/images/'+filename+'" width="500px;" height="450px;">'+
+    	    '<p><a href="/reserv/1">' +
+    	    loc+"</a> " +
+    	    "</p>" +
     	    "</div>";
     	  
    		const infowindow = new google.maps.InfoWindow({
@@ -136,16 +138,16 @@ function createImg(){
 			<h2>추천 여행지</h2>
 				<div class="album_slider" style="display: flex;">
 				<div id="map" style="width: 70%; height: 70vh; margin-right: 2%;"></div>
-				<div>
+				<div style=" overflow: scroll; overflow-x:hidden; width: 70%; height: 70vh;">
 						<ul>
 							<c:forEach items="${roomList}" var="item" varStatus="status">
 								<li>
-									<div class="roomProduct" style="width: 570px; height: 170px; background: white; color: black;" data-order="${status.index}" data-latitude="${item.latitude}" data-longitude="${item.longitude}" data-loc="${item.loc }">
-										<img src="resources/images/background_spring.jpg" width="250px;" height="150px;">
+									<div class="roomProduct" style="width: 570px; height: 170px; background: white; color: black;" data-order="${status.index}" data-latitude="${item.latitude}" data-longitude="${item.longitude}" data-loc="${item.loc }" data-filename="${item.images[0].filename}">
+										<img src="resources/images/${item.images[0].filename}" width="250px;" height="150px;">
 										<div style="display: inline-block;">
 											<div>${item.loc }</div>
-											<div>${item.maxNumber }</div>
-											<div>${item.price }</div>
+											<div>${item.num }</div>
+											<div><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.price }" />원</div>
 										</div>
 									</div>
 								</li>

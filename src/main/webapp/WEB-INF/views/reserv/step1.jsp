@@ -162,19 +162,7 @@ $(function() {
 							<div class="mt-2">
 								<select name="roomType" class="form-select" id="roomType">
 									<c:forEach items="${roomOptionList }" var="item">
-										<option value="${item.roomType}">${item.roomType} +${item.price}원</option>
-									</c:forEach>
-								</select>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<th>침대 옵션</th>
-						<td>
-							<div class="mt-2">
-								<select name="maxNumber" class="form-select" id="maxNumber">
-									<c:forEach items="${roomList }" var="item">
-										<option value="${item.maxNumber}">${item.maxNumber} +${item.price}원</option>
+										<option value="${item.roomType}">${item.roomType}(${item.maxNumber}) +${item.price}원</option>
 									</c:forEach>
 								</select>
 							</div>

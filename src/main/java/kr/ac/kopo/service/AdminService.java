@@ -48,4 +48,8 @@ public interface AdminService {
 
 	List<Room> roomList(Pager pager);
 
+	void addImg(Room item);
+
+	List<Room> roomListajax();
+
 }

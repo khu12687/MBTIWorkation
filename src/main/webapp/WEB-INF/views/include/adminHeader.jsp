@@ -39,7 +39,7 @@ select{
 <div class="topnav">
   <a class="active" href="/admin/index">Home</a>
   <a href="/admin/category">카테고리 관리</a>
-  <a href="/admin/imgManage">방이미지 관리</a>
+  <a href="/admin/imgManage">호텔 관리</a>
   <a href="/admin/product/list">상품관리</a>
   <a href="/admin/member/index">회원정보</a>
   <a href="/admin/reserv/index">결제정보</a>

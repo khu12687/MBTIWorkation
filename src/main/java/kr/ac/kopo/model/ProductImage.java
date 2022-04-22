@@ -3,17 +3,17 @@ package kr.ac.kopo.model;
 import kr.ac.kopo.util.UploadFile;
 
 public class ProductImage implements UploadFile {
-	private int code;
+	private int productImgId;
 	private String filename;
 	private String uuid;
 	private int roomId;
 
-	public int getCode() {
-		return code;
+	public int getProductImgId() {
+		return productImgId;
 	}
 
-	public void setCode(int code) {
-		this.code = code;
+	public void setProductImgId(int productImgId) {
+		this.productImgId = productImgId;
 	}
 
 	public String getFilename() {

@@ -16,15 +16,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.kopo.exception.DMLException;
 import kr.ac.kopo.model.Admin;
 import kr.ac.kopo.model.CategoryOption;
+import kr.ac.kopo.model.ProductImage;
 import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
 import kr.ac.kopo.model.WorkationOption;
 import kr.ac.kopo.service.AdminService;
+import kr.ac.kopo.util.Uploader;
 
 @Controller
 @RequestMapping("/admin")
@@ -66,6 +69,7 @@ public class AdminController {
 	@PostMapping("/roomOption/regist")
 	@ResponseBody
 	public RoomOption roomOptionRegist(@RequestBody RoomOption roomOption) {
+		System.out.println(roomOption.getMaxNumber());
 		service.roomOptionRegist(roomOption);
 		
 		return roomOption;
@@ -97,6 +101,23 @@ public class AdminController {
 		return "1";
 	}
 
+	@PostMapping("/addImg")
+	public String add(Room item, @RequestParam("productImg") List<MultipartFile> productImg) {
+		System.out.println(item.getRoomId());
+		try {
+			Uploader<ProductImage> uploader = new Uploader<>();
+			
+			List<ProductImage> images = uploader.makeList(productImg, ProductImage.class);
+			
+			item.setImages(images);
+			service.addImg(item);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return path + "imgManage";
+	}
+	
 	@PostMapping("/serviceOption/regist")
 	@ResponseBody
 	public ServiceOption serviceOptionRegist(@RequestBody ServiceOption serviceOption) {
@@ -145,7 +166,7 @@ public class AdminController {
 	@ResponseBody
 	public List<Room> roomList(){
 		
-		List<Room> list = service.roomList();
+		List<Room> list = service.roomListajax();
 		
 		return list;
 	}

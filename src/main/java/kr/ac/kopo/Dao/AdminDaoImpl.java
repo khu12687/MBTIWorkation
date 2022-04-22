@@ -129,4 +129,11 @@ public class AdminDaoImpl implements AdminDao{
 		return sql.selectOne("Admin.total",pager);
 	}
 
+	@Override
+	public List<Room> roomListajax() {
+
+		return sql.selectList("Admin.roomListAjax");
+	}
+
+
 }
