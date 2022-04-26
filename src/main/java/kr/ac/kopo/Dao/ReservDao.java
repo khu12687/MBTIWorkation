@@ -10,8 +10,6 @@ public interface ReservDao {
 
 	void reserv(Reservation reservation);
 
-	Room getRoomId(Room room);
-
 	RoomOption getRoomOptionId(RoomOption roomOption);
 
 	ServiceOption getServiceOptionId(ServiceOption serviceOption);

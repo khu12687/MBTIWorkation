@@ -5,9 +5,10 @@
 
 .infoWrap div {
 	display: inline-block;
+	overflow: hidden;
+	width: 650px;
 	border: 1px solid #EBEBEB;
 	border-radius: 8px;
-	overflow: hidden;
 }
 
 table.tableInfo {
@@ -25,7 +26,9 @@ table.tableInfo th {
 	vertical-align: top;
 	border-bottom: 1px solid #ccc;
 }
-
+.form-select{
+	width: 600px;
+}
 h2 {
 	margin: 5%;
 	border-bottom: 1px solid #CED4DA;

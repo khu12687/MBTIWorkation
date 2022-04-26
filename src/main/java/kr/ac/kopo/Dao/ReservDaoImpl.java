@@ -22,11 +22,6 @@ public class ReservDaoImpl implements ReservDao{
 	}
 
 	@Override
-	public Room getRoomId(Room room) {
-		return sql.selectOne("reserv.getRoomId",room);
-	}
-
-	@Override
 	public RoomOption getRoomOptionId(RoomOption roomOption) {
 		return sql.selectOne("reserv.getRoomOptionId",roomOption);
 	}

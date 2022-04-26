@@ -39,8 +39,8 @@ $(function() {
 		
 		dateDays = (diifDate / (1000*3600*24));
 		if(dateDays <= 0){
-			alert("CHECKIN 날짜를 확인해 주세요.");
-			
+			alert("CHECKOUT 날짜를 확인해 주세요.");
+			$("#check_out").val(0);
 		}else if(dateDays>0 && dateDays<=10){
 			$("#checkPay").text(50000);
 			totalHidden += 50000;
@@ -103,6 +103,11 @@ $(function() {
 	
 })
 </script>
+<style>
+h2{
+	margin-bottom: 7%;
+}
+</style>
 </head>
 <body>
 	<div class="infoWrap">
@@ -153,7 +158,6 @@ $(function() {
 					</label> <label> CHECKOUT<input type="date" name="checkOut" id="check_out">
 					</label>
 				</div>
-				<h3>객실비용: <b id="checkPay">0</b></h3>
 				<h2>객실리스트</h2>
 				<table class="tableInfo">
 					<tr>
@@ -194,6 +198,7 @@ $(function() {
 					</tr>
 				</table>
 				<input type="hidden" value="290000" id="totalHidden" name="totalPay">
+				<h3>객실비용: <b id="checkPay">0</b></h3>
 				<h3>총 옵션금액: <b id="optionPay">0</b></h3>
 				<h3>총 결제금액: <b style="color: red;" id="totalPay">290000</b></h3>
 				

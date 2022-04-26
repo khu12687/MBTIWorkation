@@ -22,11 +22,6 @@ public class ReservServiceImpl implements ReservService{
 	}
 
 	@Override
-	public Room getRoomId(Room room) {
-		return reservDao.getRoomId(room);
-	}
-
-	@Override
 	public RoomOption getRoomOptionId(RoomOption roomOption) {
 		return reservDao.getRoomOptionId(roomOption);
 	}

@@ -12,7 +12,7 @@ public class Reservation {
 	private int roomOptionId;
 	private int serviceOptionId;
 	private int workationOptionId;
-	private int memberId;
+	private String memberId;
 	private int totalPay;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date reserveDate;
@@ -52,10 +52,11 @@ public class Reservation {
 	public void setWorkationOptionId(int workationOptionId) {
 		this.workationOptionId = workationOptionId;
 	}
-	public int getMemberId() {
+	
+	public String getMemberId() {
 		return memberId;
 	}
-	public void setMemberId(int memberId) {
+	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
 	public int getTotalPay() {

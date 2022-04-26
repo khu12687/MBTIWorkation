@@ -48,7 +48,7 @@
 			</table>
 			
 			<h2>객실</h2>
-			<form method="post" action="/reserv/${workation_id}/step2">
+			<form method="post" action="/reserv/${roomId}/step2">
 				<table class="tableInfo">
 					<tbody>
 						<tr>
@@ -70,10 +70,6 @@
 						<tr>
 							<th>객실타입</th>
 							<td><input type="text" value="${roomOption.roomType}" name="roomType" readonly></td>
-						</tr>
-						<tr>
-							<th>인원수</th>
-							<td><input type="text" value="${roomOption.maxNumber}" name="roomType" readonly></td>
 						</tr>
 						<tr>
 							<th>프로모션</th>
@@ -102,19 +98,19 @@
 				<table class="tableInfo">
 					<tr>
 						<th>예약자명</th>
-						<td><input type="text" name="subscrName"></td>
+						<td><input type="text" value="${sessionScope.member.name}"></td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td><input type="text" name="subscrEmail"></td>
+						<td><input type="text" value="${sessionScope.member.id}"></td>
 					</tr>
 					<tr>
 						<th>휴대폰 번호 </th>
-						<td><input type="text" name="subscrPhone"></td>
+						<td><input type="text" value="${sessionScope.member.phone}"></td>
 					</tr>
 					<tr>
 						<th>전화번호(선택) </th>
-						<td><input type="text" name="subscrSubPhone"></td>
+						<td><input type="text" value="${sessionScope.member.phone}"></td>
 					</tr>
 				</table>
 				<h2>이용동의</h2>

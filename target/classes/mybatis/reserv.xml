@@ -3,13 +3,8 @@
 <mapper namespace="reserv">
 	<insert id="insert">
 		INSERT INTO reservation
-		VALUES(NULL, #{roomId}, #{memberId}, #{roomOptionId}, #{serviceOptionId}, #{workationOptionId},  #{totalPay},NOW(), #{checkIn}, #{checkOut})
+		VALUES(NULL, #{roomId}, #{memberId}, #{roomOptionId}, #{workationOptionId}, #{serviceOptionId}, #{totalPay},NOW(), #{checkIn}, #{checkOut})
 	</insert>
-	
-	<select id="getRoomId" resultType="Room">
-		SELECT * FROM room
-		WHERE max_number = #{maxNumber}
-	</select>
 	
 	<select id="getRoomOptionId" resultType="RoomOption">
 		SELECT * FROM room_option

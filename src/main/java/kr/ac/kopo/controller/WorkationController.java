@@ -1,6 +1,5 @@
 package kr.ac.kopo.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import kr.ac.kopo.model.Member;
 import kr.ac.kopo.model.Reservation;
 import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
-import kr.ac.kopo.model.Subscr;
 import kr.ac.kopo.model.WorkationOption;
 import kr.ac.kopo.service.AdminService;
 import kr.ac.kopo.service.ReservService;
@@ -31,8 +31,8 @@ public class WorkationController {
 	
 	final String path = "/reserv/";
 	
-	@GetMapping("/reserv/{workation_id}")
-	public String reserv(@PathVariable int workation_id, Model model) {
+	@GetMapping("/reserv/{roomId}")
+	public String reserv(@PathVariable int roomId, Model model) {
 		
 		List<RoomOption> roomOptionList = adminService.roomOptionList();
 		model.addAttribute("roomOptionList",roomOptionList);
@@ -46,27 +46,31 @@ public class WorkationController {
 		return path + "step1";
 	}
 	
-	@PostMapping("/reserv/{workation_id}")
-	public String reserv(@PathVariable int workation_id, Reservation reservation, RoomOption roomOption ,Room room, ServiceOption serviceOption, WorkationOption workationOption, Model model) {
+	@PostMapping("/reserv/{roomId}")
+	public String reserv(@PathVariable int roomId, Reservation reservation, RoomOption roomOption, ServiceOption serviceOption, WorkationOption workationOption, Model model) {
 		System.out.println(roomOption.getRoomType());
 		model.addAttribute("reservation",reservation);
 		return path + "step2";
 	}
 	
-	@PostMapping("/reserv/{workation_id}/step2")
-	public String step2(@PathVariable int workation_id, Reservation reservation, RoomOption roomOption ,Room room, ServiceOption serviceOption, WorkationOption workationOption, Subscr subscr, Model model) {
-		Room objRoom = reservService.getRoomId(room);
-		reservation.setRoomId(objRoom.getRoomId());
+	@PostMapping("/reserv/{roomId}/step2")
+	public String step2(@PathVariable int roomId, Reservation reservation, RoomOption roomOption ,ServiceOption serviceOption, WorkationOption workationOption, Model model,@SessionAttribute Member member) {
 		
 		RoomOption objRoomOption = reservService.getRoomOptionId(roomOption);
 		reservation.setRoomOptionId(objRoomOption.getRoomOptionId());
 		
+		System.out.println(serviceOption.getServiceName());
 		ServiceOption objServiceOption = reservService.getServiceOptionId(serviceOption);
+		System.out.println(objServiceOption.getServiceOptionId());
 		reservation.setServiceOptionId(objServiceOption.getServiceOptionId());
 		
 		WorkationOption objWorkationOption = reservService.getWorkationOptionId(workationOption);
 		reservation.setWorkationOptionId(objWorkationOption.getWorkationOptionId());
-		System.out.println(reservation.getMemberId());
+		
+		reservation.setRoomId(roomId);
+		reservation.setMemberId(member.getId());
+		
+		
 		reservService.reserv(reservation);
 		model.addAttribute("reservation",reservation);
 		System.out.println(reservation.getTotalPay());

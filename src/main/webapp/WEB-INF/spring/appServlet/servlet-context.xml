@@ -36,13 +36,17 @@
 	<context:component-scan base-package="kr.ac.kopo" />
 	
 	<interceptors>
-			
 		<interceptor>
 			<mapping path="/admin/**"/>
 			
 			<exclude-mapping path="/admin/login"/>
 			
 			<beans:bean class="kr.ac.kopo.util.AdminInterceptor"></beans:bean>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/reserv/**"/>
+			<beans:bean class="kr.ac.kopo.util.UserInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>
 	

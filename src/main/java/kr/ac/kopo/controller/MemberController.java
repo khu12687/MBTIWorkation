@@ -55,15 +55,15 @@ public class MemberController {
 	
 	@PostMapping("/login")
 	public String loginCheck(Member member, HttpSession session, Model model) {
-		System.out.println(member.getId());
-		System.out.println(member.getPassword());
 		
 		Member obj=memberService.loginCheck(member);
-		
 		session.setAttribute("member", obj);
+		String target = (String) session.getAttribute("target");
+		session.removeAttribute("target");
 		model.addAttribute("msg", obj.getName()+"님 안녕하세요");
-		model.addAttribute("url", "/");
-		return "message";
+		model.addAttribute("url", target);
+		
+		return target == null ? "index" : "message";
 	}
 	
 	@PostMapping("/loginIndex")

@@ -30,6 +30,10 @@ $(() =>{
     createRect(); 
     setInterval("move()",25);
     
+    $(".roomProduct").click(function(e){
+		location.href="reserv/1";    	
+    });
+    
     $(".roomProduct").mouseover(function(e){
     	var lati = parseFloat(this.dataset.latitude);
     	var longi = parseFloat(this.dataset.longitude);
@@ -41,7 +45,7 @@ $(() =>{
     	})
     	const contentString =
     	    '<div id="content">' +
-    	    '<img src="/resources/images/'+filename+'" width="500px;" height="450px;">'+
+    	    '<img src="/resources/images/'+filename+'" width="700px;" height="500px;">'+
     	    '<p><a href="/reserv/1">' +
     	    loc+"</a> " +
     	    "</p>" +
@@ -121,28 +125,24 @@ function createImg(){
 </head>
 <body>
 		<div class="t_mini_banner">
+			<img src="/resources/images/mainVacation.png" width="700px;" height="500px;">
+			<h2>MBTI 유형별 여행</h2>
 			<div>
-				<div>
-					<img src="/resources/images/mainVacation.png" width="500px;" height="500px;">
-					<h2>MBTI 유형별 여행</h2>
-					<div>
-						<div id="container"></div>
-					</div>
-					<div id="mbtiproduct">
-						<img src="/resources/images/mbti0.png">
-					</div>
-				</div>
+				<div id="container"></div>
+			</div>
+			<div id="mbtiproduct">
+				<img src="/resources/images/mbti0.png" width="700px;" height="500px;">
 			</div>
 		</div>
 		<div class="album_set">
 			<h2>추천 여행지</h2>
 				<div class="album_slider" style="display: flex;">
 				<div id="map" style="width: 70%; height: 70vh; margin-right: 2%;"></div>
-				<div style=" overflow: scroll; overflow-x:hidden; width: 70%; height: 70vh;">
+				<div style="width: 70%; height: 70vh;">
 						<ul>
 							<c:forEach items="${roomList}" var="item" varStatus="status">
 								<li>
-									<div class="roomProduct" style="width: 570px; height: 170px; background: white; color: black;" data-order="${status.index}" data-latitude="${item.latitude}" data-longitude="${item.longitude}" data-loc="${item.loc }" data-filename="${item.images[0].filename}">
+									<div class="roomProduct" style="width: 570px; height: 170px; background: white; color: black; cursor: pointer;" data-order="${status.index}" data-latitude="${item.latitude}" data-longitude="${item.longitude}" data-loc="${item.loc }" data-filename="${item.images[0].filename}">
 										<img src="resources/images/${item.images[0].filename}" width="250px;" height="150px;">
 										<div style="display: inline-block;">
 											<div>${item.loc }</div>

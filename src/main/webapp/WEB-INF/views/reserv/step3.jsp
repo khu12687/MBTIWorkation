@@ -105,19 +105,19 @@
 				<table class="tableInfo">
 					<tr>
 						<th>예약자명</th>
-						<td><input type="text" value="${subscr.subscrName }" readonly></td>
+						<td><input type="text" value="${sessionScope.member.name}" readonly></td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td><input type="email" value="${subscr.subscrEmail }" readonly></td>
+						<td><input type="email" value="${sessionScope.member.id}" readonly></td>
 					</tr>
 					<tr>
 						<th>휴대폰 번호 </th>
-						<td><input type="text" value="${subscr.subscrPhone }" readonly></td>
+						<td><input type="text" value="${sessionScope.member.phone}" readonly></td>
 					</tr>
 					<tr>
 						<th>전화번호(선택) </th>
-						<td><input type="text" value="${subscr.subscrSubPhone }" readonly></td>
+						<td><input type="text" value="${sessionScope.member.phone}" readonly></td>
 					</tr>
 				</table>
 				<h2>이용동의</h2>
