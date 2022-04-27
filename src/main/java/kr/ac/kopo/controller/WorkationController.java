@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
-
 import kr.ac.kopo.model.Member;
 import kr.ac.kopo.model.Reservation;
 import kr.ac.kopo.model.Room;
@@ -86,10 +85,15 @@ public class WorkationController {
 	
 	@PostMapping("/reserv/check")
 	@ResponseBody
-	public Reservation check(@RequestBody Reservation reservation) {
+	public Reservation check(@RequestBody Reservation reservation){
 		Reservation objReser = reservService.getReservationInfo(reservation.getReservationId());
-		System.out.println(objReser.getCheckIn());
-		
 		return objReser;
+	}
+	
+	@PostMapping("/reserv/del")
+	@ResponseBody
+	public String del(@RequestBody Reservation reservation){
+		reservService.del(reservation.getReservationId());
+		return "1";
 	}
 }

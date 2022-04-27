@@ -20,4 +20,6 @@ public interface ReservService {
 
 	Reservation getReservationInfo(int reservationId);
 
+	Reservation del(int reservationId);
+
 }

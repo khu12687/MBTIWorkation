@@ -48,4 +48,10 @@ public class ReservDaoImpl implements ReservDao{
 		return sql.selectOne("reserv.getReservationInfo", reservationId);
 	}
 
+	@Override
+	public Reservation del(int reservationId) {
+
+		return sql.selectOne("reserv.del",reservationId);
+	}
+
 }

@@ -20,4 +20,6 @@ public interface ReservDao {
 
 	Reservation getReservationInfo(int reservationId);
 
+	Reservation del(int reservationId);
+
 }

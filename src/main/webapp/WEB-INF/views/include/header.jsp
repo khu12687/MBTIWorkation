@@ -28,11 +28,10 @@
 				  <li><a href="/member/login">로그인</a></li>
 		 		 </c:if>
 		 		 <c:if test="${sessionScope.member != null}">
-		 		 	<li><a href="/member/mypage" style="margin-left: 1%;">mypage</a></li>
+		 		 	<li><a href="/reserv/check" style="margin-left: 1%;">mypage</a></li>
 				  	<li><a href="/member/logout" >로그아웃</a></li>
 				  </c:if>
 				<li><a href="/member/regist">회원가입</a></li>
-				<li><a href="/reserv/check">예약확인</a></li>
 			</ul>
 		</div>
 	</div>

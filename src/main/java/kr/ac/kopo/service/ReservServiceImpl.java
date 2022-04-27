@@ -47,4 +47,10 @@ public class ReservServiceImpl implements ReservService{
 
 		return reservDao.getReservationInfo(reservationId);
 	}
+
+	@Override
+	public Reservation del(int reservationId) {
+		
+		return reservDao.del(reservationId);
+	}
 }

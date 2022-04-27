@@ -21,11 +21,28 @@ $(function(){
 			success: result =>{
 				getList(result);
 			},
-			error: (xhr, result) => console.log(123)
+			error: (xhr, result) => alert("등록된 예약이 없습니다")
 		})
 		
 	});
 });
+
+function del(){
+	const item = {
+			reservationId : $("#reservId").val()
+	}
+	$.ajax("del",{
+		method: "POST",
+		contentType: "application/json",
+		dataType: "json",
+		data: JSON.stringify(item),
+		success: result =>{
+			alert("예약이 취소 되었습니다.");
+		},
+		error: (xhr, result) => alert("실패")
+	})
+	
+}
 
 function getList(info){
 	$.ajax("",{
@@ -36,6 +53,7 @@ function getList(info){
 			$("#reserInfo").append("<div>가격" +"("+info.totalPay+")"+"</div>");
 			$("#reserInfo").append("<div>CHECKIN" +"("+info.checkIn+")"+"</div>");
 			$("#reserInfo").append("<div>CHECKOUT" +"("+info.checkOut+")"+"</div>");
+			$("#reserInfo").append("<div onclick='del()'>예약취소"+"</div>");
 		},
 		error: (xhr, result) => console.log(123)
 	});
@@ -52,13 +70,8 @@ function getList(info){
 				<th>예약번호 </th>
 				<td><input type="number" name="reservationId" id="reservId"><button class="btn btn-light getReserv">확인</button></td>
 			</tr>
-			<tr>
-				<th>예약번호를 잊으셨나요?</th>
-				<td><input type="number" name="phone" id="reservPhone" placeholder="전화번호 입력"><button class="btn btn-light getReId">확인</button></td>
-			</tr>
 	</table>
 	<div id="reserInfo">
-		ㅇ
 	</div>
 	</div>
 </div>
