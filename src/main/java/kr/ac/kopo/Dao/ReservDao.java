@@ -1,5 +1,7 @@
 package kr.ac.kopo.Dao;
 
+import java.util.List;
+
 import kr.ac.kopo.model.Reservation;
 import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
@@ -16,7 +18,7 @@ public interface ReservDao {
 
 	WorkationOption getWorkationOptionId(WorkationOption workationOption);
 
-	int getReservationId(int reservationId);
+	List<Reservation> getReservationId(String memberId);
 
 	Reservation getReservationInfo(int reservationId);
 

@@ -1,5 +1,7 @@
 package kr.ac.kopo.Dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -37,14 +39,14 @@ public class ReservDaoImpl implements ReservDao{
 	}
 
 	@Override
-	public int getReservationId(int phone) {
+	public List<Reservation> getReservationId(String memberId) {
 
-		return sql.selectOne("reserv.getReservationId", phone);
+		return sql.selectList("reserv.getReservationId", memberId);
 	}
 
 	@Override
 	public Reservation getReservationInfo(int reservationId) {
-
+		System.out.println(reservationId);
 		return sql.selectOne("reserv.getReservationInfo", reservationId);
 	}
 

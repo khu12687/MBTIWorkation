@@ -140,6 +140,27 @@
 		SET workation_name = #{workationName}, price = #{price}, detail = #{detail}
 		WHERE workation_option_id =#{workationOptionId}
 	</update>
+	
+	<select id="selectRoom" resultType="Room">
+		SELECT * FROM room
+		WHERE room_id = #{roomId}
+	</select>
+	
+	<select id="selectRoomOption" resultType="RoomOption">
+		select * from room_option
+		where room_option_id=#{roomOptionId}
+	</select>
+	
+	<select id="selectWorkationOption" resultType="WorkationOption">
+		select * from workation_option
+		where workation_option_id=#{workationOptionId}
+	</select>
+	
+	<select id="selectServiceOption" resultType="ServiceOption">
+		select * from member
+		where id=#{id}
+	</select>
+	
 </mapper>
 
 

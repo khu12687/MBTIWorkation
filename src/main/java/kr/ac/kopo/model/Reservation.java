@@ -7,6 +7,36 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Reservation {
+	
+	private Room room;
+	private RoomOption roomOption;
+	private ServiceOption serviceOption;
+	private WorkationOption workationOption;
+	
+	public Room getRoom() {
+		return room;
+	}
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+	public RoomOption getRoomOption() {
+		return roomOption;
+	}
+	public void setRoomOption(RoomOption roomOption) {
+		this.roomOption = roomOption;
+	}
+	public ServiceOption getServiceOption() {
+		return serviceOption;
+	}
+	public void setServiceOption(ServiceOption serviceOption) {
+		this.serviceOption = serviceOption;
+	}
+	public WorkationOption getWorkationOption() {
+		return workationOption;
+	}
+	public void setWorkationOption(WorkationOption workationOption) {
+		this.workationOption = workationOption;
+	}
 	private int reservationId;
 	private int roomId;
 	private int roomOptionId;

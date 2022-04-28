@@ -1,5 +1,7 @@
 package kr.ac.kopo.service;
 
+import java.util.List;
+
 import kr.ac.kopo.model.Reservation;
 import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
@@ -16,7 +18,7 @@ public interface ReservService {
 
 	WorkationOption getWorkationOptionId(WorkationOption workationOption);
 
-	int getReservationId(int phone);
+	List<Reservation> getReservationId(String memberId);
 
 	Reservation getReservationInfo(int reservationId);
 

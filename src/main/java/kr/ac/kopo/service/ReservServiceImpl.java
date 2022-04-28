@@ -1,5 +1,7 @@
 package kr.ac.kopo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,9 +39,9 @@ public class ReservServiceImpl implements ReservService{
 	}
 
 	@Override
-	public int getReservationId(int phone) {
+	public List<Reservation> getReservationId(String memberId) {
 		
-		return reservDao.getReservationId(phone);
+		return reservDao.getReservationId(memberId);
 	}
 
 	@Override

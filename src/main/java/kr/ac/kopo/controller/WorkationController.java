@@ -71,6 +71,8 @@ public class WorkationController {
 		
 		
 		reservService.reserv(reservation);
+		List<Reservation> reservList = reservService.getReservationId(member.getId());
+		reservation.setReservationId(reservList.get(reservList.size()-1).getReservationId()) ;
 		model.addAttribute("reservation",reservation);
 		System.out.println(reservation.getTotalPay());
 		
@@ -86,7 +88,9 @@ public class WorkationController {
 	@PostMapping("/reserv/check")
 	@ResponseBody
 	public Reservation check(@RequestBody Reservation reservation){
+		System.out.println(reservation.getReservationId());
 		Reservation objReser = reservService.getReservationInfo(reservation.getReservationId());
+		System.out.println(objReser.getRoom().getLongitude());
 		return objReser;
 	}
 	

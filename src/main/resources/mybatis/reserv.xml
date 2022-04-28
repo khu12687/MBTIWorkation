@@ -23,12 +23,47 @@
 	
 	<select id="getReservationId" resultType="Reservation">
 		SELECT * FROM reservation
-		WHERE phone = #{phone}
+		WHERE id = #{memberId}
 	</select>
 	
-	<select id="getReservationInfo" resultType="Reservation">
-		SELECT * FROM reservation
-		WHERE reservation_id = #{reservationId} 
+	<resultMap type="Reservation" id="joinMap">
+		<id column="reservation_id" property="reservationId"/>
+		<result column="total_pay" property="totalPay"/>
+		<result column="reserve_date" property="reserveDate"/>
+		<result column="check_in" property="checkIn"/>
+		<result column="check_out" property="checkOut"/>
+		
+		<association column="room_id" property="room" select="Admin.selectRoom"/>
+		<association column="member_id" property="member" select="Admin.selectMember"/>
+		<association column="room_option_id" property="roomOption" select="Admin.selectRoomOption"/>
+		<association column="workation_option_id" property="workationOption" select="Admin.selectWorkationOption"/>
+		<association column="service_option_id" property="serviceOption" select="Admin.selectServiceOption"/>
+	</resultMap>
+	
+	<select id="getReservationInfo" resultMap="joinMap">
+		SELECT reservation.*,
+			room.room_id room_id,
+			room.loc loc,
+			room.price room_price,
+			room.latitude latitude,
+			room.longitude longitude,
+			member.id id,
+			member.phone phone,
+			room_option.room_option_id room_option_id,
+			room_option.room_type room_type,
+			room_option.max_number max_number,
+			room_option.detail detail,
+			workation_option.workation_option_id workation_option_id,
+			workation_option.workation_name workation_name,
+			service_option.service_option_id service_option_id,
+			service_option.service_name service_name
+		FROM reservation
+		JOIN room ON reservation.room_id=room.room_id
+		JOIN member ON reservation.id = member.id
+		JOIN room_option ON reservation.room_option_id = room_option.room_option_id
+		JOIN workation_option ON reservation.workation_option_id = workation_option.workation_option_id
+		JOIN service_option ON reservation.service_option_id = service_option.service_option_id
+		WHERE reservation.reservation_id = #{reservationId}
 	</select>
 	
 	<delete id="del">
