@@ -90,7 +90,7 @@ public class WorkationController {
 	public Reservation check(@RequestBody Reservation reservation){
 		System.out.println(reservation.getReservationId());
 		Reservation objReser = reservService.getReservationInfo(reservation.getReservationId());
-		System.out.println(objReser.getRoom().getLongitude());
+		System.out.println(objReser.getServiceOption().getServiceName());
 		return objReser;
 	}
 	

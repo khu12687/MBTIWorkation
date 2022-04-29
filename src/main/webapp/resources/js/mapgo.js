@@ -10,7 +10,7 @@ function initMap() {
   const marker = new google.maps.Marker({
     position: { lat: 36.321655 ,lng: 127.378953 },
     map: map,
-    label: "대전 워케이션"
+    label: ""
   });
   
 	const infowindow = new google.maps.InfoWindow({

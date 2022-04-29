@@ -157,8 +157,8 @@
 	</select>
 	
 	<select id="selectServiceOption" resultType="ServiceOption">
-		select * from member
-		where id=#{id}
+		select * from service_option
+		where service_option_id=#{serviceOptionId}
 	</select>
 	
 </mapper>

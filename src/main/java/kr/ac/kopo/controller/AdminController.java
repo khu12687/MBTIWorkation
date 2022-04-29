@@ -60,6 +60,12 @@ public class AdminController {
 		return "message";
 	}
 	
+	@GetMapping("/memberInfo")
+	public String memberInfo() {
+		
+		return path + "memberInfo";
+	}
+	
 	@GetMapping("/category")
 	public String category() {
 		
