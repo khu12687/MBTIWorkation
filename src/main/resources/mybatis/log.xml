@@ -3,9 +3,24 @@
 
 <mapper namespace="log">
 
+	<insert id="logFalse">
+		INSERT INTO log_login
+		VALUES (NULL, #{member.id}, now(), #{result})
+	</insert>
+	
 	<insert id="login">
 		INSERT INTO log_login
 		VALUES (NULL, #{member.id}, now(), #{result})
 	</insert>
+	
+	<select id="logLogin" resultType="LogLogin">
+		SELECT * FROM log_login
+		WHERE member_id = #{memberId};
+	</select>
+
+	<select id="loginCheck" resultType="Member">
+		select * from member 
+		where id=#{id} and password=#{password}
+	</select>
 
 </mapper>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.exception.DataNotFoundException;
+import kr.ac.kopo.model.LogLogin;
 import kr.ac.kopo.model.Member;
 import kr.ac.kopo.util.Pager;
 
@@ -65,6 +66,12 @@ public class MemberDaoImpl implements MemberDao{
 	public List<Member> selectAll(Pager pager) {
 
 		return sql.selectList("Member.selectAll",pager);
+	}
+
+	@Override
+	public List<LogLogin> log(String memberId) {
+
+		return sql.selectList("log.logLogin",memberId);
 	}
 
 }

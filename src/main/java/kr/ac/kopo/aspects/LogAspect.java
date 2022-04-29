@@ -17,7 +17,10 @@ public class LogAspect {
 	@Before("execution(* kr..MemberServiceImpl.loginCheck(..)) && args(member)")
 	public void LogArticleAdd(Member member) {
 		System.out.println("새로운 로그인 시도: "+ member.getId());
-		service.login(member, false);
+		
+		Member obj = service.loginCheck(member);
+		if(obj ==null)
+			service.logFalse(member, false);
 	}
 	
 }

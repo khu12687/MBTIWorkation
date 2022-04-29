@@ -4,6 +4,8 @@ import kr.ac.kopo.model.Member;
 
 public interface LogService {
 
-	void login(Member member, boolean result);
+	void logFalse(Member member, boolean result);
+
+	Member loginCheck(Member member);
 
 }

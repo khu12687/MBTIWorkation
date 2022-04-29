@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.Dao.MemberDao;
+import kr.ac.kopo.model.LogLogin;
 import kr.ac.kopo.model.Member;
 import kr.ac.kopo.util.Pager;
 
@@ -57,6 +58,14 @@ public class MemberServiceImpl implements MemberService{
 
 		return memberDao.selectAll(pager);
 	}
+
+	@Override
+	public List<LogLogin> log(String memberId) {
+
+		return memberDao.log(memberId);
+	}
+
+
 
 
 

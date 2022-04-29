@@ -13,9 +13,15 @@ public class LogServiceImpl implements LogService{
 	LogDao dao;
 	
 	@Override
-	public void login(Member member, boolean result) {
-		dao.login(member, result);
+	public void logFalse(Member member, boolean result) {
+		dao.logFalse(member, result);
 		
+	}
+
+	@Override
+	public Member loginCheck(Member member) {
+
+		return dao.loginCheck(member);
 	}
 
 }

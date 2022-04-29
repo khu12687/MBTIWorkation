@@ -16,14 +16,20 @@ public class LogDaoImpl implements LogDao{
 	SqlSession sql;
 	
 	@Override
-	public void login(Member member, boolean result) {
+	public void logFalse(Member member, boolean result) {
 		HashMap<String, Object> map = new HashMap<>();
 		
 		map.put("member", member);
 		map.put("result", result);
 		
-		sql.insert("log.login",map);
+		sql.insert("log.logFalse",map);
 		
+	}
+
+	@Override
+	public Member loginCheck(Member member) {
+
+		return sql.selectOne("log.loginCheck",member);
 	}
 
 	
