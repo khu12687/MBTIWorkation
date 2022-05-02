@@ -83,6 +83,11 @@ public class AdminController {
 		return path + "log";
 	}
 	
+	@GetMapping("/product")
+	public String product() {
+		
+		return path + "product";
+	}
 	
 	@GetMapping("/category")
 	public String category() {

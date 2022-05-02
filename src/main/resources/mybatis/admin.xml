@@ -118,7 +118,7 @@
 	
 	<update id="roomEdit">
 		UPDATE room
-		SET loc = #{loc}, max_number = #{maxNumber}, num = #{num}, price = #{price}
+		SET loc = #{loc}, num = #{num}, price = #{price}, latitude = #{latitude}, longitude = #{longitude}
 		WHERE room_id =#{roomId}
 	</update>
 	
