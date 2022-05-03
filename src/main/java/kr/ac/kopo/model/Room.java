@@ -6,7 +6,7 @@ import java.util.List;
 public class Room {
 	private int roomId;
 	private String loc;
-	private int num;
+	private String content;
 	private int price;
 	private String latitude;
 	private String longitude;
@@ -44,11 +44,11 @@ public class Room {
 	public void setLoc(String loc) {
 		this.loc = loc;
 	}
-	public int getNum() {
-		return num;
+	public String getContent() {
+		return content;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public int getPrice() {
 		return price;

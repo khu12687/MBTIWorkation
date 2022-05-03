@@ -14,24 +14,56 @@ a{
 }
 </style>
 <script>
-	$(document).ready(function() {	
-		$("#add_image").click(function() {
-			const div = $("<div>").addClass("mb-3");
-			const label = $("<label>").addClass("form-label").text("파일 첨부");
-			const button = $("<span>").addClass("btn btn-outline-danger btn-sm").text("삭제");
-			const file = $("<input>").attr("type", "file").attr("name", "productImg").addClass("form-control");
-			
-			div.append(label);
-			div.append(button);
-			div.append(file);
-			
-			button.click(function() {
-				$(this).parent().remove();
-			});
-			
-			$("form > div:last-child").before(div);
-		})
+$(document).ready(function() {	
+	$("#add_image").click(function() {
+		const div = $("<div>").addClass("mb-3");
+		const label = $("<label>").addClass("form-label").text("파일 첨부");
+		const button = $("<span>").addClass("btn btn-outline-danger btn-sm").text("삭제");
+		const file = $("<input>").attr("type", "file").attr("name", "productImg").addClass("form-control");
+		
+		div.append(label);
+		div.append(button);
+		div.append(file);
+		
+		button.click(function() {
+			$(this).parent().remove();
+		});
+		
+		$("form > div:last-child").before(div);
 	})
+	
+	$("#addExcel").click(function(){
+		check();
+	})
+})
+function checkFileType(filePath){
+	var fileFormat = filePath.split(".");
+	
+	if(fileFormat.indexOf("xls") > -1 || fileFormat.indexOf("xlsx") > -1){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function check(){
+	var file = $("#excelFile").val();
+	
+	if(file =="" || file == null){
+		alert("파일을 선택해주세요.");
+		
+		return false;
+	}else if(!checkFileType(file)){
+		alert("엑셀 파일만 업로드 가능합니다.");
+		
+		return false;
+	}
+	
+	if(confirm("업로드 하시겠습니까?")){
+		excelUploadForm.submit();
+		$("#excelFile").val("");
+	}
+}
 </script>
 </head>
 <body>
@@ -43,8 +75,8 @@ a{
 				<input type ="text" name="loc" placeholder="ex)제주도 돌하르방" class="form-control"/>
 		 	</div>
 		 	<div class="mb-3">
-				<label class="form-label">방개수</label>
-				<input type ="text" name="num" placeholder="10" class="form-control"/>
+				<label class="form-label">소개</label>
+				<input type ="text" name="content" placeholder="소개입력" class="form-control"/>
 		 	</div>
 		 	<div class="mb-3">
 				<label class="form-label">가격</label>
@@ -81,8 +113,8 @@ a{
 					 		<input type="text" class="loc form-control">
 					 	</div>
 					 	<div class="mb-3">
-							<label class="form-label">방 개수</label>
-							<input type="text" class="num form-control">
+							<label class="form-label">소개</label>
+							<input type="text" class="content form-control">
 					 	</div>
 					 	<div class="mb-3">
 							<label class="form-label">가격</label>
@@ -134,6 +166,17 @@ a{
 		</div>
 		<!-- [끝] 등록 Modal -->
 		
+	</div>
+	<div class="mai">
+		<form method="post" action="excelUpload" class="mt-4" enctype="multipart/form-data" id="excelUploadForm">
+			<div>
+				<div>
+					<div>엑셀첨부 파일(엑셀파일로 호텔등록)</div>
+					<input type="file" name="excelFile" id="excelFile">
+				</div>
+			</div>
+			<button type="button" id="addExcel"><span>추가</span></button>
+		</form>
 	</div>
 </div>
 <script src="/resources/js/room.js"></script>

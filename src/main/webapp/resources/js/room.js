@@ -22,7 +22,7 @@ $(function(){
 						const obj = result[i];
 						if($(".room").val() == obj.roomId){
 							$(".loc").val(obj.loc);
-							$(".num").val(obj.num);
+							$(".content").val(obj.content);
 							$(".priceRoom").val(obj.price);
 							$(".latitude").val(obj.latitude);
 							$(".longitude").val(obj.longitude);
@@ -63,7 +63,7 @@ $(function(){
 	$("#addRoomModal .editRoom").click(function() {
 	    const item = {
 	    		loc: $(`#addRoomModal .loc`).val(),
-	    		num: $(`#addRoomModal .num`).val(),
+	    		content: $(`#addRoomModal .content`).val(),
 	    		price: $(`#addRoomModal .priceRoom`).val(),
 	    		latitude: $(`#addRoomModal .latitude`).val(),
 	    		longitude: $(`#addRoomModal .longitude`).val()
@@ -91,11 +91,11 @@ $(function(){
 	})
 });
 function registRoom(){
-	alert($("input[name='latitude']").val());
-	if($("input[name='loc']").val()!="" && $("input[name='num']").val() != "" && $("input[name='priceRoom']").val() != ""){
+	alert($("input[name='content']").val());
+	if($("input[name='loc']").val()!="" && $("input[name='content']").val() != "" && $("input[name='priceRoom']").val() != ""){
 		  const item = {
 	    		loc: $("input[name='loc']").val(),
-	    		num: $("input[name='num']").val(),
+	    		content: $("input[name='content']").val(),
 	    		price: $("input[name='priceRoom']").val(),
 	    		latitude: $("input[name='latitude']").val(),
 	    		longitude: $("input[name='longitude']").val()
@@ -107,7 +107,6 @@ function registRoom(){
 			data: JSON.stringify(item),
 			success: result => {
 				alert("등록성공!");
-				alert(item);
 				getRoomList();
 			},
 			error: (xhr, result) => console.log(123)

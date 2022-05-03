@@ -1,6 +1,9 @@
 package kr.ac.kopo.service;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +17,9 @@ import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
 import kr.ac.kopo.model.WorkationOption;
+import kr.ac.kopo.util.ExcelReadOption;
 import kr.ac.kopo.util.Pager;
+import kr.ac.kopo.util.excelRead;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -141,5 +146,28 @@ public class AdminServiceImpl implements AdminService{
 	public List<Room> roomListajax() {
 		
 		return dao.roomListajax();
+	}
+
+	@Override
+	public void excelUpload(File destFile) {
+		ExcelReadOption excelReadOption = new ExcelReadOption();
+		
+		//파일경로 추가
+		excelReadOption.setFilePath(destFile.getAbsolutePath());
+		
+		//추출할 컬럼명 추가
+		excelReadOption.setOutputColumns("loc","content","price","latitude","longitude");
+		
+		//시작행
+		excelReadOption.setStartRow(2);
+		
+		List<Map<String,String>>excelContent = excelRead.read(excelReadOption);
+		System.out.println(excelContent.get(0).get("A"));
+		Map<String, Object>paramMap = new HashMap<String, Object>();
+		paramMap.put("excelContent", excelContent);
+		
+		dao.excelUpload(paramMap);
+		
+		
 	}
 }

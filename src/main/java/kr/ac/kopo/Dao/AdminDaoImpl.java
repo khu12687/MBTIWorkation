@@ -1,6 +1,7 @@
 package kr.ac.kopo.Dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -133,6 +134,13 @@ public class AdminDaoImpl implements AdminDao{
 	public List<Room> roomListajax() {
 
 		return sql.selectList("Admin.roomListAjax");
+	}
+
+	@Override
+	public void excelUpload(Map<String, Object> paramMap) {
+
+		System.out.println(paramMap);
+		sql.insert("Admin.excelUpload",paramMap);
 	}
 
 

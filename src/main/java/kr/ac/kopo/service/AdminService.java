@@ -1,5 +1,6 @@
 package kr.ac.kopo.service;
 
+import java.io.File;
 import java.util.List;
 
 import kr.ac.kopo.model.Admin;
@@ -51,5 +52,7 @@ public interface AdminService {
 	void addImg(Room item);
 
 	List<Room> roomListajax();
+
+	void excelUpload(File destFile);
 
 }

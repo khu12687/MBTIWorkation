@@ -1,6 +1,7 @@
 package kr.ac.kopo.Dao;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.ac.kopo.model.Admin;
 import kr.ac.kopo.model.Reservation;
@@ -51,5 +52,7 @@ public interface AdminDao {
 	int total(Pager pager);
 
 	List<Room> roomListajax();
+
+	void excelUpload(Map<String, Object> paramMap);
 
 }

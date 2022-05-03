@@ -66,7 +66,7 @@
 	
 	<insert id="roomRegist">					
 		INSERT INTO room
-		VALUES (NULL, #{loc}, #{num}, #{price}, #{latitude}, #{longitude})
+		VALUES (NULL, #{loc}, #{content}, #{price}, #{latitude}, #{longitude})
 	</insert>
 	
 	<select id="roomList" resultMap="RoomMap">
@@ -86,7 +86,7 @@
 	<resultMap type="Room" id="RoomMap">
 		<id column="room_id" property="roomId" />
 		<result column="loc" property="loc"/>
-		<result column="num" property="num"/>
+		<result column="content" property="content"/>
 		<result column="price" property="price"/>
 		<result column="latitude" property="latitude"/>
 		<result column="longitude" property="longitude"/>
@@ -118,11 +118,11 @@
 	
 	<update id="roomEdit">
 		UPDATE room
-		SET loc = #{loc}, num = #{num}, price = #{price}, latitude = #{latitude}, longitude = #{longitude}
+		SET loc = #{loc}, content = #{content}, price = #{price}, latitude = #{latitude}, longitude = #{longitude}
 		WHERE room_id =#{roomId}
 	</update>
 	
-	<insert id="workationOptionRegist">					
+	<insert id="workationOptionRegist">
 		INSERT INTO workation_option
 		VALUES (NULL, #{workationName}, #{price}, #{detail})
 	</insert>
@@ -160,6 +160,14 @@
 		select * from service_option
 		where service_option_id=#{serviceOptionId}
 	</select>
+	
+	<insert id="excelUpload" parameterType="Room">
+			INSERT INTO room
+			VALUES
+		<foreach collection="excelContent" item="item" index= "index" separator=",">
+			(NULL, #{item.A}, #{item.B},#{item.C} ,#{item.D} ,#{item.E})
+		</foreach>
+	</insert>
 	
 </mapper>
 

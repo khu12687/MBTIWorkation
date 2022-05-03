@@ -1,5 +1,7 @@
 package kr.ac.kopo.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -263,6 +265,22 @@ public class AdminController {
 		
 		
 		return path + "imgManage";
+	}
+	
+	@PostMapping("/excelUpload")
+	public String excelUpload(@RequestParam("excelFile") MultipartFile excelFile) {
+		System.out.println(excelFile.getOriginalFilename());
+		File destFile = new File("/D:/uploadExcel/"+excelFile.getOriginalFilename());
+		try {
+			excelFile.transferTo(destFile);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println(destFile);
+		service.excelUpload(destFile);
+		//destFile.delete();
+		
+		return "redirect:imgManage";
 	}
 	
 	@ExceptionHandler(DMLException.class)
