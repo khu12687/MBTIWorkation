@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reserv">
+
+	<sql id="search">
+		<where>
+			<if test="search == 1">
+				reservation_id=#{keyword}
+			</if>
+			
+			<if test="search == 2">
+				id LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+						
+			<if test="search == 3">
+				total_pay LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+
+			<if test="search == 4">
+				reserv_date LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			
+			<if test="search == 5">
+				check_in LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			
+			<if test="search == 6">
+				check_out LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+		</where>
+	</sql>
+
 	<insert id="insert">
 		INSERT INTO reservation
 		VALUES(NULL, #{roomId}, #{memberId}, #{roomOptionId}, #{workationOptionId}, #{serviceOptionId}, #{totalPay},NOW(), #{checkIn}, #{checkOut})
@@ -34,7 +63,7 @@
 		<result column="check_out" property="checkOut"/>
 		
 		<association column="room_id" property="room" select="Admin.selectRoom"/>
-		<association column="member_id" property="member" select="Admin.selectMember"/>
+		<association column="id" property="member" select="Admin.selectMember"/>
 		<association column="room_option_id" property="roomOption" select="Admin.selectRoomOption"/>
 		<association column="workation_option_id" property="workationOption" select="Admin.selectWorkationOption"/>
 		<association column="service_option_id" property="serviceOption" select="Admin.selectServiceOption"/>
@@ -64,6 +93,33 @@
 		JOIN workation_option ON reservation.workation_option_id = workation_option.workation_option_id
 		JOIN service_option ON reservation.service_option_id = service_option.service_option_id
 		WHERE reservation.reservation_id = #{reservationId}
+	</select>
+	
+	<select id="selectReservAll" resultMap="joinMap">
+		SELECT reservation.*,
+			room.room_id room_id,
+			room.loc loc,
+			room.price room_price,
+			room.latitude latitude,
+			room.longitude longitude,
+			member.id id,
+			member.phone phone,
+			room_option.room_option_id room_option_id,
+			room_option.room_type room_type,
+			room_option.max_number max_number,
+			room_option.detail detail,
+			workation_option.workation_option_id workation_option_id,
+			workation_option.workation_name workation_name,
+			service_option.service_option_id service_option_id,
+			service_option.service_name service_name
+		FROM reservation
+		JOIN room ON reservation.room_id=room.room_id
+		JOIN member ON reservation.id = member.id
+		JOIN room_option ON reservation.room_option_id = room_option.room_option_id
+		JOIN workation_option ON reservation.workation_option_id = workation_option.workation_option_id
+		JOIN service_option ON reservation.service_option_id = service_option.service_option_id
+		<include refid="search"></include> 
+		LIMIT #{offset}, #{perPage}
 	</select>
 	
 	<delete id="del">

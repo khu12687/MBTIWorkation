@@ -170,4 +170,10 @@ public class AdminServiceImpl implements AdminService{
 		
 		
 	}
+
+	@Override
+	public List<Reservation> selectReservAll(Pager pager) {
+
+		return dao.selectReservAll(pager);
+	}
 }

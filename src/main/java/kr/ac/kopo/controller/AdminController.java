@@ -26,6 +26,7 @@ import kr.ac.kopo.model.CategoryOption;
 import kr.ac.kopo.model.LogLogin;
 import kr.ac.kopo.model.Member;
 import kr.ac.kopo.model.ProductImage;
+import kr.ac.kopo.model.Reservation;
 import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
@@ -76,6 +77,15 @@ public class AdminController {
 		
 		return path + "memberInfo";
 	}
+	
+	@GetMapping("/reservInfo")
+	public String reservInfo(Model model, Pager pager) {
+		List<Reservation> list = service.selectReservAll(pager);
+		model.addAttribute("list", list);
+		
+		return path + "reservInfo";
+	}
+	
 	//PathVariable 사용시 .com이 날라가서 뒤에 / 을 추가
 	@GetMapping("/log/{memberId}/")
 	public String log(@PathVariable String memberId, Model model) {

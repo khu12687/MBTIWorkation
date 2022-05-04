@@ -161,6 +161,11 @@
 		where service_option_id=#{serviceOptionId}
 	</select>
 	
+	<select id="selectMember" resultType="Member">
+		select * from member
+		where id=#{memberId}
+	</select>	
+	
 	<insert id="excelUpload" parameterType="Room">
 			INSERT INTO room
 			VALUES
@@ -168,7 +173,7 @@
 			(NULL, #{item.A}, #{item.B},#{item.C} ,#{item.D} ,#{item.E})
 		</foreach>
 	</insert>
-	
+
 </mapper>
 
 

@@ -12,7 +12,14 @@ public class Reservation {
 	private RoomOption roomOption;
 	private ServiceOption serviceOption;
 	private WorkationOption workationOption;
+	private Member member;
 	
+	public Member getMember() {
+		return member;
+	}
+	public void setMember(Member member) {
+		this.member = member;
+	}
 	public Room getRoom() {
 		return room;
 	}

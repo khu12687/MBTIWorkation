@@ -55,4 +55,6 @@ public interface AdminDao {
 
 	void excelUpload(Map<String, Object> paramMap);
 
+	List<Reservation> selectReservAll(Pager pager);
+
 }

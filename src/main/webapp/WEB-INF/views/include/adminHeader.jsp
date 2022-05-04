@@ -42,7 +42,7 @@ select{
   <a href="/admin/imgManage">호텔 관리</a>
   <a href="/admin/product">상품관리</a>
   <a href="/admin/memberInfo">회원정보</a>
-  <a href="/admin/reserv/index">결제정보</a>
+  <a href="/admin/reservInfo">결제정보</a>
   <a href="/admin/cs/index">고객센터</a>
   <a>${sessionScope.admin.name}님 로그인 중</a>
   <a href="/admin/logout">로그아웃</a>

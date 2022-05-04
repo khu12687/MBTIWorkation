@@ -143,5 +143,11 @@ public class AdminDaoImpl implements AdminDao{
 		sql.insert("Admin.excelUpload",paramMap);
 	}
 
+	@Override
+	public List<Reservation> selectReservAll(Pager pager) {
+
+		return sql.selectList("reserv.selectReservAll",pager);
+	}
+
 
 }

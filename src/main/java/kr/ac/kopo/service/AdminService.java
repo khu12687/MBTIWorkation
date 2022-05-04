@@ -55,4 +55,6 @@ public interface AdminService {
 
 	void excelUpload(File destFile);
 
+	List<Reservation> selectReservAll(Pager pager);
+
 }
