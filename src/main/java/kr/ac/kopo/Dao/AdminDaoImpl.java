@@ -149,5 +149,10 @@ public class AdminDaoImpl implements AdminDao{
 		return sql.selectList("reserv.selectReservAll",pager);
 	}
 
+	@Override
+	public Room roomItem(int roomId) {
+
+		return sql.selectOne("Admin.roomItem", roomId);
+	}
 
 }

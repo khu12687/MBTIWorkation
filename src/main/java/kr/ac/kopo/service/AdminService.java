@@ -57,4 +57,6 @@ public interface AdminService {
 
 	List<Reservation> selectReservAll(Pager pager);
 
+	Room roomItem(int roomId);
+
 }

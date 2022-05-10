@@ -24,7 +24,7 @@ $(() =>{
     	})
     	const contentString =
     	    '<div id="content">' +
-    	    '<img src="/resources/images/'+filename+'" width="700px;" height="500px;">'+
+    	    '<img src="/resources/images/'+filename+'" width="700px;" height="500px;" alt="이미지를 등록해주세요">'+
     	    '<p><a href="/reserv/1">' +
     	    loc+"</a> " +
     	    "</p>" +
@@ -47,7 +47,7 @@ $(() =>{
     	      map,
     	      shouldFocus: false,
     	    });
-    	  });
+	  	});
     	
     });
     

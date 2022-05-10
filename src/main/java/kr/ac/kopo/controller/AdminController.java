@@ -25,6 +25,7 @@ import kr.ac.kopo.model.Admin;
 import kr.ac.kopo.model.CategoryOption;
 import kr.ac.kopo.model.LogLogin;
 import kr.ac.kopo.model.Member;
+import kr.ac.kopo.model.Product;
 import kr.ac.kopo.model.ProductImage;
 import kr.ac.kopo.model.Reservation;
 import kr.ac.kopo.model.Room;
@@ -96,7 +97,16 @@ public class AdminController {
 	}
 	
 	@GetMapping("/product")
-	public String product() {
+	public String product(Model model) {
+		List<RoomOption> roomOptionList = service.roomOptionList();
+		model.addAttribute("roomOptionList",roomOptionList);
+		List<ServiceOption> serviceOptionList = service.serviceOptionList();
+		model.addAttribute("serviceOptionList",serviceOptionList);
+		List<Room> roomList = service.roomList();
+		model.addAttribute("roomList",roomList);
+		List<WorkationOption> workationOptionList = service.workationOptionList();
+		model.addAttribute("workationOptionList",workationOptionList);
+		
 		
 		return path + "product";
 	}
@@ -212,6 +222,14 @@ public class AdminController {
 		return list;
 	}
 	
+	@GetMapping("/room/item/{roomId}")
+	@ResponseBody
+	public Room roomItem(@PathVariable int roomId) {
+		Room item = service.roomItem(roomId);
+		
+		return item;
+	}
+	
 	@GetMapping("/room/del/{roomId}")
 	@ResponseBody
 	public String roomDel(@PathVariable int roomId) {
@@ -291,6 +309,13 @@ public class AdminController {
 		//destFile.delete();
 		
 		return "redirect:imgManage";
+	}
+	
+	@PostMapping("/addProduct")
+	@ResponseBody
+	public String addProduct(@RequestBody Product obj) {
+		
+		return "1";
 	}
 	
 	@ExceptionHandler(DMLException.class)

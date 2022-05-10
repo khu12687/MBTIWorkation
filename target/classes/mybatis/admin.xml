@@ -83,6 +83,17 @@
 		SELECT * from room
 	</select>
 	
+	<select id="roomItem" resultMap="RoomMap">
+		SELECT room.*,
+			product_img.productImg_id productImgId,
+			product_img.room_id room_id,
+			product_img.filename filename,
+			product_img.uuid uuid
+		FROM room
+		JOIN product_img ON room.room_id = product_img.room_id
+		WHERE room.room_id = #{roomId}
+	</select>
+	
 	<resultMap type="Room" id="RoomMap">
 		<id column="room_id" property="roomId" />
 		<result column="loc" property="loc"/>

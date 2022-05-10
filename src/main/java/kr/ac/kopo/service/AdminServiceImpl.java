@@ -176,4 +176,11 @@ public class AdminServiceImpl implements AdminService{
 
 		return dao.selectReservAll(pager);
 	}
+
+	@Override
+	public Room roomItem(int roomId) {
+
+		return dao.roomItem(roomId);
+	}
+
 }

@@ -57,4 +57,6 @@ public interface AdminDao {
 
 	List<Reservation> selectReservAll(Pager pager);
 
+	Room roomItem(int roomId);
+
 }

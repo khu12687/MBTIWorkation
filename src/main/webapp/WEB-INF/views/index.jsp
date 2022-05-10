@@ -39,8 +39,8 @@
 						<ul>
 							<c:forEach items="${roomList}" var="item" varStatus="status">
 								<li>
-									<div class="roomProduct" style="background: #94CFC9; color: black; cursor: pointer;" data-order="${status.index}" data-latitude="${item.latitude}" data-longitude="${item.longitude}" data-loc="${item.loc }" data-filename="${item.images[0].filename}">
-										<div style="display: inline-block; font-size: 18px; background-color: #8BDAEB;"><img src="resources/images/${item.images[0].filename}" width="250px" height="150px" align="left" style="margin-right: 2%;"><p style="margin-top: 2%;">${item.content }</p></div>
+									<div class="roomProduct" style="background: #DDDDFF; color: black; cursor: pointer;" data-order="${status.index}" data-latitude="${item.latitude}" data-longitude="${item.longitude}" data-loc="${item.loc }" data-filename="${item.images[0].filename}">
+										<div style="display: inline-block; font-size: 18px; background-color: white;"><img src="resources/images/${item.images[0].filename}" width="250px" height="150px" align="left" alt="이미지를 등록해주세요." style="margin-right: 2%;"><p style="margin-top: 2%;">${item.content }</p></div>
 										<div>
 											<div>${item.loc }</div>
 											<div style="float: right; background: #"><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.price }" />원</div>
