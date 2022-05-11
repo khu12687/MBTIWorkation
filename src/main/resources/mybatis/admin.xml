@@ -185,6 +185,15 @@
 		</foreach>
 	</insert>
 
+	<insert id="addProduct">
+		INSERT INTO workation
+		VALUES (NULL, NULL, NULL, #{roomId}, #{roomType}, #{serviceName}, #{workationName}, #{productName}, #{productExplanation})
+	</insert>
+
+	<select id="getWorkationProduct" resultType="workation">
+		SELECT * FROM workation
+	</select>
+
 </mapper>
 
 

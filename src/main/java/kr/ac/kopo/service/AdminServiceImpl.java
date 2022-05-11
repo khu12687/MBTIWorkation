@@ -16,6 +16,7 @@ import kr.ac.kopo.model.Reservation;
 import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
+import kr.ac.kopo.model.Workation;
 import kr.ac.kopo.model.WorkationOption;
 import kr.ac.kopo.util.ExcelReadOption;
 import kr.ac.kopo.util.Pager;
@@ -181,6 +182,17 @@ public class AdminServiceImpl implements AdminService{
 	public Room roomItem(int roomId) {
 
 		return dao.roomItem(roomId);
+	}
+
+	@Override
+	public void addProduct(Workation obj) {
+		dao.addProudct(obj);
+	}
+
+	@Override
+	public List<Workation> getWorkationProduct() {
+
+		return dao.getWorkationProduct();
 	}
 
 }

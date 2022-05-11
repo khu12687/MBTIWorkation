@@ -25,7 +25,7 @@ import kr.ac.kopo.model.Admin;
 import kr.ac.kopo.model.CategoryOption;
 import kr.ac.kopo.model.LogLogin;
 import kr.ac.kopo.model.Member;
-import kr.ac.kopo.model.Product;
+import kr.ac.kopo.model.Workation;
 import kr.ac.kopo.model.ProductImage;
 import kr.ac.kopo.model.Reservation;
 import kr.ac.kopo.model.Room;
@@ -313,7 +313,9 @@ public class AdminController {
 	
 	@PostMapping("/addProduct")
 	@ResponseBody
-	public String addProduct(@RequestBody Product obj) {
+	public String addProduct(@RequestBody Workation obj) {
+	
+		service.addProduct(obj);
 		
 		return "1";
 	}

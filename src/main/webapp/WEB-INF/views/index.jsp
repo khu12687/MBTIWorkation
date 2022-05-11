@@ -55,6 +55,11 @@
 	<div class="station_set" style="height: 700px;">
 		<h2>워케이션 상품</h2>
 		<ul class="workationUl">
+			<c:forEach items="${workationList}" var="item" varStatus="status">
+				<li><a href="/reserv/1"><img src="/resources/images/jeju.png">
+				<p class="title" style="color: #FE7F2D;">${item.productName}</p>productExplanation
+				<p class="contents">${item.productName}+ ${item.workationName}</p></a></li>
+			</c:forEach>
 			<li><a href="/reserv/1"><img src="/resources/images/jeju.png">
 				<p class="title" style="color: #FE7F2D;">제주도 워케이션</p>
 				<p class="contents">[설레는 봄] 김포-제주왕복항공권 + 렌터캠핑카 30일</p></li></a>
@@ -64,10 +69,10 @@
 			<li><img src="/resources/images/namdo.png">
 				<p class="title" style="color: #FF5967;">남도섬힐링 워케이션</p>
 				<p class="contents">여수 섬! 여수 낭도 &선암사 59박 60일 + 개발용 슈퍼컴퓨터(렌트)</p></li>
-			<li><img src="/resources/images/gosung.png">
+		<!-- 	<li><img src="/resources/images/gosung.png">
 				<p class="title" style="color: #579C87;">고성 워케이션</p>
 				<p class="contents">[화진포, 능파대, 아야진해변, 청간정] 15박 16일 +개발용
-					듀얼모니터,pc(렌트)</p></li>
+					듀얼모니터,pc(렌트)</p></li> -->
 		</ul>
 	</div>
 	<jsp:include page="./include/footer.jsp"></jsp:include>

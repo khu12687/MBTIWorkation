@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.kopo.model.Room;
+import kr.ac.kopo.model.Workation;
 import kr.ac.kopo.service.AdminService;
 import kr.ac.kopo.util.Pager;
 
@@ -25,6 +26,8 @@ public class rootController {
 		List<Room> roomList =  service.roomList();
 		model.addAttribute("roomList",roomList);
 		
+		List<Workation> workationList = service.getWorkationProduct();
+		model.addAttribute("workationList", workationList);
 		return "index";
 	}
 }

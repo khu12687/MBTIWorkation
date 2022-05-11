@@ -13,6 +13,7 @@ import kr.ac.kopo.model.Reservation;
 import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
+import kr.ac.kopo.model.Workation;
 import kr.ac.kopo.model.WorkationOption;
 import kr.ac.kopo.util.Pager;
 
@@ -153,6 +154,18 @@ public class AdminDaoImpl implements AdminDao{
 	public Room roomItem(int roomId) {
 
 		return sql.selectOne("Admin.roomItem", roomId);
+	}
+
+	@Override
+	public void addProudct(Workation obj) {
+		sql.insert("Admin.addProduct",obj);
+		
+	}
+
+	@Override
+	public List<Workation> getWorkationProduct() {
+
+		return sql.selectList("Admin.getWorkationProduct");
 	}
 
 }

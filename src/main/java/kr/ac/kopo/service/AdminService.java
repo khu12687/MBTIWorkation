@@ -8,6 +8,7 @@ import kr.ac.kopo.model.Reservation;
 import kr.ac.kopo.model.Room;
 import kr.ac.kopo.model.RoomOption;
 import kr.ac.kopo.model.ServiceOption;
+import kr.ac.kopo.model.Workation;
 import kr.ac.kopo.model.WorkationOption;
 import kr.ac.kopo.util.Pager;
 
@@ -58,5 +59,9 @@ public interface AdminService {
 	List<Reservation> selectReservAll(Pager pager);
 
 	Room roomItem(int roomId);
+
+	void addProduct(Workation obj);
+
+	List<Workation> getWorkationProduct();
 
 }
