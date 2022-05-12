@@ -64,4 +64,6 @@ public interface AdminDao {
 
 	List<Workation> getWorkationProduct();
 
+	Workation getWorkationItem(int workationId);
+
 }

@@ -107,8 +107,18 @@ public class AdminController {
 		List<WorkationOption> workationOptionList = service.workationOptionList();
 		model.addAttribute("workationOptionList",workationOptionList);
 		
+		List<Workation> workationList = service.getWorkationProduct();
+		model.addAttribute("workationList",workationList);
 		
 		return path + "product";
+	}
+	
+	@GetMapping("/product/{workationId}")
+	@ResponseBody
+	public Workation product(@PathVariable int workationId) {
+		Workation item = service.getWorkationItem(workationId);
+		
+		return item;
 	}
 	
 	@GetMapping("/category")

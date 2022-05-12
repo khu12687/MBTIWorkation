@@ -213,6 +213,10 @@
 		JOIN product_img p ON r.room_id = p.room_id;
 	</select>
 
+	<select id="getWorkationItem" resultType="Workation">
+	SELECT * FROM workation
+	WHERE workation_id = #{workationId}
+	</select>
 </mapper>
 
 

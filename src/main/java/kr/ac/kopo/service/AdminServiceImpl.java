@@ -195,4 +195,10 @@ public class AdminServiceImpl implements AdminService{
 		return dao.getWorkationProduct();
 	}
 
+	@Override
+	public Workation getWorkationItem(int workationId) {
+
+		return dao.getWorkationItem(workationId);
+	}
+
 }

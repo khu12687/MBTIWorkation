@@ -7,6 +7,8 @@
 <head>
 <jsp:include page="./include/mainHeader.jsp"></jsp:include>
 <jsp:include page="./include/header.jsp"></jsp:include>
+<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 <meta charset="UTF-8">
 <title>MBTIW</title>
 <style>
@@ -19,6 +21,33 @@
 }
 </style>
 <script src="/resources/js/indexJs.js"></script>
+<script>
+$(function(){
+	const swiper = new Swiper('.swiper', {
+		
+		slidesPerView: 4,
+		spaceBetween: 10,
+		  // Optional parameters
+		  loop: true,
+
+		  // If we need pagination
+		  pagination: {
+		    el: '.swiper-pagination',
+		  },
+
+		  // Navigation arrows
+		  navigation: {
+		    nextEl: '.swiper-button-next',
+		    prevEl: '.swiper-button-prev',
+		  },
+
+		  // And if we need scrollbar
+		  scrollbar: {
+		    el: '.swiper-scrollbar',
+		  },
+	});
+});
+</script>
 </head>
 <body>
 		<div class="t_mini_banner">
@@ -38,6 +67,9 @@
 				<div style="width: 50%; height: 70vh; overflow: scroll; overflow-x: hidden">
 						<ul>
 							<c:forEach items="${roomList}" var="item" varStatus="status">
+								<c:if test="${status.index == 3 }">
+									${romList == null}
+								</c:if>
 								<li>
 									<div class="roomProduct" style="background: #DDDDFF; color: black; cursor: pointer;" data-order="${status.index}" data-latitude="${item.latitude}" data-longitude="${item.longitude}" data-loc="${item.loc }" data-filename="${item.images[0].filename}" data-roomid="${item.roomId }">
 										<div style="display: inline-block; font-size: 18px; background-color: white;"><img src="resources/images/${item.images[0].filename}" width="250px" height="150px" align="left" alt="이미지를 등록해주세요." style="margin-right: 2%;"><p style="margin-top: 2%;">${item.content }</p></div>
@@ -54,25 +86,18 @@
 		</div>
 	<div class="station_set" style="height: 700px;">
 		<h2>워케이션 상품</h2>
-		<ul class="workationUl">
-			<c:forEach items="${workationList}" var="item" varStatus="status">
-				<li><a href="/reserv/${item.room.roomId }"><img src="/resources/images/${item.images[0].filename }">
-				<p class="title" style="color: #FE7F2D;">${item.productName}</p>${item.productExplanation }
-				<p class="contents">${item.productName}+ ${item.workationName}</p></a></li>
-			</c:forEach>
-			<!-- <li><a href="/reserv/1"><img src="/resources/images/jeju.png">
-				<p class="title" style="color: #FE7F2D;">제주도 워케이션</p>
-				<p class="contents">[설레는 봄] 김포-제주왕복항공권 + 렌터캠핑카 30일</p></li></a>
-			<li><img src="/resources/images/dokdo.png">
-				<p class="title" style="color: #FCCA46;">가고 싶은 섬 워케이션</p>
-				<p class="contents">[울릉도/독도] 15박 16일(KTX/BUS) + 3D프린터(렌트)</p></li>
-			<li><img src="/resources/images/namdo.png">
-				<p class="title" style="color: #FF5967;">남도섬힐링 워케이션</p>
-				<p class="contents">여수 섬! 여수 낭도 &선암사 59박 60일 + 개발용 슈퍼컴퓨터(렌트)</p></li> -->
-		<!-- 	<li><img src="/resources/images/gosung.png">
-				<p class="title" style="color: #579C87;">고성 워케이션</p>
-				<p class="contents">[화진포, 능파대, 아야진해변, 청간정] 15박 16일 +개발용
-					듀얼모니터,pc(렌트)</p></li> -->
+		<ul class="swiper">
+			 <!-- Additional required wrapper -->
+ 			 <div class="swiper-wrapper">
+				<c:forEach items="${workationList}" var="item" varStatus="status">
+					<li class="swiper-slide"><a href="/reserv/${item.room.roomId }"><img src="/resources/images/${item.images[0].filename }" width="250px" height="250px;">
+					<p class="title" style="color: #FE7F2D;">${item.productName}</p>${item.productExplanation }
+					<p class="contents">${item.productName}+ ${item.workationName}</p></a></li>
+				</c:forEach>
+			</div>
+			<!-- If we need navigation buttons -->
+		  <div class="swiper-button-prev"></div>
+		  <div class="swiper-button-next"></div>
 		</ul>
 	</div>
 	<jsp:include page="./include/footer.jsp"></jsp:include>

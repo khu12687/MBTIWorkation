@@ -20,6 +20,38 @@ a{
 	border: 1px solid #EBEBEB;
 	border-radius: 8px;
 }
+.infoWrap {
+	text-align: center;
+}
+
+.infoWrap div {
+	display: inline-block;
+	width: 400px;
+	border: 1px solid #EBEBEB;
+	border-radius: 8px;
+}
+
+table.tableInfo {
+	border-collapse: separate;
+	border-spacing: 1px;
+	text-align: left;
+	line-height: 1.5;
+	margin: 20px 10px;
+}
+
+table.tableInfo th {
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+}
+
+h2 {
+	margin: 5%;
+	border-bottom: 1px solid #CED4DA;
+}
+
 </style>
 <script>
 var hotelVal;
@@ -62,6 +94,7 @@ $(function(){
 					if(result==1){
 						alert("워케이션 상품이 등록되었습니다.");
 						getList();
+						getWorkationList();
 					}else{
 						alert("실패하였습니다.\n 관리자에 문의하세요")
 					}
@@ -71,7 +104,24 @@ $(function(){
 		
 	});
 	
+	$(".productItem").click(function(){
+		var workationId =this.dataset.workationid;
+		$.ajax("product/"+workationId,{
+			method: "GET",
+			success: result => {
+				$("#workationInfo").empty(); 
+				$("#workationInfo").append("<h2>워케이션 상품정보</h2>");
+				$("#workationInfo").append("<div class='infoWrap'><div style='background: white;'><table class='tableInfo'><tr><th>워케이션상품명</th><td>"+result.productName+"</td><tr><th>설명</th><td>"+result.productExplanation+"</td></tr><tr><th>룸타입</th><td>"+result.roomType+"</td></tr><tr><th>서비스 옵션</th><td>"+result.serviceName+"</td></tr><tr><th>워케이션 옵션</th><td>"+result.workationName+"</td></tr></tr></tr></table></div></div>");
+			},
+			error: (xhr, result) => console.log(123)
+		});
+	});
+	
 })
+
+function getWorkationList(){
+	location.href="";
+}
 
 function getHotelVal(clickVal){
 	hotelVal = clickVal;
@@ -86,7 +136,7 @@ function getList(info){
 			$("#hotelInfo").append("<div class='infoWrap'><div style='background: white;'><table class='tableInfo'><tr><th>호텔</th><td>"+info.loc+"</td></tr></tr></table></div></div>");
 			goMap(info);
 			$("#mapImg").empty(); 
-			$("#mapImg").append("<img src='/resources/images/"+info.images[0].filename+"'>");
+			$("#mapImg").append("<img width='100%;' src='/resources/images/"+info.images[0].filename+"'>");
 			
 		},
 		error: (xhr, result) => console.log(123)
@@ -209,66 +259,79 @@ function goMap(info){
 			</div>
 		</div>
 		<!-- [끝] 등록 Modal -->
+	<div class="mai" id="workationLst">
+		<h2>워케이션 상품</h2>
+		<ul>
+			<c:forEach items="${workationList}" var="item">
+				<li>
+					<div>
+						<div class="productItem" data-workationid="${item.workationId}" style="cursor: pointer;">${item.productName }</div>
+					</div>
+				</li>
+			</c:forEach>
+		</ul>
+		<div id="workationInfo"></div>
+	</div>
+	</div>
+	<div class="mai">
+		<div class="infoWrap">
+			<div id="hotelInfo"></div>
+		</div>
+		<div style="display: flex;">
+			<div id='map' style="display: none;"></div>
+			<div id="mapImg"></div>
+		</div>
 		
+		<div>
+			<h2>옵션 추가</h2>
+			<form id="productForm">
+				<table class="tableInfo">
+					<tr>
+						<th>룸 옵션</th>
+						<td>
+							<div class="mt-2">
+								<select name="roomType" class="form-select" id="roomType">
+									<c:forEach items="${roomOptionList }" var="item">
+										<option value="${item.roomType}">${item.roomType}(${item.maxNumber}) +${item.price}원</option>
+									</c:forEach>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>프로모션</th>
+						<td>
+							<div class="mt-2">
+								<select name="serviceName" class="form-select" id="serviceName">
+									<c:forEach items="${serviceOptionList }" var="item">
+										<option value="${item.serviceName}">${item.serviceName} +${item.price}원</option>
+									</c:forEach>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>워케이션 옵션</th>
+						<td>
+							<div class="mt-2">
+								<select name="workationName" class="form-select" id="workationName">
+									<c:forEach items="${workationOptionList }" var="item">
+										<option value="${item.workationName}">${item.workationName} +${item.price}원</option>
+									</c:forEach>
+								</select>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<div><input type="text" size="40" name="productName" id="productName" placeholder="상품명을 입력해 주세요.ex)가고 싶은 섬 워케이션"></div>
+				<div><input type="text" size="40" name="productExplanation" id="productExplanation" placeholder="설명ex)[울릉도/독도] 15박 16일 + 3D프린터"></div>
+				<button class="btn btn-light" type="button">상품 등록</button>
+			</form>
+		</div>
+	
 	</div>
 </div>
-<div class="mai">
-	<div class="infoWrap">
-		<div id="hotelInfo"></div>
-	</div>
-	<div style="display: flex;">
-		<div id='map' style="display: none;"></div>
-		<div id="mapImg"></div>
-	</div>
-	
-	<div>
-		<h2>옵션 추가</h2>
-		<form id="productForm">
-			<table class="tableInfo">
-				<tr>
-					<th>룸 옵션</th>
-					<td>
-						<div class="mt-2">
-							<select name="roomType" class="form-select" id="roomType">
-								<c:forEach items="${roomOptionList }" var="item">
-									<option value="${item.roomType}">${item.roomType}(${item.maxNumber}) +${item.price}원</option>
-								</c:forEach>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>프로모션</th>
-					<td>
-						<div class="mt-2">
-							<select name="serviceName" class="form-select" id="serviceName">
-								<c:forEach items="${serviceOptionList }" var="item">
-									<option value="${item.serviceName}">${item.serviceName} +${item.price}원</option>
-								</c:forEach>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>워케이션 옵션</th>
-					<td>
-						<div class="mt-2">
-							<select name="workationName" class="form-select" id="workationName">
-								<c:forEach items="${workationOptionList }" var="item">
-									<option value="${item.workationName}">${item.workationName} +${item.price}원</option>
-								</c:forEach>
-							</select>
-						</div>
-					</td>
-				</tr>
-			</table>
-			<div><input type="text" size="40" name="productName" id="productName" placeholder="상품명을 입력해 주세요.ex)가고 싶은 섬 워케이션"></div>
-			<div><input type="text" size="40" name="productExplanation" id="productExplanation" placeholder="설명ex)[울릉도/독도] 15박 16일 + 3D프린터"></div>
-			<button class="btn btn-light" type="button">상품 등록</button>
-		</form>
-	</div>
-	
-</div>
+
 
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_8yKsXYYJXoyYWaOuCrkov92vKIv0afM&callback=initMap&region=kr"></script>

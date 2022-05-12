@@ -64,4 +64,6 @@ public interface AdminService {
 
 	List<Workation> getWorkationProduct();
 
+	Workation getWorkationItem(int workationId);
+
 }
