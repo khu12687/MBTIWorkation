@@ -18,14 +18,14 @@ h2{
 <body>
 	<div class="infoWrap">
 		<div style="background: white;">
-			<h2>호텔 제주</h2>
-			<img src="/resources/images/jeju.png" alt="상품이미지">
+			<h2>${room.loc }</h2>
+			<img src="/resources/images/${room.images[0].filename }" alt="상품이미지">
 			<table class="tableInfo">
 				<caption>호텔외관이미지 및 정보</caption>
 				<tbody>
 					<tr>
 						<th>분류</th>
-						<td>제주/5성급/호텔</td>
+						<td>${room.loc} /5성급/호텔</td>
 					</tr>
 					<tr>
 						<th>상품평</th>
@@ -35,17 +35,20 @@ h2{
 					</tr>
 					<tr>
 						<th>주소</th>
-						<td>제주 서귀포시 색달동 2812-4 <a href="javascript:;"
+						<td>${room.loc }<a href="javascript:;"
 							class="textMapBtn">지도보기</a></td>
 					</tr>
 					<tr>
 						<th>도로명주소</th>
-						<td>제주특별자치도 서귀포시 중문관광로72번길 35</td>
+						<td>${room.loc }</td>
 					</tr>
 					<tr>
 						<th>지원워케이션장비(옵션)</th>
-						<td><a href="http://www.lottehotel.com/jeju" target="_blank">3D프린터,
-								개발용pc</a></td>
+						<td><a href="http://www.lottehotel.com/jeju" target="_blank">
+									<c:forEach items="${workationOptionList }" var="item" begin="1">
+										${item.workationName}
+									</c:forEach>
+								</a></td>
 					</tr>
 					<tr>
 						<th>총객실수</th>

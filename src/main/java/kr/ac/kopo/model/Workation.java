@@ -1,5 +1,7 @@
 package kr.ac.kopo.model;
 
+import java.util.List;
+
 public class Workation {
 	private int workationId;
 	private int roomId;
@@ -9,6 +11,21 @@ public class Workation {
 	private String productName;
 	private String productExplanation;
 	
+	private Room room;
+	private List<ProductImage> images;
+	
+	public List<ProductImage> getImages() {
+		return images;
+	}
+	public void setImages(List<ProductImage> images) {
+		this.images = images;
+	}
+	public Room getRoom() {
+		return room;
+	}
+	public void setRoom(Room room) {
+		this.room = room;
+	}
 	public String getRoomType() {
 		return roomType;
 	}

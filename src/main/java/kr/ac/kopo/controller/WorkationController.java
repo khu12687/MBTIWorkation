@@ -37,8 +37,8 @@ public class WorkationController {
 		model.addAttribute("roomOptionList",roomOptionList);
 		List<ServiceOption> serviceOptionList = adminService.serviceOptionList();
 		model.addAttribute("serviceOptionList",serviceOptionList);
-		List<Room> roomList = adminService.roomList();
-		model.addAttribute("roomList",roomList);
+		Room room = adminService.roomItem(roomId);
+		model.addAttribute("room",room);
 		List<WorkationOption> workationOptionList = adminService.workationOptionList();
 		model.addAttribute("workationOptionList",workationOptionList);
 		

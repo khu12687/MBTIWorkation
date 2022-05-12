@@ -190,8 +190,27 @@
 		VALUES (NULL, NULL, NULL, #{roomId}, #{roomType}, #{serviceName}, #{workationName}, #{productName}, #{productExplanation})
 	</insert>
 
-	<select id="getWorkationProduct" resultType="workation">
-		SELECT * FROM workation
+	<resultMap type="Workation" id="workationMap">
+		<id column="workation_id" property="workationId"/>
+		<result column="service_name" property="serviceName"/>
+		<result column="workation_name" property="workationName"/>
+		<result column="product_name" property="productName"/>
+		<result column="product_explanation" property="productExplanation"/>
+		
+		<association column="room_id" property="room" select="Admin.selectRoom"/>
+		
+		<collection property="images" column="room_id" ofType="ProductImage" javaType="ArrayList">
+			<id column="productImg_id" property="productImgId"/>
+			<result column="filename" property="filename"/>
+			<result column="uuid" property="uuid"/>
+		</collection>	
+		
+	</resultMap>
+	
+	<select id="getWorkationProduct" resultMap="workationMap">
+		SELECT * FROM workation w 
+		JOIN room r ON w.room_id = r.room_id 
+		JOIN product_img p ON r.room_id = p.room_id;
 	</select>
 
 </mapper>

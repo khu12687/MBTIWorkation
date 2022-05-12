@@ -10,7 +10,9 @@ $(() =>{
     setInterval("move()",25);
     
     $(".roomProduct").click(function(e){
-		location.href="reserv/1";    	
+   		 //데이타셋은 카멜표기법 적용안됨
+    	var roomId = parseFloat(this.dataset.roomid);
+		location.href="reserv/"+roomId;    	
     });
     
     $(".roomProduct").mouseover(function(e){
