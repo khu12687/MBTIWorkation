@@ -78,6 +78,9 @@ function createImg(){
 	        		 'src' : '/resources/images/mbti'+(this.dataset.column)+'.png'
 	        	 });
         		 $("#mbtiproduct").append(mbtiImg);
+        		 
+        		 //워케이션 상품 바뀌게!! mbti별 this.dataset.column은 workation의 mbti_id 값과 같다
+        		 $(".station_set input[type='hidden']").value(this.dataset.column);
                 
             });
             container.appendChild(img); //이미지를 컨테이너에 넣음 컨테이너 자식으로 img을 줌

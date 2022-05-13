@@ -187,7 +187,7 @@
 
 	<insert id="addProduct">
 		INSERT INTO workation
-		VALUES (NULL, NULL, NULL, #{roomId}, #{roomType}, #{serviceName}, #{workationName}, #{productName}, #{productExplanation})
+		VALUES (NULL, ${mbtiId}, NULL, #{roomId}, #{roomType}, #{serviceName}, #{workationName}, #{productName}, #{productExplanation})
 	</insert>
 
 	<resultMap type="Workation" id="workationMap">

@@ -28,6 +28,7 @@ public class rootController {
 		
 		List<Workation> workationList = service.getWorkationProduct();
 		model.addAttribute("workationList", workationList);
+		System.out.println(workationList.get(0).getMbtiId());
 		return "index";
 	}
 }

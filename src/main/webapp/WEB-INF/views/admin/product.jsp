@@ -82,7 +82,8 @@ $(function(){
 		    		serviceName: $("#serviceName").val(),
 		    		workationName: $("#workationName").val(),
 		    		productName : $("#productName").val(),
-		    		productExplanation: $("#productExplanation").val()
+		    		productExplanation: $("#productExplanation").val(),
+		    		mbtiId : $("#mbtiId").val()
 		    		
 		    };
 		    $.ajax("addProduct", {
@@ -136,8 +137,7 @@ function getList(info){
 			$("#hotelInfo").append("<div class='infoWrap'><div style='background: white;'><table class='tableInfo'><tr><th>호텔</th><td>"+info.loc+"</td></tr></tr></table></div></div>");
 			goMap(info);
 			$("#mapImg").empty(); 
-			$("#mapImg").append("<img width='100%;' src='/resources/images/"+info.images[0].filename+"'>");
-			
+			$("#mapImg").append("<img width='100%;' src='/upload/"+info.images[0].uuid+"_"+info.images[0].filename+"'>");
 		},
 		error: (xhr, result) => console.log(123)
 	});
@@ -323,8 +323,21 @@ function goMap(info){
 						</td>
 					</tr>
 				</table>
-				<div><input type="text" size="40" name="productName" id="productName" placeholder="상품명을 입력해 주세요.ex)가고 싶은 섬 워케이션"></div>
-				<div><input type="text" size="40" name="productExplanation" id="productExplanation" placeholder="설명ex)[울릉도/독도] 15박 16일 + 3D프린터"></div>
+				<label for="productName">워케이션 상품명</label>
+				<input type="text" size="40" name="productName" id="productName" placeholder="상품명을 입력해 주세요.ex)가고 싶은 섬 워케이션">
+				<label for="productExplanation">상품 설명</label>
+				<input type="text" size="40" name="productExplanation" id="productExplanation" placeholder="설명ex)[울릉도/독도] 15박 16일 + 3D프린터">
+				<label for="mbtiId">MBTI설정</label>
+				<select name="mbtiId" id="mbtiId">
+					<option value="0">I__J</option>
+					<option value="1">I__P</option>
+					<option value="2">E__J</option>
+					<option value="3">E__J</option>
+					<option value="4">_S_J</option>
+					<option value="5">_S_P</option>
+					<option value="6">_NF_</option>
+					<option value="7">_NT_</option>
+				</select>
 				<button class="btn btn-light" type="button">상품 등록</button>
 			</form>
 		</div>

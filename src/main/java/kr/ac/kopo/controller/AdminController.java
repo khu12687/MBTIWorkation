@@ -307,8 +307,13 @@ public class AdminController {
 	
 	@PostMapping("/excelUpload")
 	public String excelUpload(@RequestParam("excelFile") MultipartFile excelFile) {
-		System.out.println(excelFile.getOriginalFilename());
-		File destFile = new File("/D:/uploadExcel/"+excelFile.getOriginalFilename());
+		//System.out.println(excelFile.getOriginalFilename());
+		String path = "/D:/uploadExcel/";
+		File file = new File(path);
+		if(!file.exists()) {
+			file.mkdir();
+		}
+		File destFile = new File(path+excelFile.getOriginalFilename());
 		try {
 			excelFile.transferTo(destFile);
 		} catch (IllegalStateException | IOException e) {
@@ -324,7 +329,6 @@ public class AdminController {
 	@PostMapping("/addProduct")
 	@ResponseBody
 	public String addProduct(@RequestBody Workation obj) {
-	
 		service.addProduct(obj);
 		
 		return "1";

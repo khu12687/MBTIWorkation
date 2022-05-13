@@ -47,7 +47,7 @@ public class WorkationController {
 	
 	@PostMapping("/reserv/{roomId}")
 	public String reserv(@PathVariable int roomId, Reservation reservation, RoomOption roomOption, ServiceOption serviceOption, WorkationOption workationOption, Model model) {
-		System.out.println(roomOption.getRoomType());
+		//System.out.println(roomOption.getRoomType());
 		model.addAttribute("reservation",reservation);
 		return path + "step2";
 	}
@@ -58,9 +58,9 @@ public class WorkationController {
 		RoomOption objRoomOption = reservService.getRoomOptionId(roomOption);
 		reservation.setRoomOptionId(objRoomOption.getRoomOptionId());
 		
-		System.out.println(serviceOption.getServiceName());
+		//System.out.println(serviceOption.getServiceName());
 		ServiceOption objServiceOption = reservService.getServiceOptionId(serviceOption);
-		System.out.println(objServiceOption.getServiceOptionId());
+		//System.out.println(objServiceOption.getServiceOptionId());
 		reservation.setServiceOptionId(objServiceOption.getServiceOptionId());
 		
 		WorkationOption objWorkationOption = reservService.getWorkationOptionId(workationOption);
@@ -74,7 +74,7 @@ public class WorkationController {
 		List<Reservation> reservList = reservService.getReservationId(member.getId());
 		reservation.setReservationId(reservList.get(reservList.size()-1).getReservationId()) ;
 		model.addAttribute("reservation",reservation);
-		System.out.println(reservation.getTotalPay());
+		//System.out.println(reservation.getTotalPay());
 		
 		return path + "step3";
 	}
@@ -88,9 +88,9 @@ public class WorkationController {
 	@PostMapping("/reserv/check")
 	@ResponseBody
 	public Reservation check(@RequestBody Reservation reservation){
-		System.out.println(reservation.getReservationId());
+		//System.out.println(reservation.getReservationId());
 		Reservation objReser = reservService.getReservationInfo(reservation.getReservationId());
-		System.out.println(objReser.getServiceOption().getServiceName());
+		//System.out.println(objReser.getServiceOption().getServiceName());
 		return objReser;
 	}
 	

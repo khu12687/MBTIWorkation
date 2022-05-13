@@ -20,7 +20,7 @@
     text-align: center;
 }
 </style>
-<script src="/resources/js/indexJs.js"></script>
+
 <script>
 $(function(){
 	const swiper = new Swiper('.swiper', {
@@ -67,12 +67,9 @@ $(function(){
 				<div style="width: 50%; height: 70vh; overflow: scroll; overflow-x: hidden">
 						<ul>
 							<c:forEach items="${roomList}" var="item" varStatus="status">
-								<c:if test="${status.index == 3 }">
-									${romList == null}
-								</c:if>
 								<li>
-									<div class="roomProduct" style="background: #DDDDFF; color: black; cursor: pointer;" data-order="${status.index}" data-latitude="${item.latitude}" data-longitude="${item.longitude}" data-loc="${item.loc }" data-filename="${item.images[0].filename}" data-roomid="${item.roomId }">
-										<div style="display: inline-block; font-size: 18px; background-color: white;"><img src="resources/images/${item.images[0].filename}" width="250px" height="150px" align="left" alt="이미지를 등록해주세요." style="margin-right: 2%;"><p style="margin-top: 2%;">${item.content }</p></div>
+									<div class="roomProduct" style="background: #DDDDFF; color: black; cursor: pointer;" data-order="${status.index}" data-latitude="${item.latitude}" data-longitude="${item.longitude}" data-loc="${item.loc }" data-filename="/upload/${item.images[0].uuid }_${item.images[0].filename}" data-roomid="${item.roomId }">
+										<div style="display: inline-block; font-size: 18px; background-color: white;"><img src="/upload/${item.images[0].uuid }_${item.images[0].filename}" width="250px" height="150px" align="left" alt="이미지를 등록해주세요." style="margin-right: 2%;"><p style="margin-top: 2%;">${item.content }</p></div>
 										<div>
 											<div>${item.loc }</div>
 											<div style="float: right; background: #"><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.price }" />원</div>
@@ -85,12 +82,13 @@ $(function(){
 				</div>
 		</div>
 	<div class="station_set" style="height: 700px;">
-		<h2>워케이션 상품</h2>
+		<h2>워케이션 상품 </h2>
 		<ul class="swiper">
 			 <!-- Additional required wrapper -->
  			 <div class="swiper-wrapper">
+ 			 	<input type="hidden" name="hiddenMbtiId">
 				<c:forEach items="${workationList}" var="item" varStatus="status">
-					<li class="swiper-slide"><a href="/reserv/${item.room.roomId }"><img src="/resources/images/${item.images[0].filename }" width="250px" height="250px;">
+					<li class="swiper-slide"><a href="/reserv/${item.room.roomId }"><img src="/upload/${item.images[0].uuid }_${item.images[0].filename}" width="250px" height="250px;">
 					<p class="title" style="color: #FE7F2D;">${item.productName}</p>${item.productExplanation }
 					<p class="contents">${item.productName}+ ${item.workationName}</p></a></li>
 				</c:forEach>
@@ -101,6 +99,7 @@ $(function(){
 		</ul>
 	</div>
 	<jsp:include page="./include/footer.jsp"></jsp:include>
+	<script src="/resources/js/indexJs.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 	<script async defer

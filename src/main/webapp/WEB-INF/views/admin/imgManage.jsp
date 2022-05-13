@@ -154,7 +154,7 @@ function check(){
 						 		<input type="hidden" value="" name="roomId">
 						 	</div>
 							<div style="float: right;">
-							 	<button>이미지 등록</button>
+							 	<button onclick="javascript:alert('이미지가 등록되었습니다')">이미지 등록</button>
 							</div>
 						</form>
 					</div>

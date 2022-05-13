@@ -10,7 +10,14 @@ public class Workation {
 	private String workationName;
 	private String productName;
 	private String productExplanation;
+	private int mbtiId;
 	
+	public int getMbtiId() {
+		return mbtiId;
+	}
+	public void setMbtiId(int mbtiId) {
+		this.mbtiId = mbtiId;
+	}
 	private Room room;
 	private List<ProductImage> images;
 	
