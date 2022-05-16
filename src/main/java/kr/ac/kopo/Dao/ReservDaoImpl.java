@@ -56,4 +56,10 @@ public class ReservDaoImpl implements ReservDao{
 		return sql.selectOne("reserv.del",reservationId);
 	}
 
+	@Override
+	public List<Reservation> getReservNumber(String phone) {
+
+		return sql.selectList("getReservNumber",phone);
+	}
+
 }

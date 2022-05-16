@@ -24,4 +24,6 @@ public interface ReservService {
 
 	Reservation del(int reservationId);
 
+	List<Reservation> getReservNumber(String phone);
+
 }

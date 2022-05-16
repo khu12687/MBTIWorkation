@@ -187,7 +187,7 @@
 
 	<insert id="addProduct">
 		INSERT INTO workation
-		VALUES (NULL, ${mbtiId}, NULL, #{roomId}, #{roomType}, #{serviceName}, #{workationName}, #{productName}, #{productExplanation})
+		VALUES (NULL, ${mbtiId}, #{roomId}, #{roomType}, #{serviceName}, #{workationName}, #{productName}, #{productExplanation})
 	</insert>
 
 	<resultMap type="Workation" id="workationMap">
@@ -210,12 +210,19 @@
 	<select id="getWorkationProduct" resultMap="workationMap">
 		SELECT * FROM workation w 
 		JOIN room r ON w.room_id = r.room_id 
-		JOIN product_img p ON r.room_id = p.room_id;
+		JOIN product_img p ON r.room_id = p.room_id
 	</select>
 
 	<select id="getWorkationItem" resultType="Workation">
-	SELECT * FROM workation
-	WHERE workation_id = #{workationId}
+		SELECT * FROM workation
+		WHERE workation_id = #{workationId}
+	</select>
+	
+	<select id="getWorkationMbtiItems" resultMap="workationMap">
+		SELECT * FROM workation w
+		JOIN room r ON w.room_id = r.room_id 
+		JOIN product_img p ON r.room_id = p.room_id
+		WHERE mbti_id = #{mbtiId}
 	</select>
 </mapper>
 

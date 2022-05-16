@@ -22,6 +22,7 @@
 </style>
 
 <script>
+
 $(function(){
 	const swiper = new Swiper('.swiper', {
 		
@@ -50,53 +51,60 @@ $(function(){
 </script>
 </head>
 <body>
-		<div class="t_mini_banner">
-		<img src="/resources/images/workationImg.jpg" height="900px">
-			<h2>MBTI 유형별 워케이션</h2>
-			<div>
-				<div id="container"></div>
-			</div>
-			<div id="mbtiproduct" style="background: #F67D7C; height: 400px;">
-				<img src="/resources/images/mbti0.png" width="700px;" height="400px;">
-			</div>
+	<div class="t_mini_banner">
+	<img src="/resources/images/workationImg.jpg" height="900px">
+		<h2>MBTI 유형별 워케이션</h2>
+		<div>
+			<div id="container"></div>
 		</div>
-		<div class="album_set">
-			<h2>추천 여행지</h2>
-				<div class="album_slider" style="display: flex;">
-				<div id="map" style="width: 50%; height: 70vh;"></div>
-				<div style="width: 50%; height: 70vh; overflow: scroll; overflow-x: hidden">
-						<ul>
-							<c:forEach items="${roomList}" var="item" varStatus="status">
-								<li>
-									<div class="roomProduct" style="background: #DDDDFF; color: black; cursor: pointer;" data-order="${status.index}" data-latitude="${item.latitude}" data-longitude="${item.longitude}" data-loc="${item.loc }" data-filename="/upload/${item.images[0].uuid }_${item.images[0].filename}" data-roomid="${item.roomId }">
-										<div style="display: inline-block; font-size: 18px; background-color: white;"><img src="/upload/${item.images[0].uuid }_${item.images[0].filename}" width="250px" height="150px" align="left" alt="이미지를 등록해주세요." style="margin-right: 2%;"><p style="margin-top: 2%;">${item.content }</p></div>
-										<div>
-											<div>${item.loc }</div>
-											<div style="float: right; background: #"><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.price }" />원</div>
-										</div>
-									</div>
-								</li>
-							</c:forEach>
-						</ul>
-				</div>
-				</div>
+		<div id="mbtiproduct" style="background: #F67D7C; height: 400px;">
+			<img src="/resources/images/mbti0.png" width="700px;" height="400px;">
 		</div>
+	</div>
+	
 	<div class="station_set" style="height: 700px;">
-		<h2>워케이션 상품 </h2>
-		<ul class="swiper">
-			 <!-- Additional required wrapper -->
- 			 <div class="swiper-wrapper">
- 			 	<input type="hidden" name="hiddenMbtiId">
-				<c:forEach items="${workationList}" var="item" varStatus="status">
-					<li class="swiper-slide"><a href="/reserv/${item.room.roomId }"><img src="/upload/${item.images[0].uuid }_${item.images[0].filename}" width="250px" height="250px;">
-					<p class="title" style="color: #FE7F2D;">${item.productName}</p>${item.productExplanation }
-					<p class="contents">${item.productName}+ ${item.workationName}</p></a></li>
-				</c:forEach>
+	<h2>워케이션 상품 </h2>
+	<ul class="swiper">
+		 <!-- Additional required wrapper -->
+		 <div class="swiper-wrapper">
+			 <c:if test="${workationList.size() < 1 }">
+			 	<li style="margin-left: 5%;">등록된 워케이션 상품이 없습니다.</li>
+			 </c:if>
+			<c:forEach items="${workationList}" var="item">
+				<li class="swiper-slide"><a href="/reserv/${item.room.roomId }"><img src="/upload/${item.images[0].uuid }_${item.images[0].filename}" width="250px" height="250px;">
+				<p class="title" style="color: #FE7F2D;">${item.productName}</p>${item.productExplanation }
+				<p class="contents">${item.productName}+ ${item.workationName}</p></a></li>
+			</c:forEach>
+		</div>
+		<!-- If we need navigation buttons -->
+	  <div class="swiper-button-prev"></div>
+	  <div class="swiper-button-next"></div>
+	</ul>
+	</div>
+	
+	<div class="album_set">
+		<h2>추천 여행지</h2>
+			<div class="album_slider" style="display: flex;">
+			<div id="map" style="width: 50%; height: 70vh;"></div>
+			<div style="width: 50%; height: 70vh; overflow: scroll; overflow-x: hidden">
+					<ul>
+						<c:if test="${roomList.size() < 1 }">
+						 	<li>등록된 호텔이 없습니다.</li>
+						 </c:if>
+						<c:forEach items="${roomList}" var="item" varStatus="status">
+							<li>
+								<div class="roomProduct" style="background: #DDDDFF; color: black; cursor: pointer;" data-order="${status.index}" data-latitude="${item.latitude}" data-longitude="${item.longitude}" data-loc="${item.loc }" data-filename="/upload/${item.images[0].uuid }_${item.images[0].filename}" data-roomid="${item.roomId }">
+									<div style="display: inline-block; font-size: 18px; background-color: white;"><img src="/upload/${item.images[0].uuid }_${item.images[0].filename}" width="250px" height="150px" align="left" alt="이미지를 등록해주세요." style="margin-right: 2%;"><p style="margin-top: 2%;">${item.content }</p></div>
+									<div>
+										<div>${item.loc }</div>
+										<div style="float: right; background: #"><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.price }" />원</div>
+									</div>
+								</div>
+							</li>
+						</c:forEach>
+					</ul>
 			</div>
-			<!-- If we need navigation buttons -->
-		  <div class="swiper-button-prev"></div>
-		  <div class="swiper-button-next"></div>
-		</ul>
+			</div>
 	</div>
 	<jsp:include page="./include/footer.jsp"></jsp:include>
 	<script src="/resources/js/indexJs.js"></script>

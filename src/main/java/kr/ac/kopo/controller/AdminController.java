@@ -22,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.kopo.exception.DMLException;
 import kr.ac.kopo.model.Admin;
-import kr.ac.kopo.model.CategoryOption;
 import kr.ac.kopo.model.LogLogin;
 import kr.ac.kopo.model.Member;
 import kr.ac.kopo.model.Workation;

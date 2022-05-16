@@ -74,6 +74,7 @@ h2{
 						<td>
 							<div class="mt-2">
 								<select name="roomType" class="form-select" id="roomType">
+									<option value="미포함">미포함</option>
 									<c:forEach items="${roomOptionList }" var="item">
 										<option value="${item.roomType}">${item.roomType}(${item.maxNumber}) +${item.price}원</option>
 									</c:forEach>
@@ -86,6 +87,7 @@ h2{
 						<td>
 							<div class="mt-2">
 								<select name="serviceName" class="form-select" id="serviceName">
+									<option value="미포함">미포함</option>
 									<c:forEach items="${serviceOptionList }" var="item">
 										<option value="${item.serviceName}">${item.serviceName} +${item.price}원</option>
 									</c:forEach>
@@ -98,6 +100,7 @@ h2{
 						<td>
 							<div class="mt-2">
 								<select name="workationName" class="form-select" id="workationName">
+									<option value="미포함">미포함</option>
 									<c:forEach items="${workationOptionList }" var="item">
 										<option value="${item.workationName}">${item.workationName} +${item.price}원</option>
 									</c:forEach>
@@ -106,10 +109,10 @@ h2{
 						</td>
 					</tr>
 				</table>
-				<input type="hidden" value="290000" id="totalHidden" name="totalPay">
+				<input type="hidden" value="${room.price }" id="totalHidden" name="totalPay">
 				<h3>객실비용: <b id="checkPay">0</b></h3>
 				<h3>총 옵션금액: <b id="optionPay">0</b></h3>
-				<h3>총 결제금액: <b style="color: red;" id="totalPay">290000</b></h3>
+				<h3>총 결제금액: <b style="color: red;" id="totalPay">${room.price }</b></h3>
 				
 				<button class="btn btn-light">예약</button>
 			</form>

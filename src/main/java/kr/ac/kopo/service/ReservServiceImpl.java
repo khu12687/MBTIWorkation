@@ -55,4 +55,10 @@ public class ReservServiceImpl implements ReservService{
 		
 		return reservDao.del(reservationId);
 	}
+
+	@Override
+	public List<Reservation> getReservNumber(String phone) {
+
+		return reservDao.getReservNumber(phone);
+	}
 }

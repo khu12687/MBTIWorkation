@@ -55,6 +55,12 @@
 		WHERE id = #{memberId}
 	</select>
 	
+	<select id="getReservNumber" resultMap="joinMap">
+		SELECT * FROM reservation r
+		JOIN member m ON r.id = m.id
+		WHERE m.phone = #{phone}
+	</select>
+	
 	<resultMap type="Reservation" id="joinMap">
 		<id column="reservation_id" property="reservationId"/>
 		<result column="total_pay" property="totalPay"/>

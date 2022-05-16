@@ -48,6 +48,8 @@ public class WorkationController {
 	@PostMapping("/reserv/{roomId}")
 	public String reserv(@PathVariable int roomId, Reservation reservation, RoomOption roomOption, ServiceOption serviceOption, WorkationOption workationOption, Model model) {
 		//System.out.println(roomOption.getRoomType());
+		Room room = adminService.roomItem(roomId);
+		model.addAttribute("room",room);
 		model.addAttribute("reservation",reservation);
 		return path + "step2";
 	}
@@ -74,6 +76,9 @@ public class WorkationController {
 		List<Reservation> reservList = reservService.getReservationId(member.getId());
 		reservation.setReservationId(reservList.get(reservList.size()-1).getReservationId()) ;
 		model.addAttribute("reservation",reservation);
+		
+		Room room = adminService.roomItem(roomId);
+		model.addAttribute("room",room);
 		//System.out.println(reservation.getTotalPay());
 		
 		return path + "step3";
@@ -92,6 +97,15 @@ public class WorkationController {
 		Reservation objReser = reservService.getReservationInfo(reservation.getReservationId());
 		//System.out.println(objReser.getServiceOption().getServiceName());
 		return objReser;
+	}
+	
+	@PostMapping("/reserv/getReservNumber")
+	@ResponseBody
+	public List<Reservation> getReservNumber(@RequestBody Member member){
+		//System.out.println(reservation.getReservationId());
+		List<Reservation> objReserList = reservService.getReservNumber(member.getPhone());
+		System.out.println(objReserList.get(0).getReservationId());
+		return objReserList;
 	}
 	
 	@PostMapping("/reserv/del")

@@ -80,7 +80,20 @@ function createImg(){
         		 $("#mbtiproduct").append(mbtiImg);
         		 
         		 //워케이션 상품 바뀌게!! mbti별 this.dataset.column은 workation의 mbti_id 값과 같다
-        		 $(".station_set input[type='hidden']").value(this.dataset.column);
+        		 //ajax으로
+        		 $.ajax("mbtiProduct/"+(this.dataset.column),{
+				method: "GET",
+				
+				success: result => {
+					$(".swiper").empty();
+					$(".swiper").append('<div class="swiper-wrapper">');
+					$.each(result, function(i,item){
+						$(".swiper").append(`<li class="swiper-slide"><a href="/reserv/${item.room.roomId }"><img src="/upload/${item.images[0].uuid }_${item.images[0].filename}" width="250px" height="250px;"><p class="title" style="color: #FE7F2D;">${item.productName}</p>${item.productExplanation }<p class="contents">${item.productName}+ ${item.workationName}</p></a></li>`);
+					});
+					$(".swiper").append('</div><div class="swiper-button-prev"></div><div class="swiper-button-next"></div>')
+				},
+				error: (xhr, result) => console.log(123)
+			});
                 
             });
             container.appendChild(img); //이미지를 컨테이너에 넣음 컨테이너 자식으로 img을 줌

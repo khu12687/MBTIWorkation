@@ -201,4 +201,10 @@ public class AdminServiceImpl implements AdminService{
 		return dao.getWorkationItem(workationId);
 	}
 
+	@Override
+	public List<Workation> getWorkationMbtiItems(int mbtiId) {
+
+		return dao.getWorkationMbtiItems(mbtiId);
+	}
+
 }

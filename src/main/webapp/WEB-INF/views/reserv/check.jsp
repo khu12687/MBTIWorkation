@@ -34,6 +34,24 @@ $(function(){
 		})
 		
 	});
+	
+	$($(".getReservNumber")).click(function(){
+		const item = {
+				phone : $("#phone").val()
+		}
+		$.ajax("getReservNumber",{
+			method: "POST",
+			contentType: "application/json",
+			dataType: "json",
+			data: JSON.stringify(item),
+			success: result =>{
+				alert("예약번호 : "+result[0].reservationId);
+			},
+			error: (xhr, result) => alert("등록된 헨드폰 번호가 없거나 예약이 없습니다.")
+		})
+		
+	});
+	
 });
 
 function del(){
@@ -100,6 +118,11 @@ function goMap(info){
 					<th>예약번호</th>
 					<td><input type="number" name="reservationId" id="reservId">
 						<button class="btn btn-light getReserv">확인</button></td>
+				</tr>
+				<tr>
+					<th>예약번호를 잊으셨나요?</th>
+					<td><input type="text" name="phone" id="phone">
+						<button class="btn btn-light getReservNumber">확인</button></td>
 				</tr>
 			</table>
 			<div id="reserInfo"></div>

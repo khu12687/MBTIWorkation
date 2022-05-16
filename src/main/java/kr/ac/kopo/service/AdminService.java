@@ -66,4 +66,6 @@ public interface AdminService {
 
 	Workation getWorkationItem(int workationId);
 
+	List<Workation> getWorkationMbtiItems(int mbtiId);
+
 }

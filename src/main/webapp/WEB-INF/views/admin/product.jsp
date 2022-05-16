@@ -331,7 +331,7 @@ function goMap(info){
 				<select name="mbtiId" id="mbtiId">
 					<option value="0">I__J</option>
 					<option value="1">I__P</option>
-					<option value="2">E__J</option>
+					<option value="2">E__P</option>
 					<option value="3">E__J</option>
 					<option value="4">_S_J</option>
 					<option value="5">_S_P</option>

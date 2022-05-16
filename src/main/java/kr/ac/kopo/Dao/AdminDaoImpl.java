@@ -174,4 +174,10 @@ public class AdminDaoImpl implements AdminDao{
 		return sql.selectOne("Admin.getWorkationItem",workationId);
 	}
 
+	@Override
+	public List<Workation> getWorkationMbtiItems(int mbtiId) {
+
+		return sql.selectList("getWorkationMbtiItems",mbtiId);
+	}
+
 }

@@ -8,6 +8,6 @@
 <link rel="stylesheet" href="/resources/css/admin.css" type="text/css">
 </head>
 <body>
-hi
+
 </body>
 </html>
